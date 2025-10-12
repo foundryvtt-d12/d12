@@ -1,0 +1,47 @@
+{
+  "id": "d12",
+  "title": "D12 System",
+  "description": "The D12 System for FoundryVTT",
+  "authors": [
+    {
+      "name": "Flavien Charlon",
+      "url": "https://github.com/flavien/"
+    }
+  ],
+  "url": "https://github.com/flavien/d12-foundryvtt",
+  "license": "LICENSE.txt",
+  "readme": "README.md",
+  "manifest": "https://raw.githubusercontent.com/flavien/d12-foundryvtt/refs/heads/master/system.json",
+  "download": "This must link to a .zip file of the current version",
+  "bugs": "https://github.com/flavien/d12-foundryvtt/issues",
+  "changelog": "CHANGELOG.md",
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/d12/assets/anvil-impact.png",
+      "thumbnail": "systems/d12/assets/anvil-impact.png"
+    }
+  ],
+  "version": "2.0.0",
+  "compatibility": {
+    "minimum": 11,
+    "verified": "11.315"
+  },
+  "esmodules": ["module/d12.mjs"],
+  "styles": ["css/d12.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "packs": [],
+  "packFolders": [],
+  "socket": false,
+  "background": "systems/d12/assets/anvil-impact.png",
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power"
+}

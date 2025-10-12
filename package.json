@@ -1,0 +1,18 @@
+{
+  "name": "d12",
+  "version": "2.0.0",
+  "description": "CSS compiler for the D12 system",
+  "scripts": {
+    "build": "sass src/scss/d12.scss css/d12.css --style=expanded --no-source-map",
+    "watch": "sass src/scss/d12.scss css/d12.css --style=expanded --source-map --watch"
+  },
+  "browserslist": [
+    "last 3 versions"
+  ],
+  "author": "Asacolips",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "sass": "^1.53.0"
+  }
+}
