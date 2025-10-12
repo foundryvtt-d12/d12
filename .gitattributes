@@ -1,0 +1,99 @@
+###############################################################################
+# attribute       # Checkin behavior # Checkout behavior
+###############################################################################
+# text            # Normalized to LF # Convert to native line endings
+# [text] eol=crlf # Normalized to LF # Convert to CRLF
+# [text] eol=lf   # Normalized to LF # Convert to LF
+# -text or binary # No conversion    # No conversion
+# text=auto       # Like "text" if text file according to git, otherwise, like "binary"
+# unspecified     # Fall back to core.autocrlf setting of local environment
+###############################################################################
+# core.autocrlf
+#   false: same as binary
+#   true:  same as eol=crlf
+#   input: same as eol=lf
+
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+# Source files
+# ============
+*.markdown  text
+*.md        text
+*.mdwn      text
+*.mdown     text
+*.mkd       text
+*.mkdn      text
+*.mdtxt     text
+*.mdtext    text
+*.txt       text
+*.bat       text
+*.coffee    text
+*.css       text
+*.inc       text
+*.ini       text
+*.js        text
+*.jsx       text
+*.json      text
+*.mjs       text
+*.less      text
+*.list      text
+*.php       text
+*.pl        text
+*.rb        text
+*.sass      text
+*.scm       text
+*.scss      text
+*.sql       text
+*.styl      text
+*.ts        text
+*.xml       text
+*.xhtml     text
+*.hbs       text
+*.db        text
+
+*.cs      text diff=csharp
+*.*proj   text
+*.sln     text
+*.html    text diff=html
+*.htm     text diff=html
+*.cshtml  text diff=html
+*.config  text
+*.targets text
+*.aspx    text
+*.asax    text
+*.cmd     text
+*.tt      text
+*.ps1     text
+*.py      eol=lf
+*.pxd     eol=lf
+*.py3     eol=lf
+*.pyw     eol=lf
+*.pyx     eol=lf
+*.po      eol=lf
+*.sh      eol=lf
+*.conf    eol=lf
+
+# Binary files
+# ============
+*.p         binary
+*.pkl       binary
+*.pyc       binary
+*.pyd       binary
+*.pyo       binary
+*.zip       binary
+
+# Graphics
+# ========
+*.ai        binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.tif       binary
+*.tiff      binary
+*.ico       binary
+*.svg       binary
+*.eps       binary
