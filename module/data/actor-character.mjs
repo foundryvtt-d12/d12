@@ -16,7 +16,14 @@ export default class D12Character extends D12ActorBase {
     // Iterate over ability names and create a new SchemaField for each.
     schema.abilities = new fields.SchemaField(Object.keys(CONFIG.D12.abilities).reduce((obj, ability) => {
       obj[ability] = new fields.SchemaField({
-        value: new fields.NumberField({ ...requiredInteger, initial: 10, min: 0 }),
+        value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      });
+      return obj;
+    }, {}));
+
+    schema.defenses = new fields.SchemaField(Object.keys(CONFIG.D12.defenses).reduce((obj, defense) => {
+      obj[defense] = new fields.SchemaField({
+        value: new fields.NumberField({ ...requiredInteger, initial: 6, min: 0 }),
       });
       return obj;
     }, {}));
@@ -27,8 +34,6 @@ export default class D12Character extends D12ActorBase {
   prepareDerivedData() {
     // Loop through ability scores, and add their modifiers to our sheet output.
     for (const key in this.abilities) {
-      // Calculate the modifier using d20 rules.
-      this.abilities[key].mod = Math.floor((this.abilities[key].value - 10) / 2);
       // Handle ability label localization.
       this.abilities[key].label = game.i18n.localize(CONFIG.D12.abilities[key]) ?? key;
     }
@@ -38,7 +43,7 @@ export default class D12Character extends D12ActorBase {
     const data = {};
 
     // Copy the ability scores to the top level, so that rolls can use
-    // formulas like `@str.mod + 4`.
+    // formulas like `@str.value + 4`.
     if (this.abilities) {
       for (let [k,v] of Object.entries(this.abilities)) {
         data[k] = foundry.utils.deepClone(v);

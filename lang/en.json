@@ -1,12 +1,16 @@
 {
   "D12": {
     "Ability": {
-      "Str": { "long": "Strength", "abbr": "str" },
-      "Con": { "long": "Constitution", "abbr": "con" },
-      "Dex": { "long": "Dexterity", "abbr": "dex" },
-      "Int": { "long": "Intelligence", "abbr": "int" },
-      "Wis": { "long": "Wisdom", "abbr": "wis" },
-      "Cha": { "long": "Charisma", "abbr": "cha" }
+      "Strength": { "long": "Strength", "abbr": "str" },
+      "Agility": { "long": "Agility", "abbr": "agi" },
+      "Intelligence": { "long": "Intelligence", "abbr": "int" },
+      "Perception": { "long": "Perception", "abbr": "per" },
+      "Charisma": { "long": "Charisma", "abbr": "cha" }
+    },
+    "Defense": {
+      "Armor": { "long": "Armor", "abbr": "arm" },
+      "Endurance": { "long": "Endurance", "abbr": "end" },
+      "Willpower": { "long": "Willpower", "abbr": "wil" }
     },
     "SheetLabels": {
       "Actor": "D12 Actor Sheet",
