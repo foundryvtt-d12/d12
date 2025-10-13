@@ -8,12 +8,12 @@
       "url": "https://github.com/flavien/"
     }
   ],
-  "url": "https://github.com/flavien/d12-foundryvtt",
+  "url": "https://github.com/flavien/d12",
   "license": "LICENSE.txt",
   "readme": "README.md",
-  "manifest": "https://raw.githubusercontent.com/flavien/d12-foundryvtt/refs/heads/master/system.json",
+  "manifest": "https://raw.githubusercontent.com/flavien/d12/refs/heads/master/system.json",
   "download": "This must link to a .zip file of the current version",
-  "bugs": "https://github.com/flavien/d12-foundryvtt/issues",
+  "bugs": "https://github.com/flavien/d12/issues",
   "changelog": "CHANGELOG.md",
   "media": [
     {
