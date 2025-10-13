@@ -6,7 +6,7 @@ export default class D12Spell extends D12ItemBase {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();
 
-    schema.spellLevel = new fields.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1, max: 9 });
+    // No additional fields needed - spells will be displayed in a flat list
 
     return schema;
   }
