@@ -12,7 +12,7 @@ export class D12ActorSheet extends ActorSheet {
       tabs: [
         {
           navSelector: '.sheet-tabs',
-          contentSelector: '.sheet-frame',
+          contentSelector: '.sheet-body',
           initial: 'features',
         },
       ],

@@ -12,11 +12,15 @@ from 1 to 12 and will create that number of columns.  --}}
           <div class="attribute-icon">
             <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="24" height="24" />
           </div>
+          {{#if @root.editable}}
+          <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+          {{else}}
           <div class="flexrow align-left attribute-points">
             {{#times ability.value}}
             <i class="fas fa-star fa-xl" style="color: var(--d12-attribute-{{key}}-color)"></i>
             {{/times}}
           </div>
+          {{/if}}
         </div>
       </div>
 
