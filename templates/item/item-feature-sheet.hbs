@@ -3,6 +3,17 @@
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+      <div class="resource">
+        <label class="resource-label">Ability</label>
+        <select name="system.ability">
+          <option value="">None</option>
+          {{#each config.abilities}}
+            <option value="{{@key}}" {{#if (eq @key ../system.ability)}}selected{{/if}}>
+              {{localize this}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
     </div>
   </header>
 
