@@ -1,14 +1,16 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+  {{!-- Sheet Body --}}
+  <div class="grid grid-3col">
 
-  {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+    {{!-- Left column: sidebar with resources and image --}}
+    <aside class="sidebar">
+      <div class="sheet-art">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+      </div>
       {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
       use both the "grid" and "grid-Ncol" class where "N" can be any number
       from 1 to 12 and will create that number of columns.  --}}
-      <div class="resources grid grid-3col">
+      <div class="resources">
 
         {{!-- "flex-group-center" is also defined in the _grid.scss file
         and it will add a small amount of padding, a border, and will
@@ -55,86 +57,48 @@
         </div>
 
       </div>
-    </div>
-  </header>
+    </aside>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="features">Features</a>
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="spells">Spells</a>
-  </nav>
+    {{!-- Right column: main content with tabs --}}
+    <section class="grid-span-2 sheet-frame">
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
+      {{!-- Sheet Header --}}
+      <header class="sheet-header flexcol">
+        <h1 class="sheet-title align-center"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+      </header>
 
-    {{!-- Owned Features Tab --}}
-    <div class="tab features" data-group="primary" data-tab="features">
-      <section class="grid grid-3col">
-        <aside class="sidebar">
+      {{!-- Sheet Tab Navigation --}}
+      <nav class="sheet-tabs tabs" data-group="primary">
+        {{!-- Default tab is specified in actor-sheet.mjs --}}
+        <a class="item" data-tab="features">Features</a>
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="items">Items</a>
+        <a class="item" data-tab="spells">Spells</a>
+      </nav>
 
-          {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-          use both the "grid" and "grid-Ncol" class where "N" can be any number
-          from 1 to 12 and will create that number of columns.  --}}
-          <div class="abilities flexcol">
-            {{#each system.abilities as |ability key|}}
-            <div class="ability flexrow flex-group-center">
-              <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
-              {{#if @root.editable}}
-              <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-              {{else}}
-              <div class="ability-stars" data-value="{{ability.value}}">
-                {{#times ability.value}}
-                <i class="fas fa-star"></i>
-                {{/times}}
-              </div>
-              {{/if}}
-            </div>
-            {{/each}}
+      {{!-- Owned Features Tab --}}
+      <div class="tab features" data-group="primary" data-tab="features">
+        {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
+        {{> "systems/d12/templates/actor/parts/actor-features.hbs"}}
+      </div>
 
-            {{#each system.defenses as |defense key|}}
-            <div class="ability flexrow flex-group-center">
-              <label for="system.defenses.{{key}}.value" class="resource-label flexlarge align-left" data-roll="d20+@defenses.{{key}}.value" data-label="{{localize (lookup @root.config.defenses key)}}">{{localize (lookup @root.config.defenses key)}}</label>
-              {{#if @root.editable}}
-              <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
-              {{else}}
-              <div class="ability-stars" data-value="{{defense.value}}">
-                {{#times defense.value}}
-                <i class="fas fa-star"></i>
-                {{/times}}
-              </div>
-              {{/if}}
-            </div>
-            {{/each}}
-          </div>
-        </aside>
+      {{!-- Biography Tab --}}
+      <div class="tab biography" data-group="primary" data-tab="description">
+        {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
+        {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
+      </div>
 
-        {{!-- For the main features list, span the right two columns --}}
-        <section class="main grid-span-2">
-          {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-          {{> "systems/d12/templates/actor/parts/actor-features.hbs"}}
-        </section>
+      {{!-- Owned Items Tab --}}
+      <div class="tab items" data-group="primary" data-tab="items">
+        {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
+      </div>
 
-      </section>
-    </div>
+      {{!-- Owned Spells Tab --}}
+      <div class="tab spells" data-group="primary" data-tab="spells">
+        {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
+      </div>
 
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
-      {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
-    </div>
+    </section>
 
-    {{!-- Owned Items Tab --}}
-    <div class="tab items" data-group="primary" data-tab="items">
-       {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
-    </div>
-
-    {{!-- Owned Spells Tab --}}
-    <div class="tab spells" data-group="primary" data-tab="spells">
-      {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
-    </div>
-
-  </section>
+  </div>
 </form>
