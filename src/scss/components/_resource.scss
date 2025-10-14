@@ -16,17 +16,17 @@
   height: 12px;
   border: 1px solid #333;
   border-radius: 2px;
-  
+
   &.filled.health {
     background-color: #dc3545;
     border-color: #bd2130;
   }
-  
+
   &.filled.mana {
     background-color: #007bff;
     border-color: #0056b3;
   }
-  
+
   &.empty {
     background-color: #e0e0e0;
     border-color: #999;
