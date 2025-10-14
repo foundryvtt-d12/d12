@@ -4,7 +4,23 @@ from 1 to 12 and will create that number of columns.  --}}
 <div class="grid grid-12col">
   <div class="grid-span-7 flexcol">
     {{#each system.abilities as |ability key|}}
-    <div class="ability flexrow flex-group-center">
+      <div class="attribute-bar flexcol">
+        <label for="system.abilities.{{key}}.value" class="label rollable flexlarge flex-group-left" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+          {{localize (lookup @root.config.abilities key)}}
+        </label>
+        <div class="attribute-box flexrow align-left" style="border-color: var(--d12-attribute-{{key}}-color)">
+          <div class="attribute-icon">
+            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="24" height="24" />
+          </div>
+          <div class="flexrow align-left attribute-points">
+            {{#times ability.value}}
+            <i class="fas fa-star fa-xl" style="color: var(--d12-attribute-{{key}}-color)"></i>
+            {{/times}}
+          </div>
+        </div>
+      </div>
+
+    {{!-- <div class="ability flexrow flex-group-center">
       <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
       {{#if @root.editable}}
       <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
@@ -15,7 +31,7 @@ from 1 to 12 and will create that number of columns.  --}}
         {{/times}}
       </div>
       {{/if}}
-    </div>
+    </div> --}}
     {{/each}}
   </div>
 
@@ -26,10 +42,8 @@ from 1 to 12 and will create that number of columns.  --}}
       {{#if @root.editable}}
       <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
       {{else}}
-      <div class="ability-stars" data-value="{{defense.value}}">
-        {{#times defense.value}}
-        <i class="fas fa-star"></i>
-        {{/times}}
+      <div data-value="{{defense.value}}">
+        {{defense.value}}
       </div>
       {{/if}}
     </div>

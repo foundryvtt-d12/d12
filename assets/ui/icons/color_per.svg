@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 86.59 86.59">
+  <defs>
+    <style>
+      .Anon_XwWqK9VNDKk_, .cls-1 {
+        stroke: rgba(255, 255, 255, .7);
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        opacity: .7;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #f4b600;
+      }
+
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+    <symbol id="Perception" viewBox="0 0 34.02 34.02">
+      <g>
+        <circle id="Background" class="cls-4" cx="17.01" cy="17.01" r="17.01"/>
+        <g id="Background-2" data-name="Background">
+          <g class="cls-2">
+            <path class="cls-3" d="m17.01,2.92c7.77,0,14.09,6.32,14.09,14.09s-6.32,14.09-14.09,14.09S2.92,24.78,2.92,17.01,9.24,2.92,17.01,2.92m0-1.5C8.4,1.42,1.42,8.4,1.42,17.01s6.98,15.59,15.59,15.59,15.59-6.98,15.59-15.59S25.62,1.42,17.01,1.42h0Z"/>
+          </g>
+        </g>
+        <path class="cls-1" d="m24.71,19.07c.2.23.2.57,0,.8-1.96,2.24-4.77,3.52-7.71,3.52s-5.74-1.28-7.71-3.53c-.2-.23-.2-.57,0-.8,1.89-2.16,4.56-3.42,7.38-3.52.11,0,.22-.02.33-.02s.22,0,.33.02c2.81.09,5.48,1.36,7.38,3.52Zm-11.53.39c-.07,4.97,7.72,4.97,7.65,0,.06-4.97-7.71-4.97-7.65,0Zm3.17,0c0,.36.29.65.65.65s.65-.29.65-.65-.29-.65-.65-.65-.65.29-.65.65Zm.65-7.3v-3.04m-3.84,3.72l-1.04-2.86m-2.34,4.81l-1.95-2.33m13.01.38l1.04-2.86m2.34,4.81l1.95-2.33"/>
+      </g>
+    </symbol>
+  </defs>
+  <g id="Root">
+    <g id="Roll_Cards" data-name="Roll Cards">
+      <g id="Perception-2" data-name="Perception">
+        <use width="34.02" height="34.02" transform="scale(2.55)" xlink:href="#Perception"/>
+      </g>
+    </g>
+  </g>
+</svg>

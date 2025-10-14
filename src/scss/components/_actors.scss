@@ -1,0 +1,39 @@
+
+.attribute-bar {
+  margin-bottom: 10px;
+
+  .label {
+    flex: 0 auto;
+    margin: 1px 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+
+  .attribute-icon {
+    margin: 0 12px 0 0;
+    flex: 0 0 auto;
+
+    img {
+      border: none;
+    }
+  }
+
+  .attribute-box {
+    align-items: center;
+    border: 2px solid red;
+    border-radius: 4px;
+    padding: 6px;
+    background-color: rgba(#fff, 0.5);
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    .attribute-points {
+      gap: 6px;
+      flex-wrap: nowrap;
+
+      & > i {
+        flex: 0 0 auto;
+      }
+    }
+  }
+}

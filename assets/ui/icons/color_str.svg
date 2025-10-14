@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 86.59 86.59">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .7;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .Anon_xLM7cBHFyjs_, .cls-3 {
+        stroke: rgba(255, 255, 255, .7);
+        stroke-linecap: round;
+        stroke-miterlimit: 333.33;
+        stroke-width: 1.5px;
+      }
+
+      .cls-4 {
+        fill: #d93a2a;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+    <symbol id="Strength" viewBox="0 0 34.02 34.02">
+      <g>
+        <circle id="Background" class="cls-4" cx="17.01" cy="17.01" r="17.01"/>
+        <g id="Background-2" data-name="Background">
+          <g class="cls-1">
+            <path class="cls-2" d="m17.01,2.92c7.77,0,14.09,6.32,14.09,14.09s-6.32,14.09-14.09,14.09S2.92,24.78,2.92,17.01,9.24,2.92,17.01,2.92m0-1.5C8.4,1.42,1.42,8.4,1.42,17.01s6.98,15.59,15.59,15.59,15.59-6.98,15.59-15.59S25.62,1.42,17.01,1.42h0Z"/>
+          </g>
+        </g>
+        <path class="cls-3" d="m15.54,21.76s-.93-2.93.77-4.69c.72-.6,1.52-1.11,2.37-1.52,0-2.15,1.74-3.89,3.88-3.9,2.15,0,3.89,1.74,3.9,3.88,0,1.89-1.35,3.51-3.21,3.84-1.49,2.25-4.74,6.27-9.22,6.27-2.38,0-4.7-6.95-4.7-10.1v-3.78c0-.98.77-1.78,1.74-1.83,1.41-.07,3.25,0,3.69.95.67,1.39-.77,3.89-2.33,3.89,0,1.22,1.49,3.87,2.84,5.34"/>
+      </g>
+    </symbol>
+  </defs>
+  <g id="Root">
+    <g id="Roll_Cards" data-name="Roll Cards">
+      <g id="Strength-2" data-name="Strength">
+        <use width="34.02" height="34.02" transform="scale(2.55)" xlink:href="#Strength"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 86.59 86.59">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .7;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .Anon_SZGC6tpfEPQ_, .cls-3 {
+        stroke: rgba(255, 255, 255, .7);
+        stroke-linecap: round;
+        stroke-width: 1.5px;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #82368c;
+      }
+    </style>
+    <symbol id="Charisma" viewBox="0 0 34.02 34.02">
+      <g>
+        <circle id="Background" class="cls-4" cx="17.01" cy="17.01" r="17.01"/>
+        <g id="Background-2" data-name="Background">
+          <g class="cls-1">
+            <path class="cls-2" d="m17.01,2.92c7.77,0,14.09,6.32,14.09,14.09s-6.32,14.09-14.09,14.09S2.92,24.78,2.92,17.01,9.24,2.92,17.01,2.92m0-1.5C8.4,1.42,1.42,8.4,1.42,17.01s6.98,15.59,15.59,15.59,15.59-6.98,15.59-15.59S25.62,1.42,17.01,1.42h0Z"/>
+          </g>
+        </g>
+        <path class="cls-3" d="m18.71,25.52c-.59.25-.88.37-1.71.37s-1.12-.12-1.71-.37c-2.16-.92-5.6-3.08-5.6-7.54v-4.29c0-1.78,0-2.67.57-3.15.57-.49,1.45-.34,3.21-.05l.86.14c1.33.22,2,.33,2.67.33s1.34-.11,2.67-.33l.86-.14c1.75-.29,2.63-.44,3.21.05.57.49.57,1.37.57,3.15v4.29c0,4.46-3.44,6.62-5.6,7.54Zm-2.92-9.97c-.24-.47-.87-.81-1.62-.81s-1.39.34-1.62.81m8.93,0c-.24-.47-.87-.81-1.62-.81s-1.39.34-1.62.81m-4.06,4.06s.85.81,2.84.81,2.84-.81,2.84-.81"/>
+      </g>
+    </symbol>
+  </defs>
+  <g id="Root">
+    <g id="Roll_Cards" data-name="Roll Cards">
+      <g id="Social">
+        <use width="34.02" height="34.02" transform="scale(2.55)" xlink:href="#Charisma"/>
+      </g>
+    </g>
+  </g>
+</svg>

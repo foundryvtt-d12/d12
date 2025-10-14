@@ -12,7 +12,7 @@ export class D12ItemSheet extends ItemSheet {
       tabs: [
         {
           navSelector: '.sheet-tabs',
-          contentSelector: '.sheet-body',
+          contentSelector: '.sheet-frame',
           initial: 'description',
         },
       ],

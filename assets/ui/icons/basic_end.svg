@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28.35 24.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #878787;
+      }
+    </style>
+    <symbol id="Icon_-_Endurance" data-name="Icon - Endurance" viewBox="0 0 6.78 5.84">
+      <path class="cls-1" d="m3.44.7s-.08.03-.11,0C1.82-.81,0,.35,0,1.98s1.36,2.53,2.36,3.31c.35.28.69.54,1.03.54s.68-.26,1.03-.54c1-.79,2.36-1.66,2.36-3.31S4.96-.81,3.44.7Zm1.36,2.11v.43c0,.08-.06.14-.14.14h-.71c-.08,0-.14.06-.14.14v.71c0,.08-.06.14-.14.14h-.57c-.08,0-.14-.06-.14-.14v-.71c0-.08-.06-.14-.14-.14h-.71c-.08,0-.14-.06-.14-.14v-.57c0-.08.06-.14.14-.14h.71c.08,0,.14-.06.14-.14v-.71c0-.08.06-.14.14-.14h.57c.08,0,.14.06.14.14v.71c0,.08.06.14.14.14h.71c.08,0,.14.06.14.14v.14Z"/>
+    </symbol>
+  </defs>
+  <g id="Attributes">
+    <use width="6.78" height="5.84" transform="scale(4.18)" xlink:href="#Icon_-_Endurance"/>
+  </g>
+</svg>

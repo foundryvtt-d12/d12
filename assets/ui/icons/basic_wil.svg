@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25.51 25.51">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #878787;
+      }
+    </style>
+    <symbol id="Icon_-_Magic_Defense" data-name="Icon - Magic Defense" viewBox="0 0 6.8 6.8">
+      <path class="cls-1" d="m3.4,0C1.52,0,0,1.52,0,3.4s1.52,3.4,3.4,3.4,3.4-1.52,3.4-3.4S5.28,0,3.4,0Zm2.15,3.47l-1.17.39c-.25.08-.44.28-.52.52l-.39,1.17c-.02.06-.11.06-.13,0l-.39-1.17c-.08-.25-.28-.44-.52-.52l-1.17-.39c-.06-.02-.06-.11,0-.13l1.17-.39c.25-.08.44-.28.52-.52l.39-1.17c.02-.06.11-.06.13,0l.39,1.17c.08.25.28.44.52.52l1.17.39c.06.02.06.11,0,.13Z"/>
+    </symbol>
+  </defs>
+  <g id="Attributes">
+    <use width="6.8" height="6.8" transform="scale(3.75)" xlink:href="#Icon_-_Magic_Defense"/>
+  </g>
+</svg>
