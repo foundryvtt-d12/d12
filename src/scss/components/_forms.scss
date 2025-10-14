@@ -53,3 +53,14 @@
     padding: 0 8px;
   }
 }
+
+.ability-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  i.fa-star {
+    color: gold;
+    font-size: 14px;
+  }
+}

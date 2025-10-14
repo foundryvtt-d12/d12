@@ -77,6 +77,20 @@ Handlebars.registerHelper('toLowerCase', function (str) {
   return str.toLowerCase();
 });
 
+// Helper to repeat a block n times (for rendering stars)
+Handlebars.registerHelper('times', function (n, block) {
+  let result = '';
+  for (let i = 0; i < n; i++) {
+    result += block.fn(i);
+  }
+  return result;
+});
+
+// Helper for less than comparison
+Handlebars.registerHelper('lt', function (a, b) {
+  return a < b;
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

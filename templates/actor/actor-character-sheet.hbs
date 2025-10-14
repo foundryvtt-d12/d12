@@ -15,20 +15,36 @@
         center all of its child elements content and text. --}}
         <div class="resource flex-group-center">
           <label for="system.health.value" class="resource-label">Health</label>
+          {{#if editable}}
           <div class="resource-content flexrow flex-center flex-between">
             <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
             <span> / </span>
             <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
           </div>
+          {{else}}
+          <div class="resource-squares health-squares">
+            {{#times system.health.max}}
+            <div class="resource-square {{#if (lt this @root.system.health.value)}}filled health{{else}}empty{{/if}}"></div>
+            {{/times}}
+          </div>
+          {{/if}}
         </div>
 
         <div class="resource flex-group-center">
           <label for="system.mana.value" class="resource-label">Mana</label>
+          {{#if editable}}
           <div class="resource-content flexrow flex-center flex-between">
             <input type="text" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
             <span> / </span>
             <input type="text" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number"/>
           </div>
+          {{else}}
+          <div class="resource-squares mana-squares">
+            {{#times system.mana.max}}
+            <div class="resource-square {{#if (lt this @root.system.mana.value)}}filled mana{{else}}empty{{/if}}"></div>
+            {{/times}}
+          </div>
+          {{/if}}
         </div>
 
         <div class="resource flex-group-center">
@@ -66,14 +82,30 @@
             {{#each system.abilities as |ability key|}}
             <div class="ability flexrow flex-group-center">
               <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
+              {{#if @root.editable}}
               <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+              {{else}}
+              <div class="ability-stars" data-value="{{ability.value}}">
+                {{#times ability.value}}
+                <i class="fas fa-star"></i>
+                {{/times}}
+              </div>
+              {{/if}}
             </div>
             {{/each}}
 
             {{#each system.defenses as |defense key|}}
             <div class="ability flexrow flex-group-center">
               <label for="system.defenses.{{key}}.value" class="resource-label flexlarge align-left" data-roll="d20+@defenses.{{key}}.value" data-label="{{localize (lookup @root.config.defenses key)}}">{{localize (lookup @root.config.defenses key)}}</label>
+              {{#if @root.editable}}
               <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
+              {{else}}
+              <div class="ability-stars" data-value="{{defense.value}}">
+                {{#times defense.value}}
+                <i class="fas fa-star"></i>
+                {{/times}}
+              </div>
+              {{/if}}
             </div>
             {{/each}}
           </div>
