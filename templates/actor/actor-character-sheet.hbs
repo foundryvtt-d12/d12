@@ -49,7 +49,6 @@
     <a class="item" data-tab="description">Description</a>
     <a class="item" data-tab="items">Items</a>
     <a class="item" data-tab="spells">Spells</a>
-    <a class="item" data-tab="effects">Effects</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -103,11 +102,6 @@
     {{!-- Owned Spells Tab --}}
     <div class="tab spells" data-group="primary" data-tab="spells">
       {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
-    </div>
-
-    {{!-- Active Effects Tab --}}
-    <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-      {{> "systems/d12/templates/actor/parts/actor-effects.hbs"}}
     </div>
 
   </section>

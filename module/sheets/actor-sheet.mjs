@@ -1,8 +1,3 @@
-import {
-  onManageActiveEffect,
-  prepareActiveEffectCategories,
-} from '../helpers/effects.mjs';
-
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -36,7 +31,7 @@ export class D12ActorSheet extends ActorSheet {
     // Retrieve the data structure from the base sheet. You can inspect or log
     // the context variable to see the structure, but some key properties for
     // sheets are the actor object, the data object, whether or not it's
-    // editable, the items array, and the effects array.
+    // editable, and the items array.
     const context = super.getData();
 
     // Use a safe clone of the actor data for further operations.
@@ -74,13 +69,6 @@ export class D12ActorSheet extends ActorSheet {
         // Relative UUID resolution
         relativeTo: this.actor,
       }
-    );
-
-    // Prepare active effects
-    context.effects = prepareActiveEffectCategories(
-      // A generator that returns all effects stored on the actor
-      // as well as any items
-      this.actor.allApplicableEffects()
     );
 
     return context;
@@ -156,16 +144,6 @@ export class D12ActorSheet extends ActorSheet {
       const item = this.actor.items.get(li.data('itemId'));
       item.delete();
       li.slideUp(200, () => this.render(false));
-    });
-
-    // Active Effect management
-    html.on('click', '.effect-control', (ev) => {
-      const row = ev.currentTarget.closest('li');
-      const document =
-        row.dataset.parentId === this.actor.id
-          ? this.actor
-          : this.actor.items.get(row.dataset.parentId);
-      onManageActiveEffect(ev, document);
     });
 
     // Rollable abilities.
