@@ -1,6 +1,6 @@
 
 .attribute-bar {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 
   .label {
     flex: 0 auto;
@@ -18,14 +18,14 @@
     align-items: center;
     border: 2px solid red;
     border-radius: 4px;
-    padding: 6px;
+    padding: 5px;
     background-color: rgba(#fff, 0.5);
     flex-wrap: nowrap;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 10px;
 
     .attribute-points {
-      gap: 6px;
+      gap: 5px;
       flex-wrap: nowrap;
 
       & > i {

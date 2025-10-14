@@ -10,32 +10,19 @@ from 1 to 12 and will create that number of columns.  --}}
         </label>
         <div class="attribute-box flexrow align-left" style="border-color: var(--d12-attribute-{{key}}-color)">
           <div class="attribute-icon">
-            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="24" height="24" />
+            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="20" height="20" />
           </div>
           {{#if @root.editable}}
           <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
           {{else}}
           <div class="flexrow align-left attribute-points">
             {{#times ability.value}}
-            <i class="fas fa-star fa-xl" style="color: var(--d12-attribute-{{key}}-color)"></i>
+            <i class="fas fa-star fa-lg" style="color: var(--d12-attribute-{{key}}-color)"></i>
             {{/times}}
           </div>
           {{/if}}
         </div>
       </div>
-
-    {{!-- <div class="ability flexrow flex-group-center">
-      <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
-      {{#if @root.editable}}
-      <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-      {{else}}
-      <div class="ability-stars" data-value="{{ability.value}}">
-        {{#times ability.value}}
-        <i class="fas fa-star"></i>
-        {{/times}}
-      </div>
-      {{/if}}
-    </div> --}}
     {{/each}}
   </div>
 
