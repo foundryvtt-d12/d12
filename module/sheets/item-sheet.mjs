@@ -16,7 +16,47 @@ export class D12ItemSheet extends ItemSheet {
           initial: 'description',
         },
       ],
+      submitOnChange: true,
     });
+  }
+
+  /** @override */
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+
+    // Add lock/unlock button for owners
+    if (this.document.isOwner) {
+      buttons.unshift({
+        label: this.isEditable ? "Unlock" : "Lock",
+        class: "configure-sheet",
+        icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
+        onclick: ev => this._onToggleLock(ev)
+      });
+    }
+
+    return buttons;
+  }
+
+  /**
+   * Handle toggling the locked state of the sheet
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onToggleLock(event) {
+    event.preventDefault();
+
+    // Toggle the locked state in the item's flags
+    const locked = this.item.getFlag('d12', 'locked') ?? false;
+    await this.item.setFlag('d12', 'locked', !locked);
+
+    // Re-render the sheet to reflect the change
+    this.render(false);
+  }
+
+  /** @override */
+  get isEditable() {
+    const locked = this.item.getFlag('d12', 'locked') ?? false;
+    return !locked && super.isEditable;
   }
 
   /** @override */
