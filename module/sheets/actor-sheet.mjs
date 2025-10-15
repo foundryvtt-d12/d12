@@ -172,32 +172,32 @@ export class D12ActorSheet extends ActorSheet {
       item.sheet.render(true);
     });
 
-    // -------------------------------------------------------------
-    // Everything below here is only needed if the sheet is editable
-    if (!this.isEditable) return;
+    if (this.isEditable) {
+      // Add Inventory Item
+      html.on('click', '.item-create', this._onItemCreate.bind(this));
 
-    // Add Inventory Item
-    html.on('click', '.item-create', this._onItemCreate.bind(this));
-
-    // Delete Inventory Item
-    html.on('click', '.item-delete', (ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
-      item.delete();
-      li.slideUp(200, () => this.render(false));
-    });
-
-    // Rollable abilities.
-    html.on('click', '.rollable', this._onRoll.bind(this));
-
-    // Drag events for macros.
-    if (this.actor.isOwner) {
-      let handler = (ev) => this._onDragStart(ev);
-      html.find('li.item').each((i, li) => {
-        if (li.classList.contains('inventory-header')) return;
-        li.setAttribute('draggable', true);
-        li.addEventListener('dragstart', handler, false);
+      // Delete Inventory Item
+      html.on('click', '.item-delete', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        item.delete();
+        li.slideUp(200, () => this.render(false));
       });
+
+      // Drag events for macros.
+      if (this.actor.isOwner) {
+        let handler = (ev) => this._onDragStart(ev);
+        html.find('li.item').each((i, li) => {
+          if (li.classList.contains('inventory-header')) return;
+          li.setAttribute('draggable', true);
+          li.addEventListener('dragstart', handler, false);
+        });
+      }
+    } else {
+      // Only when the sheet is not editable
+
+      // Rollable abilities.
+      html.on('click', '.rollable', this._onRoll.bind(this));
     }
   }
 

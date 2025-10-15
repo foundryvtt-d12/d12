@@ -4,8 +4,8 @@ from 1 to 12 and will create that number of columns.  --}}
 <div class="grid grid-12col">
   <div class="grid-span-7 flexcol">
     {{#each system.abilities as |ability key|}}
-      <div class="attribute-field flexcol">
-        <label for="system.abilities.{{key}}.value" class="label rollable flex-group-left" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+      <div class="attribute-field flexcol rollable" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+        <label for="system.abilities.{{key}}.value" class="label flex-group-left">
           {{localize (lookup @root.config.abilities key)}}
         </label>
         <div class="attribute-box flexrow align-left" style="border-color: var(--d12-attribute-{{key}}-color)">
