@@ -4,13 +4,13 @@ from 1 to 12 and will create that number of columns.  --}}
 <div class="grid grid-12col">
   <div class="grid-span-7 flexcol">
     {{#each system.abilities as |ability key|}}
-      <div class="attribute-bar flexcol">
-        <label for="system.abilities.{{key}}.value" class="label rollable flexlarge flex-group-left" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+      <div class="attribute-field flexcol">
+        <label for="system.abilities.{{key}}.value" class="label rollable flex-group-left" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
           {{localize (lookup @root.config.abilities key)}}
         </label>
         <div class="attribute-box flexrow align-left" style="border-color: var(--d12-attribute-{{key}}-color)">
           <div class="attribute-icon">
-            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="20" height="20" />
+            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="16" height="16" />
           </div>
           {{#if @root.editable}}
           <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
@@ -26,18 +26,26 @@ from 1 to 12 and will create that number of columns.  --}}
     {{/each}}
   </div>
 
-  <div class="grid-span-5 flexcol">
+  <div class="grid-span-5 flexcol flex-group-center">
     {{#each system.defenses as |defense key|}}
-    <div class="ability flexrow flex-group-center">
-      <label for="system.defenses.{{key}}.value" class="resource-label flexlarge align-left" data-roll="d20+@defenses.{{key}}.value" data-label="{{localize (lookup @root.config.defenses key)}}">{{localize (lookup @root.config.defenses key)}}</label>
-      {{#if @root.editable}}
-      <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
-      {{else}}
-      <div data-value="{{defense.value}}">
-        {{defense.value}}
+      <div class="defense-field flexcol flexshrink">
+        <label for="system.defenses.{{key}}.value" class="label align-left" data-label="{{localize (lookup @root.config.defenses key)}}">
+          {{localize (lookup @root.config.defenses key)}}
+        </label>
+
+        <div class="defense-box flexrow align-left">
+          <div class="defense-icon">
+            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="32" height="32" />
+          </div>
+          {{#if @root.editable}}
+          <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
+          {{else}}
+          <div class="defense-value">
+            {{defense.value}}
+          </div>
+          {{/if}}
+        </div>
       </div>
-      {{/if}}
-    </div>
     {{/each}}
   </div>
 </div>
