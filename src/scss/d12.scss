@@ -15,7 +15,6 @@
 /* Styles limited to d12 sheets */
 .app.sheet.d12 {
   @import 'components/sheets';
-  @import 'components/resource';
   @import 'components/actors';
   @import 'components/items';
 }

@@ -1,4 +1,6 @@
 
+// Mixins
+
 @mixin character-field {
   align-items: center;
   border-bottom: 2px solid rgba(#444, 0.5);
@@ -8,6 +10,46 @@
   background-color: rgba(#fff, 0.3);
 }
 
+// Resource bars (Health, Mana)
+.resource {
+  margin: 4px 2px 12px;
+
+  .resource-content {
+    text-align: center;
+  }
+
+  .resource-squares {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 3px;
+    padding: 5px 0;
+
+    .resource-square {
+      width: 12px;
+      height: 12px;
+      border: 1px solid #333;
+      border-radius: 2px;
+
+      &.filled.health {
+        background-color: #dc3545;
+        border-color: #bd2130;
+      }
+
+      &.filled.mana {
+        background-color: #007bff;
+        border-color: #0056b3;
+      }
+
+      &.empty {
+        background-color: #e0e0e0;
+        border-color: #999;
+      }
+    }
+  }
+}
+
+// Attribute fields (STR, AGI, INT, PER, CHA)
 .attribute-field {
   margin-bottom: 12px;
 
@@ -33,6 +75,7 @@
   }
 }
 
+// Defense fields (Armor, Endurance, Willpower)
 .defense-field {
   margin-bottom: 24px;
   min-width: 100px;
@@ -56,6 +99,8 @@
     }
   }
 }
+
+// Generic styles
 
 .label {
   flex: 0 auto;
