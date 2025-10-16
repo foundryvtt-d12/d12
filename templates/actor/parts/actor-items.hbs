@@ -1,6 +1,6 @@
 <div class='items-section card'>
   <div class='items-header header'>
-    <div class='item-name'>{{localize 'Name'}}</div>
+    <div class='item-name'>{{localize 'Item'}}</div>
     <div class='item-header'>{{localize 'Ability'}}</div>
     <div class='item-header edit-mode-only'>
       <a
@@ -12,7 +12,7 @@
       </a>
     </div>
   </div>
-  <ol class='item-list unlist'>
+  <ol class='item-list'>
     {{#each gear as |item id|}}
       <li class='item' data-item-id='{{item._id}}'>
         <div class='item-row'>

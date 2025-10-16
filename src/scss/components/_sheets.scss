@@ -113,6 +113,7 @@ img {
   box-shadow: $box-shadow;
   overflow: hidden;
   background-color: $box-background;
+  margin-bottom: 16px;
 
   .items-header {
     display: grid;
@@ -126,7 +127,7 @@ img {
 
     .item-name {
       text-align: left;
-      padding-left: 30px;
+      padding-left: 40px;
     }
 
     .item-header {
