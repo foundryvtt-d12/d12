@@ -114,12 +114,9 @@ img {
   overflow: hidden;
   background-color: $box-background;
 
-  --item-grid-columns: 1fr 80px 50px 50px;
-
   .items-header {
     display: grid;
     font-family: $font-condensed;
-    grid-template-columns: var(--item-grid-columns);
     gap: 8px;
     align-items: center;
     padding: 6px 8px;
@@ -152,7 +149,6 @@ img {
 
       .item-row {
         display: grid;
-        grid-template-columns: var(--item-grid-columns);
         gap: 8px;
         align-items: center;
         padding: 6px 8px;
@@ -248,3 +244,18 @@ img {
   }
 }
 
+.locked {
+  .edit-mode-only {
+    display: none !important;
+  }
+
+  .item-row, .items-header {
+    grid-template-columns: 1fr 80px;
+  }
+}
+
+.editable {
+  .item-row, .items-header {
+    grid-template-columns: 1fr 80px 50px;
+  }
+}

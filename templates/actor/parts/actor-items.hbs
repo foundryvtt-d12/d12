@@ -2,9 +2,7 @@
   <div class='items-header header'>
     <div class='item-name'>{{localize 'Name'}}</div>
     <div class='item-header'>{{localize 'Ability'}}</div>
-    <div class='item-header'>{{localize 'Weight'}}</div>
-    <div class='item-header'>
-      {{#if editable}}
+    <div class='item-header edit-mode-only'>
       <a
         class='item-control item-create'
         title='{{localize "DOCUMENT.Create" type='Item'}}'
@@ -12,7 +10,6 @@
       >
         <i class='fas fa-plus'></i>
       </a>
-      {{/if}}
     </div>
   </div>
   <ol class='item-list unlist'>
@@ -41,8 +38,7 @@
             —
             {{/if}}
           </div>
-          <div class='item-column'>{{item.system.weight}}</div>
-          <div class='item-column item-actions'>
+          <div class='item-column item-actions edit-mode-only'>
             <a
               class='item-control item-edit'
               title='{{localize "DOCUMENT.Update" type='Item'}}'
