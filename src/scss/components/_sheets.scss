@@ -55,6 +55,8 @@
 
   .sheet-title {
     input {
+      font-family: $font-secondary;
+      font-size: 1.5em;
       color: #fff;
     }
   }
@@ -70,4 +72,11 @@
 
 img {
   border: none;
+}
+
+.label {
+  flex: 0 auto;
+  margin: 3px 0;
+  font-size: 0.75em;
+  color: #666;
 }

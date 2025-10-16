@@ -26,10 +26,10 @@
     padding: 5px 0;
 
     .resource-square {
-      width: 12px;
-      height: 12px;
-      border: 1px solid #333;
-      border-radius: 2px;
+      width: 16px;
+      height: 16px;
+      border: 1px solid transparent;
+      border-radius: 4px;
 
       &.filled.health {
         background-color: #dc3545;
@@ -43,7 +43,7 @@
 
       &.empty {
         background-color: #e0e0e0;
-        border-color: #999;
+        border-color: #ccc;
       }
     }
   }
@@ -100,11 +100,3 @@
   }
 }
 
-// Generic styles
-
-.label {
-  flex: 0 auto;
-  margin: 3px 0;
-  font-size: 0.85em;
-  font-weight: 600;
-}

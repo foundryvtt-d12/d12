@@ -28,12 +28,17 @@ export class D12ActorSheet extends ActorSheet {
     // Add lock/unlock button for owners
     if (this.document.isOwner) {
       buttons.unshift({
-        label: this.isEditable ? "Unlock" : "Lock",
-        class: "configure-sheet",
+        class: "lock-sheet",
         icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
         onclick: ev => this._onToggleLock(ev)
       });
     }
+
+    // Remove label property from all header buttons
+    buttons = buttons.map(btn => {
+      const { label, ...rest } = btn;
+      return rest;
+    });
 
     return buttons;
   }
