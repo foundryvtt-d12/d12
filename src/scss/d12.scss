@@ -15,6 +15,15 @@
 /* Styles limited to d12 sheets */
 .app.sheet.d12 {
   @import 'components/sheets';
-  @import 'components/actors';
-  @import 'components/items';
+  @import 'components/table';
+
+  &.actor {
+    @import 'components/sheets-actor';
+    @import 'components/actors';
+  }
+
+  &.item {
+    @import 'components/sheets-item';
+    @import 'components/items';
+  }
 }
