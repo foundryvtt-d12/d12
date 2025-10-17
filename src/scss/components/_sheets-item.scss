@@ -1,3 +1,19 @@
+.window-content {
+  &::before {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 166px;
+    background:
+      url('../assets/ui/sheet-sidebar.webp') top center / auto no-repeat,
+      #16181d;
+  }
+
+  .sheet-grid {
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+  }
+}
 
 .sheet-header {
   .sheet-title {
