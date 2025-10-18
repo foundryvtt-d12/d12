@@ -4,6 +4,7 @@
 
 .window-content {
   background-image: url('../assets/ui/sheet-bg.jpg');
+  background-size: cover;
   position: relative;
 
   &::before {
