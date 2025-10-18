@@ -16,9 +16,20 @@
 }
 
 .sheet-header {
+  margin-bottom: 16px;
+
   .sheet-title {
     input {
       color: #69625b;
     }
   }
+
+  .sheet-subtitle {
+    font-family: $font-condensed;
+    font-size: 1.2em;
+  }
+}
+
+.label {
+  color: $c-text-on-dark;
 }

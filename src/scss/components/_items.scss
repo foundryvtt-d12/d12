@@ -1,0 +1,17 @@
+.sidebar {
+  .sheet-art {
+    overflow: visible;
+    img {
+      box-shadow: 0px 0px 8px 4px;
+      border-radius: 8px;
+    }
+  }
+
+  .rarity {
+    select {
+      color: $c-text-on-dark;
+      background-color: #252830;
+      width: 100%;
+    }
+  }
+}

@@ -5,49 +5,48 @@
     {{!-- Left column: sidebar with resources and image --}}
     <aside class="sidebar">
       <div class="sheet-art">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100"/>
+        <img class="rarity-{{system.rarity}}" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100"/>
       </div>
       {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
       use both the "grid" and "grid-Ncol" class where "N" can be any number
       from 1 to 12 and will create that number of columns.  --}}
       <div class="details">
 
-
-
-      </div>
-    </aside>
-
-    {{!-- Right column: main content with tabs --}}
-    <section class="sheet-body">
-
-      {{!-- Sheet Header --}}
-      <header class="sheet-header flexcol">
-        <h1 class="sheet-title"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-      </header>
-
-      <div class='grid grid-3col'>
-        <div class='resource'>
-          <label class='resource-label'>Ability</label>
-          <select name='system.ability'>
-            <option value=''>None</option>
-            {{#each config.abilities}}
-              <option value='{{@key}}' {{#if (eq @key ../system.ability)}}selected{{/if}}>
+        <div class='rarity flexcol'>
+          <label for="system.rarity" class="label">Rarity</label>
+          <select class="rarity-{{system.rarity}}" name='system.rarity'>
+            {{#each config.rarities}}
+              <option class="rarity-{{@key}}" value='{{@key}}' {{#if (eq @key ../system.rarity)}}selected{{/if}}>
                 {{localize this}}
               </option>
             {{/each}}
           </select>
         </div>
-        <div class='resource'>
-          <label class='resource-label'>Quantity</label>
+
+      </div>
+    </aside>
+
+    {{!-- Right column: main content with tabs --}}
+    <section class="sheet-body flexcol">
+
+      {{!-- Sheet Header --}}
+      <header class="sheet-header flexcol">
+        <h1 class="sheet-title"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h2 class="sheet-subtitle">Weapon</h2>
+      </header>
+
+      <div class="flexrow">
+        <div>
+          <label>Price</label>
           <input
             type='text'
-            name='system.quantity'
-            value='{{system.quantity}}'
+            name='system.price'
+            value='{{system.price}}'
             data-dtype='Number'
           />
         </div>
-        <div class='resource'>
-          <label class='resource-label'>Weight</label>
+        <div>
+          <label>Weight</label>
           <input
             type='text'
             name='system.weight'
@@ -55,6 +54,27 @@
             data-dtype='Number'
           />
         </div>
+        <div>
+          <label>Quantity</label>
+          <input
+            type='text'
+            name='system.quantity'
+            value='{{system.quantity}}'
+            data-dtype='Number'
+          />
+        </div>
+      </div>
+
+      <div>
+        <label>Ability</label>
+        <select name='system.ability'>
+          <option value=''>None</option>
+          {{#each config.abilities}}
+            <option value='{{@key}}' {{#if (eq @key ../system.ability)}}selected{{/if}}>
+              {{localize this}}
+            </option>
+          {{/each}}
+        </select>
       </div>
 
       <div class='tab' data-group='primary' data-tab='description'>
@@ -67,10 +87,7 @@
           editable=editable
         }}
       </div>
-
     </section>
 
   </div>
-
-
 </form>

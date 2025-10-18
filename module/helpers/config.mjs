@@ -25,3 +25,10 @@ D12.defenses = {
   end: 'D12.Defense.Endurance.long',
   wil: 'D12.Defense.Willpower.long'
 };
+
+D12.rarities = {
+  common: 'D12.Rarity.Common',
+  rare: 'D12.Rarity.Rare',
+  epic: 'D12.Rarity.Epic',
+  legendary: 'D12.Rarity.Legendary'
+}

@@ -46,19 +46,23 @@
   }
 }
 
-.sheet-header {
-  height: 50px;
-  align-items: flex-start;
+.sheet-body {
+  margin-left: 8px;
 
-  .sheet-title {
-    input {
-      font-family: $font-secondary;
-      font-size: 1.5em;
+  .sheet-header {
+    align-items: flex-start;
+
+    .sheet-title {
+      input {
+        font-family: $font-secondary;
+        font-size: 1.5em;
+        margin: 8px 0;
+      }
     }
-  }
 
-  input {
-    background: transparent;
+    input {
+      background: transparent;
+    }
   }
 }
 
@@ -95,3 +99,14 @@ img {
   font-size: 0.75em;
   color: #666;
 }
+
+.flexcol {
+  select {
+    flex: auto;
+  }
+}
+
+.rarity-common { }
+.rarity-rare { color: #01bfff !important; }
+.rarity-epic { color: #d1017b !important; }
+.rarity-legendary { color: #b7861d !important; }

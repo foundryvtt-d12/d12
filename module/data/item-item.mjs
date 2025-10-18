@@ -9,6 +9,18 @@ export default class D12Item extends D12ItemBase {
 
     schema.quantity = new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 });
     schema.weight = new fields.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
+    schema.rarity = new fields.StringField({
+      required: true,
+      blank: false,
+      initial: "common",
+      choices: {
+        "common": "Common",
+        "rare": "Rare",
+        "epic": "Epic",
+        "legendary": "Legendary"
+      }
+    });
+    schema.price = new fields.NumberField({ required: true, nullable: true, initial: null, min: 0 });
 
     return schema;
   }

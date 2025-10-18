@@ -68,12 +68,6 @@
             object-fit: cover;
             box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 1px;
             color: white;
-
-            &.rarity-common { color: #ffa03c; }
-            &.rarity-uncommon { color: #01bd39; }
-            &.rarity-rare { color: #01bfff; }
-            &.rarity-epic { color: #d1017b; }
-            &.rarity-legendary { color: #b7861d; }
           }
 
           .item-title {

@@ -19,6 +19,12 @@
     "Item": {
       "Spell": {
       }
+    },
+    "Rarity": {
+      "Common": "Common",
+      "Rare": "Rare",
+      "Epic": "Epic",
+      "Legendary": "Legendary"
     }
   },
 
