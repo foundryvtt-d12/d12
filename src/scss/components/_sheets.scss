@@ -47,18 +47,17 @@
 
 .sheet-header {
   height: 50px;
+  align-items: flex-start;
 
   .sheet-title {
     input {
       font-family: $font-secondary;
       font-size: 1.5em;
-      text-align: left;
     }
   }
 
   input {
     background: transparent;
-    // margin-top: 0;
   }
 }
 
