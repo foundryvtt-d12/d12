@@ -47,7 +47,6 @@
     },
     "Item": {
       "item": "Item",
-      "feature": "Feature",
       "spell": "Spell"
     }
   }

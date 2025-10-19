@@ -48,7 +48,6 @@ Hooks.once('init', function () {
   CONFIG.Item.documentClass = D12Item;
   CONFIG.Item.dataModels = {
     item: models.D12Item,
-    feature: models.D12Feature,
     spell: models.D12Spell
   }
 

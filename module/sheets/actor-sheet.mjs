@@ -138,7 +138,6 @@ export class D12ActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
-    const features = [];
     const spells = [];
 
     // Iterate through items, allocating to containers
@@ -148,10 +147,6 @@ export class D12ActorSheet extends ActorSheet {
       if (i.type === 'item') {
         gear.push(i);
       }
-      // Append to features.
-      else if (i.type === 'feature') {
-        features.push(i);
-      }
       // Append to spells.
       else if (i.type === 'spell') {
         spells.push(i);
@@ -160,7 +155,6 @@ export class D12ActorSheet extends ActorSheet {
 
     // Assign and return
     context.gear = gear;
-    context.features = features;
     context.spells = spells;
   }
 
