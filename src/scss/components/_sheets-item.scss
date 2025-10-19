@@ -15,6 +15,12 @@
   }
 }
 
+.sidebar {
+  .label {
+    color: $c-text-on-dark;
+  }
+}
+
 .sheet-header {
   margin-bottom: 16px;
 
@@ -30,6 +36,3 @@
   }
 }
 
-.label {
-  color: $c-text-on-dark;
-}

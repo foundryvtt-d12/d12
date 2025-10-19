@@ -15,3 +15,27 @@
     }
   }
 }
+
+.sheet-body {
+  .item-attributes {
+    font-family: $font-condensed;
+    font-size: 0.9em;
+
+    & > span {
+      padding: 0 8px;
+      border-width: 0 1px;
+      border-color: #c0c0c0;
+      border-style: solid;
+    }
+
+    & > span:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    & > span:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+}

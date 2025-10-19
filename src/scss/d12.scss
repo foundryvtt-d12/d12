@@ -15,7 +15,8 @@
 /* Styles limited to d12 sheets */
 .app.sheet.d12 {
   @import 'components/sheets';
-  @import 'components/table';
+  @import 'theme/general';
+  @import 'theme/table';
 
   &.actor {
     @import 'components/sheets-actor';
