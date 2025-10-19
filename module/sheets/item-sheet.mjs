@@ -7,8 +7,8 @@ export class D12ItemSheet extends ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['d12', 'sheet', 'item'],
-      width: 520,
-      height: 480,
+      width: 500,
+      height: 400,
       tabs: [
         {
           navSelector: '.sheet-tabs',

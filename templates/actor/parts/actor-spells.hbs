@@ -1,67 +1,10 @@
 <div class='items-section card'>
   <div class='items-header header'>
-    <div class='item-name'>{{localize 'Feat'}}</div>
-    <div class='item-header'>{{localize 'Ability'}}</div>
-    <div class='item-header edit-mode-only'>
-      <a
-        class='item-control item-create'
-        title='{{localize "DOCUMENT.Create" type='Feature'}}'
-        data-type='feature'
-      >
-        <i class='fas fa-plus'></i>
-      </a>
-    </div>
-  </div>
-  <ol class='item-list'>
-    {{#each features as |item id|}}
-      <li class='item' data-item-id='{{item._id}}'>
-        <div class='item-row'>
-          <div class='item-name item-action'>
-            <img
-              class='item-image gold-icon'
-              src='{{item.img}}'
-              title='{{item.name}}'
-              width='32'
-              height='32'
-              draggable='false'
-            />
-            <div class='item-title'>
-              <span>{{item.name}}</span>
-            </div>
-          </div>
-          <div class='item-column'>
-            {{#if item.system.action.ability}}
-            <span class="rollable" data-roll="d12+@abilities.{{item.system.action.ability}}.value" style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
-              {{localize (lookup @root.config.abilities item.system.action.ability)}}
-            </span>
-            {{else}}
-            —
-            {{/if}}
-          </div>
-          <div class='item-column item-actions edit-mode-only'>
-            <a
-              class='item-control item-edit'
-              title='{{localize "DOCUMENT.Update" type='Feature'}}'
-            >
-              <i class='fas fa-edit'></i>
-            </a>
-            <a
-              class='item-control item-delete'
-              title='{{localize "DOCUMENT.Delete" type='Feature'}}'
-            >
-              <i class='fas fa-trash'></i>
-            </a>
-          </div>
-        </div>
-      </li>
-    {{/each}}
-  </ol>
-</div>
-<div class='items-section card'>
-  <div class='items-header header'>
     <div class='item-name'>{{localize 'Spell'}}</div>
+    <div class='item-header'>{{localize 'Charges'}}</div>
     <div class='item-header'>{{localize 'Ability'}}</div>
-    <div class='item-header edit-mode-only'>
+    <div class='item-header'>
+      {{#if @root.editable}}
       <a
         class='item-control item-create'
         title='{{localize "DOCUMENT.Create" type='Spell'}}'
@@ -69,6 +12,7 @@
       >
         <i class='fas fa-plus'></i>
       </a>
+      {{/if}}
     </div>
   </div>
   <ol class='item-list'>
@@ -77,7 +21,7 @@
         <div class='item-row'>
           <div class='item-name item-action'>
             <img
-              class='item-image gold-icon'
+              class='item-image'
               src='{{item.img}}'
               title='{{item.name}}'
               width='32'
@@ -89,6 +33,9 @@
             </div>
           </div>
           <div class='item-column'>
+            1
+          </div>
+          <div class='item-column'>
             {{#if item.system.action.ability}}
             <span class="rollable" data-roll="d12+@abilities.{{item.system.action.ability}}.value" style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
               {{localize (lookup @root.config.abilities item.system.action.ability)}}
@@ -97,19 +44,21 @@
             —
             {{/if}}
           </div>
-          <div class='item-column item-actions edit-mode-only'>
+          <div class='item-column item-actions'>
             <a
               class='item-control item-edit'
               title='{{localize "DOCUMENT.Update" type='Spell'}}'
             >
-              <i class='fas fa-edit'></i>
+              <i class='fas fa-arrow-up-right-from-square fa-lg'></i>
             </a>
+            {{#if @root.editable}}
             <a
               class='item-control item-delete'
               title='{{localize "DOCUMENT.Delete" type='Spell'}}'
             >
-              <i class='fas fa-trash'></i>
+              <i class='fas fa-trash fa-lg'></i>
             </a>
+            {{/if}}
           </div>
         </div>
       </li>

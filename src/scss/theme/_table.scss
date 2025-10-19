@@ -6,6 +6,10 @@
   background-color: $box-background;
   margin-bottom: 16px;
 
+  .item-row, .items-header {
+    grid-template-columns: 1fr 50px 80px 50px;
+  }
+
   .items-header {
     display: grid;
     font-family: $font-condensed;
@@ -127,21 +131,5 @@
         }
       }
     }
-  }
-}
-
-.locked {
-  .edit-mode-only {
-    display: none !important;
-  }
-
-  .item-row, .items-header {
-    grid-template-columns: 1fr 80px;
-  }
-}
-
-.editable {
-  .item-row, .items-header {
-    grid-template-columns: 1fr 80px 40px;
   }
 }
