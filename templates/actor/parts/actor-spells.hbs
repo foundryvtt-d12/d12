@@ -30,9 +30,9 @@
             </div>
           </div>
           <div class='item-column'>
-            {{#if item.system.ability}}
-            <span class="rollable" data-roll="d12+@abilities.{{item.system.ability}}.value" style="color: var(--d12-attribute-{{item.system.ability}}-color)">
-              {{localize (lookup @root.config.abilities item.system.ability)}}
+            {{#if item.system.action.ability}}
+            <span class="rollable" data-roll="d12+@abilities.{{item.system.action.ability}}.value" style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
+              {{localize (lookup @root.config.abilities item.system.action.ability)}}
             </span>
             {{else}}
             —
@@ -89,9 +89,9 @@
             </div>
           </div>
           <div class='item-column'>
-            {{#if item.system.ability}}
-            <span class="rollable" data-roll="d12+@abilities.{{item.system.ability}}.value" style="color: var(--d12-attribute-{{item.system.ability}}-color)">
-              {{localize (lookup @root.config.abilities item.system.ability)}}
+            {{#if item.system.action.ability}}
+            <span class="rollable" data-roll="d12+@abilities.{{item.system.action.ability}}.value" style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
+              {{localize (lookup @root.config.abilities item.system.action.ability)}}
             </span>
             {{else}}
             —

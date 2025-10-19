@@ -20,6 +20,16 @@
       "Spell": {
       }
     },
+    "Action": {
+      "Type": {
+        "Attack": "Attack",
+        "Use": "Use",
+        "Cast": "Cast",
+        "Activate": "Activate",
+        "Apply": "Apply",
+        "Consume": "Consume"
+      }
+    },
     "Rarity": {
       "Common": "Common",
       "Rare": "Rare",

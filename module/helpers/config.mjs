@@ -32,3 +32,12 @@ D12.rarities = {
   epic: 'D12.Rarity.Epic',
   legendary: 'D12.Rarity.Legendary'
 }
+
+D12.actionTypes = {
+  attack: 'D12.Action.Type.Attack',
+  use: 'D12.Action.Type.Use',
+  cast: 'D12.Action.Type.Cast',
+  activate: 'D12.Action.Type.Activate',
+  apply: 'D12.Action.Type.Apply',
+  consume: 'D12.Action.Type.Consume'
+};
