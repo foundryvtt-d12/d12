@@ -49,6 +49,10 @@
 .sheet-body {
   margin-left: 8px;
 
+  & > * {
+    flex: auto 0;
+  }
+
   .sheet-header {
     align-items: flex-start;
 

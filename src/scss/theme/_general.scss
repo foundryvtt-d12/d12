@@ -69,3 +69,11 @@ img {
     padding: 0 2px;
   }
 }
+
+.editor-section {
+  flex: auto;
+
+  .editor {
+    height: 100%;
+  }
+}
