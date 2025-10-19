@@ -11,6 +11,7 @@
       use both the "grid" and "grid-Ncol" class where "N" can be any number
       from 1 to 12 and will create that number of columns.  --}}
       <div class="details">
+        <div class="sheet-subtitle">Weapon</div>
 
         <div class='rarity flexcol'>
           <label for="system.rarity" class="label">Rarity</label>
@@ -23,6 +24,49 @@
           </select>
         </div>
 
+        {{#if @root.editable}}
+          <div class='flexcol'>
+            <label for="system.action.type" class="label">Action Type</label>
+            <select name='system.action.type'>
+              <option value=''>None</option>
+              {{#each config.actionTypes}}
+                <option value='{{@key}}' {{#if (eq @key ../system.action.type)}}selected{{/if}}>
+                  {{localize this}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class='flexcol'>
+            <label for="system.action.ability" class="label">Ability</label>
+            <select name='system.action.ability'>
+              <option value=''>None</option>
+              {{#each config.abilities}}
+                <option value='{{@key}}' {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
+                  {{localize this}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+        {{else}}
+          {{#if system.action}}
+            <div class='item-action flexcol'>
+              <label for="action" class="label">
+                {{localize (lookup @root.config.actionTypes system.action.type)}}
+              </label>
+              {{#if system.action.ability}}
+                <button class='ability-roll-button rollable' data-roll="d12+@abilities.{{system.action.ability}}.value" data-label="{{item.name}}">
+                  <div class="flexrow">
+                    <img src="/systems/d12/assets/ui/icons/color_{{system.action.ability}}.svg" width="24" height="24" />
+                    <div>{{localize (lookup @root.config.abilities system.action.ability)}}</div>
+                  </div>
+                </button>
+              {{else}}
+                <button> No check required</button>
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/if}}
+
       </div>
     </aside>
 
@@ -32,68 +76,43 @@
       {{!-- Sheet Header --}}
       <header class="sheet-header flexcol">
         <h1 class="sheet-title"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-        <h2 class="sheet-subtitle">Weapon</h2>
-      </header>
 
-      {{#if @root.editable}}
-      <div class="flexrow">
-        <div>
-          <label for="system.price" class="label">Price</label>
-          <input type='text' name='system.price' value='{{system.price}}' data-dtype='Number' />
+        {{#if @root.editable}}
+        <div class="flexrow">
+          <div>
+            <label for="system.price" class="label">Price</label>
+            <input type='text' name='system.price' value='{{system.price}}' data-dtype='Number' />
+          </div>
+          <div>
+            <label for="system.weight" class="label">Weight</label>
+            <input type='text' name='system.weight' value='{{system.weight}}' data-dtype='Number' />
+          </div>
+          <div>
+            <label for="system.quantity" class="label">Quantity</label>
+            <input type='text' name='system.quantity' value='{{system.quantity}}' data-dtype='Number' />
+          </div>
         </div>
-        <div>
-          <label for="system.weight" class="label">Weight</label>
-          <input type='text' name='system.weight' value='{{system.weight}}' data-dtype='Number' />
+        {{else}}
+        <div class="inline-attributes">
+          {{#if system.price}}
+          <span>
+            <i class="fas fa-coins"></i>
+            <span class="attribute-value">{{system.price}}</span>
+            <span>GP</span>
+          </span>
+          {{/if}}
+          <span>
+            <i class="fas fa-weight-hanging"></i>
+            <span class="attribute-value">{{system.weight}}</span>
+            <span>kg</span>
+          </span>
+          <span>
+            <span>Quantity</span>
+            <span class="attribute-value">{{system.quantity}}</span>
+          </span>
         </div>
-        <div>
-          <label for="system.quantity" class="label">Quantity</label>
-          <input type='text' name='system.quantity' value='{{system.quantity}}' data-dtype='Number' />
-        </div>
-      </div>
-      {{else}}
-      <div class="inline-attributes">
-        {{#if system.price}}
-        <span>
-          <i class="fas fa-coins"></i>
-          <span class="attribute-value">{{system.price}}</span>
-          <span>GP</span>
-        </span>
         {{/if}}
-        <span>
-          <i class="fas fa-weight-hanging"></i>
-          <span class="attribute-value">{{system.weight}}</span>
-          <span>kg</span>
-        </span>
-        <span>
-          <span>Quantity</span>
-          <span class="attribute-value">{{system.quantity}}</span>
-        </span>
-      </div>
-      {{/if}}
-
-      <div>
-        <label>Action Type</label>
-        <select name='system.action.type'>
-          <option value=''>None</option>
-          {{#each config.actionTypes}}
-            <option value='{{@key}}' {{#if (eq @key ../system.action.type)}}selected{{/if}}>
-              {{localize this}}
-            </option>
-          {{/each}}
-        </select>
-      </div>
-
-      <div>
-        <label>Ability</label>
-        <select name='system.action.ability'>
-          <option value=''>None</option>
-          {{#each config.abilities}}
-            <option value='{{@key}}' {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
-              {{localize this}}
-            </option>
-          {{/each}}
-        </select>
-      </div>
+      </header>
 
       <div class="editor-section">
         {{! Editors must receive enriched text data from getData to properly handle rolls }}

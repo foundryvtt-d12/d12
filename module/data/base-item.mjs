@@ -13,7 +13,7 @@ export default class D12ItemBase extends D12DataModel {
         blank: true,
         initial: "",
         choices: {
-          "": "None",
+          "": "D12.Ability.None",
           "str": "D12.Ability.Strength.long",
           "agi": "D12.Ability.Agility.long",
           "int": "D12.Ability.Intelligence.long",
@@ -31,7 +31,7 @@ export default class D12ItemBase extends D12DataModel {
         blank: true,
         initial: "",
         choices: {
-          "": "None",
+          "": "D12.Action.Type.None",
           "attack": "D12.Action.Type.Attack",
           "use": "D12.Action.Type.Use",
           "cast": "D12.Action.Type.Cast",

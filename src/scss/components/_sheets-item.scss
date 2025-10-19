@@ -16,23 +16,41 @@
 }
 
 .sidebar {
+  .sheet-subtitle {
+    color: $c-text-on-dark;
+    font-family: $font-secondary;
+    font-size: 1.75em;
+    text-align: center;
+  }
+
+  select, button {
+    color: $c-text-on-dark;
+    background-color: #252830;
+    width: 100%;
+    border: 1px solid var(--color-border-light-tertiary);
+
+    option {
+      color: #000;
+    }
+  }
+
   .label {
     color: $c-text-on-dark;
+  }
+
+  .details > * {
+    margin-bottom: 16px;
   }
 }
 
 .sheet-header {
+  padding-bottom: 12px;
   margin-bottom: 16px;
+  border-bottom: 1px solid rgba(#000, 0.1);
 
   .sheet-title {
     input {
       color: #69625b;
     }
   }
-
-  .sheet-subtitle {
-    font-family: $font-condensed;
-    font-size: 1.2em;
-  }
 }
-

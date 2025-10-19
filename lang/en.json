@@ -1,6 +1,7 @@
 {
   "D12": {
     "Ability": {
+      "None": "None",
       "Strength": { "long": "Strength", "abbr": "str" },
       "Agility": { "long": "Agility", "abbr": "agi" },
       "Intelligence": { "long": "Intelligence", "abbr": "int" },
@@ -22,6 +23,7 @@
     },
     "Action": {
       "Type": {
+        "None": "None",
         "Attack": "Attack",
         "Use": "Use",
         "Cast": "Cast",

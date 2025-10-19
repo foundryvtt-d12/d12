@@ -114,12 +114,56 @@ export class D12ItemSheet extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
+  async _updateObject(event, formData) {
+    // Handle setting action to null when type is empty
+    if (formData['system.action.type'] === '') {
+      formData['system.action'] = null;
+      delete formData['system.action.type'];
+      delete formData['system.action.ability'];
+      delete formData['system.action.description'];
+    }
+
+    return super._updateObject(event, formData);
+  }
+
+  /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+
+    // Rollable items - enable and attach listeners even when form is disabled
+    html.find('.rollable').each((i, element) => {
+      element.disabled = false;
+      element.removeAttribute('disabled');
+      element.addEventListener('click', this._onRoll.bind(this));
+    });
 
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
     // Roll handlers, click handlers, etc. would go here.
+  }
+
+  /**
+   * Handle clickable rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  _onRoll(event) {
+    event.preventDefault();
+    console.log("D12ItemSheet._onRoll called");
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+    // Handle rolls that supply the formula directly.
+    if (dataset.roll) {
+      let label = dataset.label ? `[${this.item.type}] ${dataset.label}` : '';
+      let roll = new Roll(dataset.roll, this.item.getRollData());
+      roll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.item.actor }),
+        flavor: label,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
+      return roll;
+    }
   }
 }
