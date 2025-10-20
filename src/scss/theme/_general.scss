@@ -25,6 +25,15 @@ img {
   border: none;
 }
 
+.item-edit {
+  cursor: pointer;
+}
+
+a:hover {
+  text-shadow: none;
+  color: var(--color-shadow-highlight);
+}
+
 .label {
   font-family: $font-condensed;
   flex: 0 auto;

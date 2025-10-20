@@ -5,10 +5,7 @@
   overflow: hidden;
   background-color: $box-background;
   margin-bottom: 16px;
-
-  .item-row, .items-header {
-    grid-template-columns: 1fr 50px 80px 50px;
-  }
+  color: #666;
 
   .items-header {
     display: grid;
@@ -76,7 +73,6 @@
           .item-title {
             flex: 1;
             min-width: 0;
-            color: #666;
             overflow: hidden;
 
             span {
@@ -92,7 +88,6 @@
         .item-column {
           text-align: center;
           font-size: 0.9em;
-          color: #666;
 
           &.item-actions {
             display: flex;
@@ -108,21 +103,10 @@
             justify-content: center;
             width: 24px;
             height: 24px;
-            color: #666;
+
             cursor: pointer;
-            border: none;
-            background: none;
             padding: 0;
-            font-size: 0.9em;
             transition: color 0.2s ease;
-
-            &:hover {
-              color: #000;
-            }
-
-            &.item-delete:hover {
-              color: #c00;
-            }
 
             i {
               margin: 0;
@@ -131,5 +115,21 @@
         }
       }
     }
+  }
+}
+
+.locked {
+  .edit-mode-only {
+    display: none !important;
+  }
+
+  .item-row, .items-header {
+    grid-template-columns: 1fr 50px 80px;
+  }
+}
+
+.editable {
+  .item-row, .items-header {
+    grid-template-columns: 1fr 50px 80px 16px;
   }
 }
