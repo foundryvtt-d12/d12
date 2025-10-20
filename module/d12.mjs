@@ -1,20 +1,20 @@
 // Import document classes.
-import { D12Actor } from './documents/actor.mjs';
-import { D12Item } from './documents/item.mjs';
+import { D12Actor } from "./documents/actor.mjs";
+import { D12Item } from "./documents/item.mjs";
 // Import sheet classes.
-import { D12ActorSheet } from './sheets/actor-sheet.mjs';
-import { D12ItemSheet } from './sheets/item-sheet.mjs';
+import { D12ActorSheet } from "./sheets/actor-sheet.mjs";
+import { D12ItemSheet } from "./sheets/item-sheet.mjs";
 // Import helper/utility classes and constants.
-import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { D12 } from './helpers/config.mjs';
+import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
+import { D12 } from "./helpers/config.mjs";
 // Import DataModel classes
-import * as models from './data/_module.mjs';
+import * as models from "./data/_module.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-Hooks.once('init', function () {
+Hooks.once("init", function () {
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
   game.d12 = {
@@ -31,7 +31,7 @@ Hooks.once('init', function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: '1',
+    formula: "1",
     decimals: 2,
   };
 
@@ -44,23 +44,23 @@ Hooks.once('init', function () {
   CONFIG.Actor.dataModels = {
     character: models.D12Character,
     npc: models.D12NPC
-  }
+  };
   CONFIG.Item.documentClass = D12Item;
   CONFIG.Item.dataModels = {
     item: models.D12Item,
     spell: models.D12Spell
-  }
+  };
 
   // Register sheet application classes
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('d12', D12ActorSheet, {
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet("d12", D12ActorSheet, {
     makeDefault: true,
-    label: 'D12.SheetLabels.Actor',
+    label: "D12.SheetLabels.Actor",
   });
-  Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('d12', D12ItemSheet, {
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("d12", D12ItemSheet, {
     makeDefault: true,
-    label: 'D12.SheetLabels.Item',
+    label: "D12.SheetLabels.Item",
   });
 
   // Preload Handlebars templates.
@@ -72,13 +72,13 @@ Hooks.once('init', function () {
 /* -------------------------------------------- */
 
 // If you need to add Handlebars helpers, here is a useful example:
-Handlebars.registerHelper('toLowerCase', function (str) {
+Handlebars.registerHelper("toLowerCase", function (str) {
   return str.toLowerCase();
 });
 
 // Helper to repeat a block n times (for rendering stars)
-Handlebars.registerHelper('times', function (n, block) {
-  let result = '';
+Handlebars.registerHelper("times", function (n, block) {
+  let result = "";
   for (let i = 0; i < n; i++) {
     result += block.fn(i);
   }
@@ -86,12 +86,12 @@ Handlebars.registerHelper('times', function (n, block) {
 });
 
 // Helper for less than comparison
-Handlebars.registerHelper('lt', function (a, b) {
+Handlebars.registerHelper("lt", function (a, b) {
   return a < b;
 });
 
 // Helper for formatting bonus
-Handlebars.registerHelper('bonus', function (a) {
+Handlebars.registerHelper("bonus", function (a) {
   if (a > 0) {
     return `+ ${a}`;
   } else if (a < 0) {
@@ -105,9 +105,9 @@ Handlebars.registerHelper('bonus', function (a) {
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once('ready', function () {
+Hooks.once("ready", function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 });
 
 /* -------------------------------------------- */
@@ -123,10 +123,10 @@ Hooks.once('ready', function () {
  */
 async function createItemMacro(data, slot) {
   // First, determine if this is a valid owned item.
-  if (data.type !== 'Item') return;
-  if (!data.uuid.includes('Actor.') && !data.uuid.includes('Token.')) {
+  if (data.type !== "Item") return;
+  if (!data.uuid.includes("Actor.") && !data.uuid.includes("Token.")) {
     return ui.notifications.warn(
-      'You can only create macro buttons for owned Items'
+      "You can only create macro buttons for owned Items"
     );
   }
   // If it is, retrieve it based on the uuid.
@@ -140,10 +140,10 @@ async function createItemMacro(data, slot) {
   if (!macro) {
     macro = await Macro.create({
       name: item.name,
-      type: 'script',
+      type: "script",
       img: item.img,
       command: command,
-      flags: { 'd12.itemMacro': true },
+      flags: { "d12.itemMacro": true },
     });
   }
   game.user.assignHotbarMacro(macro, slot);
@@ -158,7 +158,7 @@ async function createItemMacro(data, slot) {
 function rollItemMacro(itemUuid) {
   // Reconstruct the drop data so that we can load the item.
   const dropData = {
-    type: 'Item',
+    type: "Item",
     uuid: itemUuid,
   };
   // Load the item from the uuid.

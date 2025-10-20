@@ -6,14 +6,14 @@ export class D12ItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['d12', 'sheet', 'item'],
+      classes: ["d12", "sheet", "item"],
       width: 490,
       height: 420,
       tabs: [
         {
-          navSelector: '.sheet-tabs',
-          contentSelector: '.sheet-body',
-          initial: 'description',
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "description",
         },
       ],
       submitOnChange: true,
@@ -51,8 +51,8 @@ export class D12ItemSheet extends ItemSheet {
     event.preventDefault();
 
     // Toggle the locked state in the item's flags
-    const locked = this.item.getFlag('d12', 'locked') ?? false;
-    await this.item.setFlag('d12', 'locked', !locked);
+    const locked = this.item.getFlag("d12", "locked") ?? false;
+    await this.item.setFlag("d12", "locked", !locked);
 
     // Re-render the sheet to reflect the change
     this.render(false);
@@ -60,7 +60,7 @@ export class D12ItemSheet extends ItemSheet {
 
   /** @override */
   get isEditable() {
-    const locked = this.item.getFlag('d12', 'locked') ?? false;
+    const locked = this.item.getFlag("d12", "locked") ?? false;
     return !locked && super.isEditable;
   }
 
@@ -110,17 +110,17 @@ export class D12ItemSheet extends ItemSheet {
   /** @override */
   async _updateObject(event, formData) {
     // Handle setting action to null when type is empty
-    if (formData['system.action.type'] === '') {
-      formData['system.action'] = null;
-      delete formData['system.action.type'];
-      delete formData['system.action.ability'];
-      delete formData['system.action.description'];
+    if (formData["system.action.type"] === "") {
+      formData["system.action"] = null;
+      delete formData["system.action.type"];
+      delete formData["system.action.ability"];
+      delete formData["system.action.description"];
     }
 
-    if (formData['system.charges.value'] === '') {
-      formData['system.charges'] = null;
-      delete formData['system.charges.value'];
-      delete formData['system.charges.max'];
+    if (formData["system.charges.value"] === "") {
+      formData["system.charges"] = null;
+      delete formData["system.charges.value"];
+      delete formData["system.charges.max"];
     }
 
     return super._updateObject(event, formData);
@@ -131,10 +131,10 @@ export class D12ItemSheet extends ItemSheet {
     super.activateListeners(html);
 
     // Rollable items - enable and attach listeners even when form is disabled
-    html.find('.rollable').each((i, element) => {
+    html.find(".rollable").each((i, element) => {
       element.disabled = false;
-      element.removeAttribute('disabled');
-      element.addEventListener('click', this._onRoll.bind(this));
+      element.removeAttribute("disabled");
+      element.addEventListener("click", this._onRoll.bind(this));
     });
 
     // Everything below here is only needed if the sheet is editable
@@ -156,12 +156,12 @@ export class D12ItemSheet extends ItemSheet {
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
-      let label = dataset.label ? `${dataset.label}` : '';
+      let label = dataset.label ? `${dataset.label}` : "";
       let roll = new Roll(dataset.roll, this.item.getRollData());
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.item.actor }),
         flavor: label,
-        rollMode: game.settings.get('core', 'rollMode'),
+        rollMode: game.settings.get("core", "rollMode"),
       });
       return roll;
     }

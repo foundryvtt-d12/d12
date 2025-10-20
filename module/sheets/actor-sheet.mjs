@@ -6,17 +6,17 @@ export class D12ActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['d12', 'sheet', 'actor'],
+      classes: ["d12", "sheet", "actor"],
       width: 490,
       height: 550,
       tabs: [
         {
-          navSelector: '.sheet-tabs',
-          contentSelector: '.sheet-body',
-          initial: 'features',
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "features",
         },
       ],
-      dragDrop: [{dragSelector: '.item-list .item', dropSelector: null}],
+      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}],
       submitOnChange: true,
     });
   }
@@ -52,8 +52,8 @@ export class D12ActorSheet extends ActorSheet {
     event.preventDefault();
 
     // Toggle the locked state in the actor's flags
-    const locked = this.actor.getFlag('d12', 'locked') ?? false;
-    await this.actor.setFlag('d12', 'locked', !locked);
+    const locked = this.actor.getFlag("d12", "locked") ?? false;
+    await this.actor.setFlag("d12", "locked", !locked);
 
     // Re-render the sheet to reflect the change
     this.render(false);
@@ -61,7 +61,7 @@ export class D12ActorSheet extends ActorSheet {
 
   /** @override */
   get isEditable() {
-    const locked = this.actor.getFlag('d12', 'locked') ?? false;
+    const locked = this.actor.getFlag("d12", "locked") ?? false;
     return !locked && super.isEditable;
   }
 
@@ -91,13 +91,13 @@ export class D12ActorSheet extends ActorSheet {
     context.config = CONFIG.D12;
 
     // Prepare character data and items.
-    if (actorData.type == 'character') {
+    if (actorData.type == "character") {
       this._prepareItems(context);
       this._prepareCharacterData(context);
     }
 
     // Prepare NPC data and items.
-    if (actorData.type == 'npc') {
+    if (actorData.type == "npc") {
       this._prepareItems(context);
     }
 
@@ -144,11 +144,11 @@ export class D12ActorSheet extends ActorSheet {
     for (let i of context.items) {
       i.img = i.img || Item.DEFAULT_ICON;
       // Append to gear.
-      if (i.type === 'item') {
+      if (i.type === "item") {
         gear.push(i);
       }
       // Append to spells.
-      else if (i.type === 'spell') {
+      else if (i.type === "spell") {
         spells.push(i);
       }
     }
@@ -165,72 +165,72 @@ export class D12ActorSheet extends ActorSheet {
     super.activateListeners(html);
 
     // Render the item sheet for viewing/editing prior to the editable check.
-    html.on('click', '.item-edit', (ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
+    html.on("click", ".item-edit", (ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     });
 
     if (this.isEditable) {
       // Add Inventory Item
-      html.on('click', '.item-create', this._onItemCreate.bind(this));
+      html.on("click", ".item-create", this._onItemCreate.bind(this));
 
       // Delete Inventory Item
-      html.on('click', '.item-delete', (ev) => {
-        const li = $(ev.currentTarget).parents('.item');
-        const item = this.actor.items.get(li.data('itemId'));
+      html.on("click", ".item-delete", (ev) => {
+        const li = $(ev.currentTarget).parents(".item");
+        const item = this.actor.items.get(li.data("itemId"));
         item.delete();
         li.slideUp(200, () => this.render(false));
       });
 
       // Increase Item Quantity
-      html.on('click', '.item-quantity-increase', (ev) => {
-        const li = $(ev.currentTarget).parents('.item');
-        const item = this.actor.items.get(li.data('itemId'));
-        item.update({ 'system.quantity': item.system.quantity + 1 });
+      html.on("click", ".item-quantity-increase", (ev) => {
+        const li = $(ev.currentTarget).parents(".item");
+        const item = this.actor.items.get(li.data("itemId"));
+        item.update({ "system.quantity": item.system.quantity + 1 });
       });
 
       // Decrease Item Quantity
-      html.on('click', '.item-quantity-decrease', (ev) => {
-        const li = $(ev.currentTarget).parents('.item');
-        const item = this.actor.items.get(li.data('itemId'));
+      html.on("click", ".item-quantity-decrease", (ev) => {
+        const li = $(ev.currentTarget).parents(".item");
+        const item = this.actor.items.get(li.data("itemId"));
         const newQuantity = Math.max(0, item.system.quantity - 1);
-        item.update({ 'system.quantity': newQuantity });
+        item.update({ "system.quantity": newQuantity });
       });
 
       // Increase Spell Charges
-      html.on('click', '.item-charges-increase', (ev) => {
-        const li = $(ev.currentTarget).parents('.item');
-        const item = this.actor.items.get(li.data('itemId'));
+      html.on("click", ".item-charges-increase", (ev) => {
+        const li = $(ev.currentTarget).parents(".item");
+        const item = this.actor.items.get(li.data("itemId"));
         let newCharges = item.system.charges.value + 1;
         if (item.system.charges.max) {
           newCharges = Math.min(item.system.charges.max, newCharges);
         }
-        item.update({ 'system.charges.value': newCharges });
+        item.update({ "system.charges.value": newCharges });
       });
 
       // Decrease Spell Charges
-      html.on('click', '.item-charges-decrease', (ev) => {
-        const li = $(ev.currentTarget).parents('.item');
-        const item = this.actor.items.get(li.data('itemId'));
+      html.on("click", ".item-charges-decrease", (ev) => {
+        const li = $(ev.currentTarget).parents(".item");
+        const item = this.actor.items.get(li.data("itemId"));
         const newCharges = Math.max(0, item.system.charges.value - 1);
-        item.update({ 'system.charges.value': newCharges });
+        item.update({ "system.charges.value": newCharges });
       });
 
       // Drag events for macros.
       if (this.actor.isOwner) {
         let handler = (ev) => this._onDragStart(ev);
-        html.find('li.item').each((i, li) => {
-          if (li.classList.contains('inventory-header')) return;
-          li.setAttribute('draggable', true);
-          li.addEventListener('dragstart', handler, false);
+        html.find("li.item").each((i, li) => {
+          if (li.classList.contains("inventory-header")) return;
+          li.setAttribute("draggable", true);
+          li.addEventListener("dragstart", handler, false);
         });
       }
     } else {
       // Only when the sheet is not editable
 
       // Rollable abilities.
-      html.on('click', '.rollable', this._onRoll.bind(this));
+      html.on("click", ".rollable", this._onRoll.bind(this));
     }
   }
 
@@ -255,7 +255,7 @@ export class D12ActorSheet extends ActorSheet {
       system: data,
     };
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.system['type'];
+    delete itemData.system["type"];
 
     // Finally, create the item!
     return await Item.create(itemData, { parent: this.actor });
@@ -273,12 +273,12 @@ export class D12ActorSheet extends ActorSheet {
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
-      let label = dataset.label ? `${dataset.label}` : '';
+      let label = dataset.label ? `${dataset.label}` : "";
       let roll = new Roll(dataset.roll, this.actor.getRollData());
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: label,
-        rollMode: game.settings.get('core', 'rollMode'),
+        rollMode: game.settings.get("core", "rollMode"),
       });
       return roll;
     }

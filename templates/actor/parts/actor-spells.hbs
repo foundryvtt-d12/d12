@@ -1,42 +1,42 @@
-<div class='items-section card'>
-  <div class='items-header header'>
-    <div class='item-name'>{{localize 'Spell'}}</div>
-    <div class='item-header'>{{localize 'Charges'}}</div>
-    <div class='item-header'>{{localize 'Roll'}}</div>
-    <div class='item-header edit-mode-only'>
+<div class="items-section card">
+  <div class="items-header header">
+    <div class="item-name">{{localize "Spell"}}</div>
+    <div class="item-header">{{localize "Charges"}}</div>
+    <div class="item-header">{{localize "Roll"}}</div>
+    <div class="item-header edit-mode-only">
       {{#if @root.editable}}
       <a
-        class='item-control item-create'
-        title='{{localize "DOCUMENT.Create" type='Spell'}}'
-        data-type='spell'
+        class="item-control item-create"
+        title="{{localize 'DOCUMENT.Create' type='Spell'}}"
+        data-type="spell"
       >
-        <i class='fas fa-plus'></i>
+        <i class="fas fa-plus"></i>
       </a>
       {{/if}}
     </div>
   </div>
-  <ol class='item-list' data-item-type='spell'>
+  <ol class="item-list" data-item-type="spell">
     {{#each spells as |item id|}}
-      <li class='item' data-item-id='{{item._id}}' data-item-type='spell' draggable='true'>
-        <div class='item-row'>
-          <div class='item-name item-action item-edit'>
+      <li class="item" data-item-id="{{item._id}}" data-item-type="spell" draggable="true">
+        <div class="item-row">
+          <div class="item-name item-action item-edit">
             <img
-              class='item-image rarity-common'
-              src='{{item.img}}'
-              title='{{item.name}}'
-              width='32'
-              height='32'
-              draggable='false'
+              class="item-image rarity-common"
+              src="{{item.img}}"
+              title="{{item.name}}"
+              width="32"
+              height="32"
+              draggable="false"
             />
-            <div class='item-title'>
+            <div class="item-title">
               <span>{{item.name}}</span>
             </div>
           </div>
-          <div class='item-column'>
+          <div class="item-column">
             {{#if item.system.charges}}
               {{#if @root.editable}}
-              <a class='item-control item-charges-decrease edit-mode-only' title='Decrease Charges'>
-                <i class='fas fa-circle-minus'></i>
+              <a class="item-control item-charges-decrease edit-mode-only" title="Decrease Charges">
+                <i class="fas fa-circle-minus"></i>
               </a>
               {{/if}}
               <span>{{item.system.charges.value}}</span>
@@ -45,8 +45,8 @@
               <span>{{item.system.charges.max}}</span>
               {{/if}}
               {{#if @root.editable}}
-              <a class='item-control item-charges-increase edit-mode-only' title='Increase Charges'>
-                <i class='fas fa-circle-plus'></i>
+              <a class="item-control item-charges-increase edit-mode-only" title="Increase Charges">
+                <i class="fas fa-circle-plus"></i>
               </a>
               {{/if}}
             {{else}}
@@ -54,7 +54,7 @@
             {{/if}}
           </div>
           {{#if item.system.action.ability}}
-          <div class='item-column rollable'
+          <div class="item-column rollable"
               data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
               data-label="{{item.name}}">
             <span
@@ -64,14 +64,14 @@
             {{bonus item.system.action.bonus}}
           </div>
           {{else}}
-          <div class='item-column'>—</div>
+          <div class="item-column">—</div>
           {{/if}}
-          <div class='item-column item-actions edit-mode-only'>
+          <div class="item-column item-actions edit-mode-only">
             <a
-              class='item-control item-delete'
-              title='{{localize "DOCUMENT.Delete" type='Spell'}}'
+              class="item-control item-delete"
+              title="{{localize "DOCUMENT.Delete" type='Spell'}}"
             >
-              <i class='fas fa-xmark'></i>
+              <i class="fas fa-xmark"></i>
             </a>
           </div>
         </div>

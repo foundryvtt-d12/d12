@@ -1,4 +1,4 @@
-<form class='{{cssClass}} flexcol' autocomplete='off'>
+<form class="{{cssClass}} flexcol" autocomplete="off">
   {{!-- Sheet Body --}}
   <div class="grid sheet-grid">
 
@@ -14,11 +14,11 @@
         {{#if (eq item.type "spell")}}
           <div class="sheet-subtitle">Spell</div>
         {{else if @root.editable}}
-          <div class='rarity flexcol'>
+          <div class="rarity flexcol">
             <label for="system.category" class="label">Category</label>
-            <select name='system.category'>
+            <select name="system.category">
               {{#each config.categories}}
-                <option value='{{@key}}' {{#if (eq @key ../system.category)}}selected{{/if}}>
+                <option value="{{@key}}" {{#if (eq @key ../system.category)}}selected{{/if}}>
                   {{localize this}}
                 </option>
               {{/each}}
@@ -31,11 +31,11 @@
         {{/if}}
 
         {{#if (eq item.type "item")}}
-        <div class='rarity flexcol'>
+        <div class="rarity flexcol">
           <label for="system.rarity" class="label">Rarity</label>
-          <select class="rarity-{{system.rarity}}" name='system.rarity'>
+          <select class="rarity-{{system.rarity}}" name="system.rarity">
             {{#each config.rarities}}
-              <option class="rarity-{{@key}}" value='{{@key}}' {{#if (eq @key ../system.rarity)}}selected{{/if}}>
+              <option class="rarity-{{@key}}" value="{{@key}}" {{#if (eq @key ../system.rarity)}}selected{{/if}}>
                 {{localize this}}
               </option>
             {{/each}}
@@ -44,23 +44,23 @@
         {{/if}}
 
         {{#if @root.editable}}
-          <div class='flexcol'>
+          <div class="flexcol">
             <label for="system.action.type" class="label">Action Type</label>
-            <select name='system.action.type'>
-              <option value=''>None</option>
+            <select name="system.action.type">
+              <option value="">None</option>
               {{#each config.actionTypes}}
-                <option value='{{@key}}' {{#if (eq @key ../system.action.type)}}selected{{/if}}>
+                <option value="{{@key}}" {{#if (eq @key ../system.action.type)}}selected{{/if}}>
                   {{localize this}}
                 </option>
               {{/each}}
             </select>
           </div>
-          <div class='flexcol'>
+          <div class="flexcol">
             <label for="system.action.ability" class="label">Ability</label>
-            <select name='system.action.ability'>
-              <option value=''>None</option>
+            <select name="system.action.ability">
+              <option value="">None</option>
               {{#each config.abilities}}
-                <option value='{{@key}}' {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
+                <option value="{{@key}}" {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
                   {{localize this}}
                 </option>
               {{/each}}
@@ -68,16 +68,16 @@
           </div>
           <div class="flexcol">
             <label for="system.action.bonus" class="label">Bonus</label>
-            <input type='text' name='system.action.bonus' value='{{system.action.bonus}}' data-dtype='Number' />
+            <input type="text" name="system.action.bonus" value="{{system.action.bonus}}" data-dtype="Number" />
           </div>
         {{else}}
           {{#if system.action}}
-            <div class='item-action flexcol'>
+            <div class="item-action flexcol">
               <label for="action" class="label">
                 {{localize (lookup @root.config.actionTypes system.action.type)}}
               </label>
               {{#if system.action.ability}}
-                <button class='ability-roll-button rollable'
+                <button class="ability-roll-button rollable"
                   data-roll="d12+@actor.abilities.{{system.action.ability}}.value {{bonus system.action.bonus}}"
                   data-label="{{item.name}}">
                   <div class="flexrow">
@@ -110,15 +110,15 @@
           <div class="flexrow">
             <div>
               <label for="system.price" class="label">Price</label>
-              <input type='text' name='system.price' value='{{system.price}}' data-dtype='Number' />
+              <input type="text" name="system.price" value="{{system.price}}" data-dtype="Number" />
             </div>
             <div>
               <label for="system.weight" class="label">Weight</label>
-              <input type='text' name='system.weight' value='{{system.weight}}' data-dtype='Number' />
+              <input type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number" />
             </div>
             <div>
               <label for="system.quantity" class="label">Quantity</label>
-              <input type='text' name='system.quantity' value='{{system.quantity}}' data-dtype='Number' />
+              <input type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number" />
             </div>
           </div>
           {{else}}
@@ -147,11 +147,11 @@
           <div class="flexrow">
             <div>
               <label for="system.charges.value" class="label">Charges</label>
-              <input type='text' name='system.charges.value' value='{{system.charges.value}}' data-dtype='Number' />
+              <input type="text" name="system.charges.value" value="{{system.charges.value}}" data-dtype="Number" />
             </div>
             <div>
               <label for="system.charges.max" class="label">Maximum</label>
-              <input type='text' name='system.charges.max' value='{{system.charges.max}}' data-dtype='Number' />
+              <input type="text" name="system.charges.max" value="{{system.charges.max}}" data-dtype="Number" />
             </div>
           </div>
           {{else}}

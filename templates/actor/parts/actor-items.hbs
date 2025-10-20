@@ -1,46 +1,46 @@
-<div class='items-section card'>
-  <div class='items-header header'>
-    <div class='item-name'>{{localize 'Item'}}</div>
-    <div class='item-header'>{{localize 'Quantity'}}</div>
-    <div class='item-header'>{{localize 'Roll'}}</div>
-    <div class='item-header edit-mode-only'>
+<div class="items-section card">
+  <div class="items-header header">
+    <div class="item-name">{{localize "Item"}}</div>
+    <div class="item-header">{{localize "Quantity"}}</div>
+    <div class="item-header">{{localize "Roll"}}</div>
+    <div class="item-header edit-mode-only">
       <a
-        class='item-control item-create'
-        title='{{localize "DOCUMENT.Create" type='Item'}}'
-        data-type='item'
+        class="item-control item-create"
+        title="{{localize 'DOCUMENT.Create' type='Item'}}"
+        data-type="item"
       >
-        <i class='fas fa-plus'></i>
+        <i class="fas fa-plus"></i>
       </a>
     </div>
   </div>
-  <ol class='item-list' data-item-type='item'>
+  <ol class="item-list" data-item-type="item">
     {{#each gear as |item id|}}
-      <li class='item' data-item-id='{{item._id}}' data-item-type='item' draggable='true'>
-        <div class='item-row'>
-          <div class='item-name item-action item-edit'>
+      <li class="item" data-item-id="{{item._id}}" data-item-type="item" draggable="true">
+        <div class="item-row">
+          <div class="item-name item-action item-edit">
             <img
-              class='item-image rarity-common'
-              src='{{item.img}}'
-              title='{{item.name}}'
-              width='32'
-              height='32'
-              draggable='false'
+              class="item-image rarity-common"
+              src="{{item.img}}"
+              title="{{item.name}}"
+              width="32"
+              height="32"
+              draggable="false"
             />
-            <div class='item-title'>
+            <div class="item-title">
               <span>{{item.name}}</span>
             </div>
           </div>
-          <div class='item-column'>
-            <a class='item-control item-quantity-decrease edit-mode-only' title='Decrease Quantity'>
-              <i class='fas fa-circle-minus'></i>
+          <div class="item-column">
+            <a class="item-control item-quantity-decrease edit-mode-only" title="Decrease Quantity">
+              <i class="fas fa-circle-minus"></i>
             </a>
             <span>{{item.system.quantity}}</span>
-            <a class='item-control item-quantity-increase edit-mode-only' title='Increase Quantity'>
-              <i class='fas fa-circle-plus'></i>
+            <a class="item-control item-quantity-increase edit-mode-only" title="Increase Quantity">
+              <i class="fas fa-circle-plus"></i>
             </a>
           </div>
           {{#if item.system.action.ability}}
-          <div class='item-column rollable'
+          <div class="item-column rollable"
               data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
               data-label="{{item.name}}">
             <span
@@ -50,14 +50,14 @@
             {{bonus item.system.action.bonus}}
           </div>
           {{else}}
-          <div class='item-column'>—</div>
+          <div class="item-column">—</div>
           {{/if}}
-          <div class='item-column item-actions edit-mode-only'>
+          <div class="item-column item-actions edit-mode-only">
             <a
-              class='item-control item-delete'
-              title='{{localize "DOCUMENT.Delete" type='Item'}}'
+              class="item-control item-delete"
+              title="{{localize "DOCUMENT.Delete" type='Item'}}"
             >
-              <i class='fas fa-xmark'></i>
+              <i class="fas fa-xmark"></i>
             </a>
           </div>
         </div>
