@@ -8,7 +8,7 @@ export class D12ActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["d12", "sheet", "actor"],
       width: 490,
-      height: 550,
+      height: 510,
       tabs: [
         {
           navSelector: ".sheet-tabs",

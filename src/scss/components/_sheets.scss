@@ -23,6 +23,7 @@
     overflow: hidden;
     position: relative;
     margin-bottom: 16px;
+    background-image: linear-gradient(to right top, #c0c0c0, #c8c8c8, #d0d0d0, #d8d8d8, #e0e0e0);
 
     img {
       width: 100%;
@@ -45,6 +46,10 @@
 
   & > * {
     flex: auto 0;
+
+    &.flexgrow {
+      flex: 1;
+    }
   }
 
   .sheet-header {

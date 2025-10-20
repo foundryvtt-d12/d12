@@ -32,6 +32,7 @@
           {{/if}}
         </div>
 
+        {{#if (gt system.mana.max 0)}}
         <div class="resource">
           <label for="system.mana.value" class="label">Mana</label>
           {{#if editable}}
@@ -48,12 +49,13 @@
           </div>
           {{/if}}
         </div>
+        {{/if}}
 
       </div>
     </aside>
 
     {{!-- Right column: main content with tabs --}}
-    <section class="sheet-body">
+    <section class="sheet-body flexcol">
 
       {{!-- Sheet Header --}}
       <header class="sheet-header flexcol">
@@ -69,7 +71,7 @@
       </nav>
 
       {{!-- Owned Features Tab --}}
-      <div class="tab features" data-group="primary" data-tab="features">
+      <div class="tab flexgrow flexcol features" data-group="primary" data-tab="features">
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
         {{#if (eq actor.type "character")}}
           {{> "systems/d12/templates/actor/parts/actor-character-stats.hbs"}}
@@ -78,19 +80,13 @@
         {{/if}}
       </div>
 
-      {{!-- Biography Tab --}}
-      <div class="tab biography" data-group="primary" data-tab="description">
-        {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
-        {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
-      </div>
-
       {{!-- Owned Items Tab --}}
-      <div class="tab items" data-group="primary" data-tab="items">
+      <div class="tab flexgrow items" data-group="primary" data-tab="items">
         {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
       </div>
 
       {{!-- Owned Spells Tab --}}
-      <div class="tab spells" data-group="primary" data-tab="spells">
+      <div class="tab flexgrow spells" data-group="primary" data-tab="spells">
         {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
       </div>
 

@@ -52,6 +52,7 @@
 // Attribute fields (STR, AGI, INT, PER, CHA)
 .attribute-field {
   margin-bottom: 12px;
+  flex: 0 auto;
 
   .attribute-icon {
     margin: 0 12px 0 0;
@@ -60,7 +61,7 @@
 
   .attribute-box {
     @include character-field;
-    padding: 6px;
+    padding: 8px;
     flex-wrap: nowrap;
     overflow: hidden;
 

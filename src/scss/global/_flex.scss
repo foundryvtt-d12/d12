@@ -25,6 +25,10 @@
   justify-content: space-between;
 }
 
+.flexgrow {
+  flex: 1;
+}
+
 .flexlarge {
   flex: 2;
 }
@@ -43,4 +47,8 @@
 .align-center {
   justify-content: center;
   text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
