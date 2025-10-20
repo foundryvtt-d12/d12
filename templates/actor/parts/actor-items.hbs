@@ -35,7 +35,10 @@
           </div>
           <div class='item-column'>
             {{#if item.system.action.ability}}
-            <span class="rollable" data-roll="d12+@abilities.{{item.system.action.ability}}.value" style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
+            <span class="rollable"
+              data-roll="d12+@abilities.{{item.system.action.ability}}.value"
+              data-label="{{item.name}}"
+              style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
               {{localize (lookup @root.config.abilities item.system.action.ability)}}
             </span>
             {{else}}

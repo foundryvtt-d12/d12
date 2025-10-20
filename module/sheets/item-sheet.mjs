@@ -156,7 +156,7 @@ export class D12ItemSheet extends ItemSheet {
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
-      let label = dataset.label ? `[${this.item.type}] ${dataset.label}` : '';
+      let label = dataset.label ? `${dataset.label}` : '';
       let roll = new Roll(dataset.roll, this.item.getRollData());
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.item.actor }),

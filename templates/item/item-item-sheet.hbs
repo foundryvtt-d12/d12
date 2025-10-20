@@ -54,7 +54,9 @@
                 {{localize (lookup @root.config.actionTypes system.action.type)}}
               </label>
               {{#if system.action.ability}}
-                <button class='ability-roll-button rollable' data-roll="d12+@abilities.{{system.action.ability}}.value" data-label="{{item.name}}">
+                <button class='ability-roll-button rollable'
+                  data-roll="d12+@actor.abilities.{{system.action.ability}}.value"
+                  data-label="{{item.name}}">
                   <div class="flexrow">
                     <img src="/systems/d12/assets/ui/icons/color_{{system.action.ability}}.svg" width="24" height="24" />
                     <div>{{localize (lookup @root.config.abilities system.action.ability)}}</div>
