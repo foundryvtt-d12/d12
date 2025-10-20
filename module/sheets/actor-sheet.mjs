@@ -1,8 +1,8 @@
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class D12ActorSheet extends ActorSheet {
+export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {

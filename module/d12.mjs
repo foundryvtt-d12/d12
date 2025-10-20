@@ -52,13 +52,13 @@ Hooks.once("init", function () {
   };
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("d12", D12ActorSheet, {
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet("d12", D12ActorSheet, {
     makeDefault: true,
     label: "D12.SheetLabels.Actor",
   });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("d12", D12ItemSheet, {
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet("d12", D12ItemSheet, {
     makeDefault: true,
     label: "D12.SheetLabels.Item",
   });

@@ -40,8 +40,10 @@
   "packFolders": [],
   "socket": false,
   "background": "systems/d12/assets/anvil-impact.png",
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "mana"
 }
