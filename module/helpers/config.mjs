@@ -41,3 +41,11 @@ D12.actionTypes = {
   apply: 'D12.Action.Type.Apply',
   consume: 'D12.Action.Type.Consume'
 };
+
+D12.categories = {
+  item: 'D12.Item.Category.Item',
+  weapon: 'D12.Item.Category.Weapon',
+  armor: 'D12.Item.Category.Armor',
+  accessory: 'D12.Item.Category.Accessory',
+  consumable: 'D12.Item.Category.Consumable'
+};

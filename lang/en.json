@@ -19,6 +19,13 @@
     },
     "Item": {
       "Spell": {
+      },
+      "Category": {
+        "Item": "Item",
+        "Weapon": "Weapon",
+        "Armor": "Armor",
+        "Accessory": "Accessory",
+        "Consumable": "Consumable"
       }
     },
     "Action": {

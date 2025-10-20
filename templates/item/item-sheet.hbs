@@ -11,7 +11,26 @@
       use both the "grid" and "grid-Ncol" class where "N" can be any number
       from 1 to 12 and will create that number of columns.  --}}
       <div class="details">
-        <div class="sheet-subtitle">Weapon</div>
+        {{#if (eq item.type "spell")}}
+          <div class="sheet-subtitle">Spell</div>
+        {{else if @root.editable}}
+          <div class='rarity flexcol'>
+            <label for="system.category" class="label">Category</label>
+            <select name='system.category'>
+              {{#each config.categories}}
+                <option value='{{@key}}' {{#if (eq @key ../system.category)}}selected{{/if}}>
+                  {{localize this}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+        {{else}}
+          <div class="sheet-subtitle">
+            {{localize (lookup @root.config.categories system.category)}}
+          </div>
+        {{/if}}
+
+
 
         {{#if (eq item.type "item")}}
         <div class='rarity flexcol'>

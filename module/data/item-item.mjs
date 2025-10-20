@@ -21,6 +21,18 @@ export default class D12Item extends D12ItemBase {
       }
     });
     schema.price = new fields.NumberField({ required: true, nullable: true, initial: null, min: 0 });
+    schema.category = new fields.StringField({
+      required: true,
+      blank: false,
+      initial: "item",
+      choices: {
+        "item": "Item",
+        "weapon": "Weapon",
+        "armor": "Armor",
+        "accessory": "Accessory",
+        "consumable": "Consumable"
+      }
+    });
 
     return schema;
   }
