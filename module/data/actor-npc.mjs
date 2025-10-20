@@ -9,7 +9,7 @@ export default class D12NPC extends D12ActorBase {
 
     schema.cr = new fields.NumberField({ ...requiredInteger, initial: 1, min: 0 });
     schema.xp = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
-    
+
     return schema;
   }
 

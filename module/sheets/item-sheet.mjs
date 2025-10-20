@@ -79,9 +79,10 @@ export class D12ItemSheet extends ItemSheet {
     // Use a safe clone of the item data for further operations.
     const itemData = this.document.toPlainObject();
 
+    const textEditor = foundry.applications.ux.TextEditor.implementation;
     // Enrich description info for display
     // Enrichment turns text like `[[/r 1d20]]` into buttons
-    context.enrichedDescription = await TextEditor.enrichHTML(
+    context.enrichedDescription = await textEditor.enrichHTML(
       this.item.system.description,
       {
         // Whether to show secret blocks in the finished html

@@ -67,7 +67,7 @@ export class D12ActorSheet extends ActorSheet {
 
   /** @override */
   get template() {
-    return `systems/d12/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+    return `systems/d12/templates/actor/actor-sheet.hbs`;
   }
 
   /* -------------------------------------------- */
@@ -101,9 +101,10 @@ export class D12ActorSheet extends ActorSheet {
       this._prepareItems(context);
     }
 
+    const textEditor = foundry.applications.ux.TextEditor.implementation;
     // Enrich biography info for display
     // Enrichment turns text like `[[/r 1d20]]` into buttons
-    context.enrichedBiography = await TextEditor.enrichHTML(
+    context.enrichedBiography = await textEditor.enrichHTML(
       this.actor.system.biography,
       {
         // Whether to show secret blocks in the finished html

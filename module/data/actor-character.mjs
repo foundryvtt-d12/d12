@@ -21,13 +21,6 @@ export default class D12Character extends D12ActorBase {
       return obj;
     }, {}));
 
-    schema.defenses = new fields.SchemaField(Object.keys(CONFIG.D12.defenses).reduce((obj, defense) => {
-      obj[defense] = new fields.SchemaField({
-        value: new fields.NumberField({ ...requiredInteger, initial: 6, min: 0 }),
-      });
-      return obj;
-    }, {}));
-
     return schema;
   }
 

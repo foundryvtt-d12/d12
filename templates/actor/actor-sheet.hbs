@@ -71,7 +71,11 @@
       {{!-- Owned Features Tab --}}
       <div class="tab features" data-group="primary" data-tab="features">
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-        {{> "systems/d12/templates/actor/parts/actor-features.hbs"}}
+        {{#if (eq actor.type "character")}}
+          {{> "systems/d12/templates/actor/parts/actor-character-stats.hbs"}}
+        {{else if (eq actor.type "npc")}}
+          {{> "systems/d12/templates/actor/parts/actor-npc-stats.hbs"}}
+        {{/if}}
       </div>
 
       {{!-- Biography Tab --}}
