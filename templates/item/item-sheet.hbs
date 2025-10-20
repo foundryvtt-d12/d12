@@ -49,6 +49,10 @@
               {{/each}}
             </select>
           </div>
+          <div class="flexcol">
+            <label for="system.action.bonus" class="label">Bonus</label>
+            <input type='text' name='system.action.bonus' value='{{system.action.bonus}}' data-dtype='Number' />
+          </div>
         {{else}}
           {{#if system.action}}
             <div class='item-action flexcol'>
@@ -57,11 +61,14 @@
               </label>
               {{#if system.action.ability}}
                 <button class='ability-roll-button rollable'
-                  data-roll="d12+@actor.abilities.{{system.action.ability}}.value"
+                  data-roll="d12+@actor.abilities.{{system.action.ability}}.value {{bonus system.action.bonus}}"
                   data-label="{{item.name}}">
                   <div class="flexrow">
                     <img src="/systems/d12/assets/ui/icons/color_{{system.action.ability}}.svg" width="24" height="24" />
-                    <div>{{localize (lookup @root.config.abilities system.action.ability)}}</div>
+                    <div>
+                      {{localize (lookup @root.config.abilities system.action.ability)}}
+                      {{bonus system.action.bonus}}
+                    </div>
                   </div>
                 </button>
               {{else}}

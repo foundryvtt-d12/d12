@@ -2,7 +2,7 @@
   <div class='items-header header'>
     <div class='item-name'>{{localize 'Item'}}</div>
     <div class='item-header'>{{localize 'Quantity'}}</div>
-    <div class='item-header'>{{localize 'Ability'}}</div>
+    <div class='item-header'>{{localize 'Roll'}}</div>
     <div class='item-header edit-mode-only'>
       <a
         class='item-control item-create'
@@ -33,18 +33,19 @@
           <div class='item-column'>
             {{item.system.quantity}}
           </div>
-          <div class='item-column'>
-            {{#if item.system.action.ability}}
-            <span class="rollable"
-              data-roll="d12+@abilities.{{item.system.action.ability}}.value"
-              data-label="{{item.name}}"
+          {{#if item.system.action.ability}}
+          <div class='item-column rollable'
+              data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
+              data-label="{{item.name}}">
+            <span
               style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
-              {{localize (lookup @root.config.abilities item.system.action.ability)}}
+              {{localize (lookup @root.config.abilityAbbreviations item.system.action.ability)}}
             </span>
-            {{else}}
-            —
-            {{/if}}
+            {{bonus item.system.action.bonus}}
           </div>
+          {{else}}
+          <div class='item-column'>—</div>
+          {{/if}}
           <div class='item-column item-actions edit-mode-only'>
             <a
               class='item-control item-delete'

@@ -21,6 +21,12 @@ export default class D12ItemBase extends D12DataModel {
           "cha": "D12.Ability.Charisma.long"
         }
       }),
+      bonus: new fields.NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        initial: 0
+      }),
       description: new fields.StringField({
         required: true,
         blank: true,

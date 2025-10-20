@@ -90,6 +90,17 @@ Handlebars.registerHelper('lt', function (a, b) {
   return a < b;
 });
 
+// Helper for formatting bonus
+Handlebars.registerHelper('bonus', function (a) {
+  if (a > 0) {
+    return `+ ${a}`;
+  } else if (a < 0) {
+    return `- ${-a}`;
+  } else {
+    return "";
+  }
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

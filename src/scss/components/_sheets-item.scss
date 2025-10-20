@@ -1,8 +1,10 @@
 .window-content {
-  &::before {
-    left: 0;
-    top: 0;
-    bottom: 0;
+  & > form::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    bottom: -8px;
     width: 166px;
     background:
       url('../assets/ui/sheet-sidebar.webp') top center / auto no-repeat,
@@ -12,6 +14,7 @@
   .sheet-grid {
     grid-template-columns: 150px 1fr;
     gap: 16px;
+    z-index: 1;
   }
 }
 
@@ -23,7 +26,7 @@
     text-align: center;
   }
 
-  select, button {
+  select, button, input {
     color: $c-text-on-dark;
     background-color: #252830;
     width: 100%;
