@@ -32,22 +32,23 @@
           {{/if}}
         </div>
 
-        {{#if (gt system.mana.max 0)}}
+        {{#if editable}}
         <div class="resource">
           <label for="system.mana.value" class="label">Mana</label>
-          {{#if editable}}
           <div class="resource-content flexrow flex-center flex-between">
             <input type="text" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
             <span> / </span>
             <input type="text" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number"/>
           </div>
-          {{else}}
+        </div>
+        {{else if (gt system.mana.max 0)}}
+        <div class="resource">
+          <label for="system.mana.value" class="label">Mana</label>
           <div class="resource-squares mana-squares">
             {{#times system.mana.max}}
             <div class="resource-square {{#if (lt this @root.system.mana.value)}}filled mana{{else}}empty{{/if}}"></div>
             {{/times}}
           </div>
-          {{/if}}
         </div>
         {{/if}}
 

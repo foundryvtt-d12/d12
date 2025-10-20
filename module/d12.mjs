@@ -90,6 +90,10 @@ Handlebars.registerHelper("lt", function (a, b) {
   return a < b;
 });
 
+Handlebars.registerHelper("length", function (a) {
+  return a.length;
+});
+
 // Helper for formatting bonus
 Handlebars.registerHelper("bonus", function (a) {
   if (a > 0) {

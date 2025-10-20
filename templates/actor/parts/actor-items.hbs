@@ -63,5 +63,12 @@
         </div>
       </li>
     {{/each}}
+    {{#if (eq (length gear) 0)}}
+      <li class="item">
+        <div class="item-row">
+          <div class="no-items grid-span-12 flexcol">{{localize "D12.NoItems"}}</div>
+        </div>
+      </li>
+    {{/if}}
   </ol>
 </div>

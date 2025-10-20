@@ -44,7 +44,9 @@
       "Rare": "Rare",
       "Epic": "Epic",
       "Legendary": "Legendary"
-    }
+    },
+    "NoItems": "No items",
+    "NoSpells": "No spells"
   },
 
   "TYPES": {
