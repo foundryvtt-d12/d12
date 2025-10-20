@@ -113,6 +113,9 @@
             }
           }
         }
+
+        .fa-circle-minus { margin-right: 4px; }
+        .fa-circle-plus { margin-left: 4px; }
       }
     }
   }
@@ -130,6 +133,6 @@
 
 .editable {
   .item-row, .items-header {
-    grid-template-columns: 1fr 50px 80px 16px;
+    grid-template-columns: 1fr 120px 80px 16px;
   }
 }

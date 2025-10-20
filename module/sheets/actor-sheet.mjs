@@ -183,6 +183,40 @@ export class D12ActorSheet extends ActorSheet {
         li.slideUp(200, () => this.render(false));
       });
 
+      // Increase Item Quantity
+      html.on('click', '.item-quantity-increase', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        item.update({ 'system.quantity': item.system.quantity + 1 });
+      });
+
+      // Decrease Item Quantity
+      html.on('click', '.item-quantity-decrease', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        const newQuantity = Math.max(0, item.system.quantity - 1);
+        item.update({ 'system.quantity': newQuantity });
+      });
+
+      // Increase Spell Charges
+      html.on('click', '.item-charges-increase', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        let newCharges = item.system.charges.value + 1;
+        if (item.system.charges.max) {
+          newCharges = Math.min(item.system.charges.max, newCharges);
+        }
+        item.update({ 'system.charges.value': newCharges });
+      });
+
+      // Decrease Spell Charges
+      html.on('click', '.item-charges-decrease', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        const newCharges = Math.max(0, item.system.charges.value - 1);
+        item.update({ 'system.charges.value': newCharges });
+      });
+
       // Drag events for macros.
       if (this.actor.isOwner) {
         let handler = (ev) => this._onDragStart(ev);

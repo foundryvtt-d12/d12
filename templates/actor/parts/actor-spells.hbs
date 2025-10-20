@@ -34,10 +34,20 @@
           </div>
           <div class='item-column'>
             {{#if item.system.charges}}
+              {{#if @root.editable}}
+              <a class='item-control item-charges-decrease edit-mode-only' title='Decrease Charges'>
+                <i class='fas fa-circle-minus'></i>
+              </a>
+              {{/if}}
               <span>{{item.system.charges.value}}</span>
               {{#if item.system.charges.max}}
               <span>/</span>
               <span>{{item.system.charges.max}}</span>
+              {{/if}}
+              {{#if @root.editable}}
+              <a class='item-control item-charges-increase edit-mode-only' title='Increase Charges'>
+                <i class='fas fa-circle-plus'></i>
+              </a>
               {{/if}}
             {{else}}
               —
