@@ -3,7 +3,7 @@
     <div class='item-name'>{{localize 'Spell'}}</div>
     <div class='item-header'>{{localize 'Charges'}}</div>
     <div class='item-header'>{{localize 'Ability'}}</div>
-    <div class='item-header'>
+    <div class='item-header edit-mode-only'>
       {{#if @root.editable}}
       <a
         class='item-control item-create'
@@ -19,9 +19,9 @@
     {{#each spells as |item id|}}
       <li class='item' data-item-id='{{item._id}}'>
         <div class='item-row'>
-          <div class='item-name item-action'>
+          <div class='item-name item-action item-edit'>
             <img
-              class='item-image'
+              class='item-image rarity-common'
               src='{{item.img}}'
               title='{{item.name}}'
               width='32'
@@ -44,21 +44,13 @@
             —
             {{/if}}
           </div>
-          <div class='item-column item-actions'>
-            <a
-              class='item-control item-edit'
-              title='{{localize "DOCUMENT.Update" type='Spell'}}'
-            >
-              <i class='fas fa-arrow-up-right-from-square fa-lg'></i>
-            </a>
-            {{#if @root.editable}}
+          <div class='item-column item-actions edit-mode-only'>
             <a
               class='item-control item-delete'
               title='{{localize "DOCUMENT.Delete" type='Spell'}}'
             >
-              <i class='fas fa-trash fa-lg'></i>
+              <i class='fas fa-xmark'></i>
             </a>
-            {{/if}}
           </div>
         </div>
       </li>
