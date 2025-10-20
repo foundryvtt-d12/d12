@@ -13,9 +13,9 @@
       </a>
     </div>
   </div>
-  <ol class='item-list'>
+  <ol class='item-list' data-item-type='item'>
     {{#each gear as |item id|}}
-      <li class='item' data-item-id='{{item._id}}'>
+      <li class='item' data-item-id='{{item._id}}' data-item-type='item' draggable='true'>
         <div class='item-row'>
           <div class='item-name item-action item-edit'>
             <img
