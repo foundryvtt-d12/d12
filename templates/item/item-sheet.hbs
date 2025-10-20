@@ -13,6 +13,7 @@
       <div class="details">
         <div class="sheet-subtitle">Weapon</div>
 
+        {{#if (eq item.type "item")}}
         <div class='rarity flexcol'>
           <label for="system.rarity" class="label">Rarity</label>
           <select class="rarity-{{system.rarity}}" name='system.rarity'>
@@ -23,6 +24,7 @@
             {{/each}}
           </select>
         </div>
+        {{/if}}
 
         {{#if @root.editable}}
           <div class='flexcol'>
@@ -79,40 +81,74 @@
       <header class="sheet-header flexcol">
         <h1 class="sheet-title"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
 
-        {{#if @root.editable}}
-        <div class="flexrow">
-          <div>
-            <label for="system.price" class="label">Price</label>
-            <input type='text' name='system.price' value='{{system.price}}' data-dtype='Number' />
+        {{#if (eq item.type "item")}}
+          {{#if @root.editable}}
+          <div class="flexrow">
+            <div>
+              <label for="system.price" class="label">Price</label>
+              <input type='text' name='system.price' value='{{system.price}}' data-dtype='Number' />
+            </div>
+            <div>
+              <label for="system.weight" class="label">Weight</label>
+              <input type='text' name='system.weight' value='{{system.weight}}' data-dtype='Number' />
+            </div>
+            <div>
+              <label for="system.quantity" class="label">Quantity</label>
+              <input type='text' name='system.quantity' value='{{system.quantity}}' data-dtype='Number' />
+            </div>
           </div>
-          <div>
-            <label for="system.weight" class="label">Weight</label>
-            <input type='text' name='system.weight' value='{{system.weight}}' data-dtype='Number' />
+          {{else}}
+          <div class="inline-attributes">
+            {{#if system.price}}
+            <span>
+              <i class="fas fa-coins"></i>
+              <span class="attribute-value">{{system.price}}</span>
+              <span>GP</span>
+            </span>
+            {{/if}}
+            <span>
+              <i class="fas fa-weight-hanging"></i>
+              <span class="attribute-value">{{system.weight}}</span>
+              <span>kg</span>
+            </span>
+            <span>
+              <span>Quantity</span>
+              <span class="attribute-value">{{system.quantity}}</span>
+            </span>
           </div>
-          <div>
-            <label for="system.quantity" class="label">Quantity</label>
-            <input type='text' name='system.quantity' value='{{system.quantity}}' data-dtype='Number' />
-          </div>
-        </div>
-        {{else}}
-        <div class="inline-attributes">
-          {{#if system.price}}
-          <span>
-            <i class="fas fa-coins"></i>
-            <span class="attribute-value">{{system.price}}</span>
-            <span>GP</span>
-          </span>
           {{/if}}
-          <span>
-            <i class="fas fa-weight-hanging"></i>
-            <span class="attribute-value">{{system.weight}}</span>
-            <span>kg</span>
-          </span>
-          <span>
-            <span>Quantity</span>
-            <span class="attribute-value">{{system.quantity}}</span>
-          </span>
-        </div>
+        {{/if}}
+        {{#if (eq item.type "spell")}}
+          {{#if @root.editable}}
+          <div class="flexrow">
+            <div>
+              <label for="system.charges.value" class="label">Charges</label>
+              <input type='text' name='system.charges.value' value='{{system.charges.value}}' data-dtype='Number' />
+            </div>
+            <div>
+              <label for="system.charges.max" class="label">Maximum</label>
+              <input type='text' name='system.charges.max' value='{{system.charges.max}}' data-dtype='Number' />
+            </div>
+          </div>
+          {{else}}
+          <div class="inline-attributes">
+            {{#if system.charges}}
+            <span>
+              <i class="fas fa-magic"></i>
+              <span class="attribute-value">{{system.charges.value}}</span>
+              {{#if system.charges.max}}
+              <span>/</span>
+              <span class="attribute-value">{{system.charges.max}}</span>
+              {{/if}}
+              <span>charges</span>
+            </span>
+            {{else}}
+            <span>
+              <span>Unlimited use</span>
+            </span>
+            {{/if}}
+          </div>
+          {{/if}}
         {{/if}}
       </header>
 

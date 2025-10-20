@@ -33,7 +33,15 @@
             </div>
           </div>
           <div class='item-column'>
-            1
+            {{#if item.system.charges}}
+              <span>{{item.system.charges.value}}</span>
+              {{#if item.system.charges.max}}
+              <span>/</span>
+              <span>{{item.system.charges.max}}</span>
+              {{/if}}
+            {{else}}
+              —
+            {{/if}}
           </div>
           <div class='item-column'>
             {{#if item.system.action.ability}}

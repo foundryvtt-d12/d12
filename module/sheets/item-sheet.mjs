@@ -66,13 +66,7 @@ export class D12ItemSheet extends ItemSheet {
 
   /** @override */
   get template() {
-    const path = 'systems/d12/templates/item';
-    // Return a single sheet for all item types.
-    // return `${path}/item-sheet.hbs`;
-
-    // Alternatively, you could use the following return statement to do a
-    // unique item sheet by type, like `weapon-sheet.hbs`.
-    return `${path}/item-${this.item.type}-sheet.hbs`;
+    return `systems/d12/templates/item/item-sheet.hbs`;
   }
 
   /* -------------------------------------------- */
@@ -121,6 +115,12 @@ export class D12ItemSheet extends ItemSheet {
       delete formData['system.action.type'];
       delete formData['system.action.ability'];
       delete formData['system.action.description'];
+    }
+
+    if (formData['system.charges.value'] === '') {
+      formData['system.charges'] = null;
+      delete formData['system.charges.value'];
+      delete formData['system.charges.max'];
     }
 
     return super._updateObject(event, formData);
