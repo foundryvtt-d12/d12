@@ -1,19 +1,19 @@
 {
   "id": "d12",
   "title": "D12 System",
-  "description": "The D12 System for FoundryVTT",
+  "description": "The D12 System for Foundry Virtual Tabletop",
   "authors": [
     {
       "name": "Flavien Charlon",
       "url": "https://github.com/flavien/"
     }
   ],
-  "url": "https://github.com/flavien/d12",
+  "url": "https://github.com/foundryvtt-d12/d12",
   "license": "LICENSE.txt",
   "readme": "README.md",
-  "manifest": "https://raw.githubusercontent.com/flavien/d12/refs/heads/master/system.json",
-  "download": "This must link to a .zip file of the current version",
-  "bugs": "https://github.com/flavien/d12/issues",
+  "manifest": "https://raw.githubusercontent.com/foundryvtt-d12/d12/refs/heads/main/system.json",
+  "download": "https://github.com/foundryvtt-d12/d12/releases/download/1.0.0/d12.zip",
+  "bugs": "https://github.com/foundryvtt-d12/d12/issues",
   "changelog": "CHANGELOG.md",
   "media": [
     {
@@ -22,10 +22,11 @@
       "thumbnail": "systems/d12/assets/anvil-impact.png"
     }
   ],
-  "version": "2.0.0",
+  "version": "1.0.0",
   "compatibility": {
-    "minimum": 11,
-    "verified": "11.315"
+    "minimum": "13",
+    "maximum": "13",
+    "verified": "13.350"
   },
   "esmodules": ["module/d12.mjs"],
   "styles": ["css/d12.css"],
