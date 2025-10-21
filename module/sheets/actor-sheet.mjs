@@ -52,16 +52,13 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
     stats: {
       template: "systems/d12/templates/actor/actor-sheet.hbs"
     },
-    npcStats: {
-      template: "systems/d12/templates/actor/actor-sheet.hbs"
-    },
     items: {
       template: "systems/d12/templates/actor/actor-sheet.hbs"
     },
     spells: {
       template: "systems/d12/templates/actor/actor-sheet.hbs"
     },
-    partialStats: {
+    partialCharacterStats: {
       template: "systems/d12/templates/actor/parts/actor-character-stats.hbs"
     },
     partialNpcStats: {
@@ -120,37 +117,52 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
     options.parts = ["stats", "items", "spells"];
-
-    // // Add actor type-specific parts
-    // if (this.document.type === "character") {
-    //   options.parts.push("stats", "items", "spells");
-    // } else if (this.document.type === "npc") {
-    //   options.parts.push("npcStats", "items", "spells");
-    // }
   }
 
   /** @override */
   async _prepareContext(options) {
     // Retrieve the data structure from the base sheet.
-    const context = await super._prepareContext(options);
-
+    const textEditor = foundry.applications.ux.TextEditor.implementation;
     // Use a safe clone of the actor data for further operations.
     const actorData = this.document.toPlainObject();
 
-    // Add the actor document and its data to context
-    context.actor = this.actor;
-    context.document = this.document;
-    context.editable = this.isEditable;
+    // Use a safe clone of the actor data for further operations.
+    const context = {
+      ...await super._prepareContext(options),
 
-    // Add the actor's data to context for easier access, as well as flags.
-    context.system = actorData.system;
-    context.flags = actorData.flags;
+      // Add the actor document and its data to context
+      actor: this.actor,
+      document: this.document,
+      editable: this.isEditable,
 
-    // Adding a pointer to CONFIG.D12
-    context.config = CONFIG.D12;
+      // Add the actor's data to context for easier access, as well as flags.
+      system: actorData.system,
+      flags: actorData.flags,
 
-    // Add items to context from the actor's items collection
-    context.items = this.actor.items;
+      // Adding a pointer to CONFIG.D12
+      config: CONFIG.D12,
+
+      // Add items to context from the actor's items collection
+      items: this.actor.items,
+
+      // Enrich biography info for display
+      // Enrichment turns text like `[[/r 1d20]]` into buttons
+      enrichedBiography: await textEditor.enrichHTML(
+        this.actor.system.biography,
+        {
+          // Whether to show secret blocks in the finished html
+          secrets: this.document.isOwner,
+          // Necessary in v11, can be removed in v12
+          async: true,
+          // Data to fill in for inline rolls
+          rollData: this.actor.getRollData(),
+          // Relative UUID resolution
+          relativeTo: this.actor,
+        }
+      ),
+
+      tabs: this._getTabs(options.parts),
+    };
 
     // Prepare character data and items.
     if (actorData.type == "character") {
@@ -162,26 +174,6 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
     if (actorData.type == "npc") {
       this._prepareItems(context);
     }
-
-    const textEditor = foundry.applications.ux.TextEditor.implementation;
-    // Enrich biography info for display
-    // Enrichment turns text like `[[/r 1d20]]` into buttons
-    context.enrichedBiography = await textEditor.enrichHTML(
-      this.actor.system.biography,
-      {
-        // Whether to show secret blocks in the finished html
-        secrets: this.document.isOwner,
-        // Necessary in v11, can be removed in v12
-        async: true,
-        // Data to fill in for inline rolls
-        rollData: this.actor.getRollData(),
-        // Relative UUID resolution
-        relativeTo: this.actor,
-      }
-    );
-
-    // Add tabs context
-    context.tabs = this._getTabs(options.parts);
 
     return context;
   }

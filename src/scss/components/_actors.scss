@@ -49,6 +49,10 @@
   }
 }
 
+.tab-content {
+  color: $c-text-on-light;
+}
+
 // Attribute fields (STR, AGI, INT, PER, CHA)
 .attribute-field {
   margin-bottom: 12px;
