@@ -68,9 +68,9 @@
       {{!-- Sheet Tab Navigation --}}
       <nav class="sheet-tabs flexrow ">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
-        <a class="item {{#if (eq tab.id "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> Stats</a>
-        <a class="item {{#if (eq tab.id "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> Items</a>
-        <a class="item {{#if (eq tab.id "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> Spells</a>
+        <a class="item {{#if (eq tab.id "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
+        <a class="item {{#if (eq tab.id "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> {{localize "D12.SheetLabels.Items"}}</a>
+        <a class="item {{#if (eq tab.id "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
       </nav>
 
       {{!-- Sheet Content --}}

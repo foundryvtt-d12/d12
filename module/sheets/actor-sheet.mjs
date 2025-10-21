@@ -31,7 +31,8 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
       chargesIncrease: D12ActorSheet.#chargesIncrease,
       chargesDecrease: D12ActorSheet.#chargesDecrease,
       changeTab: D12ActorSheet.#changeTab,
-      rollable: D12ActorSheet.#rollable
+      rollable: D12ActorSheet.#rollable,
+      toggleLock: D12ActorSheet.#toggleLock
     }
   };
 
@@ -73,28 +74,30 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
   };
 
   /** @override */
-  _getHeaderButtons() {
-    let buttons = super._getHeaderButtons();
+  _getHeaderControls() {
+    const controls = super._getHeaderControls();
 
     // Add lock/unlock button for owners
     if (this.document.isOwner) {
-      buttons.unshift({
+      const locked = this.actor.getFlag("d12", "locked") ?? false;
+      controls.unshift({
+        action: "toggleLock",
         class: "lock-sheet",
-        icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
-        label: "D12.SheetLabels.Lock",
-        onclick: ev => this._onToggleLock(ev)
+        icon: locked ? "fas fa-lock" : "fas fa-unlock",
+        label: locked ? "D12.SheetLabels.Lock" : "D12.SheetLabels.Unlock"
       });
     }
 
-    return buttons;
+    return controls;
   }
 
   /**
    * Handle toggling the locked state of the sheet
-   * @param {Event} event   The originating click event
-   * @private
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
-  async _onToggleLock(event) {
+  static async #toggleLock(event, target) {
     event.preventDefault();
 
     // Toggle the locked state in the actor's flags

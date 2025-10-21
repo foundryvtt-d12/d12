@@ -23,7 +23,8 @@ export class D12ItemSheet extends api.HandlebarsApplicationMixin(
       title: "D12.SheetLabels.Item"
     },
     actions: {
-      rollable: D12ItemSheet.#rollable
+      rollable: D12ItemSheet.#rollable,
+      toggleLock: D12ItemSheet.#toggleLock
     }
   };
 
@@ -35,28 +36,30 @@ export class D12ItemSheet extends api.HandlebarsApplicationMixin(
   };
 
   /** @override */
-  _getHeaderButtons() {
-    let buttons = super._getHeaderButtons();
+  _getHeaderControls() {
+    const controls = super._getHeaderControls();
 
     // Add lock/unlock button for owners
     if (this.document.isOwner) {
-      buttons.unshift({
+      const locked = this.item.getFlag("d12", "locked") ?? false;
+      controls.unshift({
+        action: "toggleLock",
         class: "lock-sheet",
-        icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
-        label: "D12.SheetLabels.Lock",
-        onclick: ev => this._onToggleLock(ev)
+        icon: locked ? "fas fa-lock" : "fas fa-unlock",
+        label: "D12.SheetLabels.Lock"
       });
     }
 
-    return buttons;
+    return controls;
   }
 
   /**
    * Handle toggling the locked state of the sheet
-   * @param {Event} event   The originating click event
-   * @private
+   * @this {D12ItemSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
-  async _onToggleLock(event) {
+  static async #toggleLock(event, target) {
     event.preventDefault();
 
     // Toggle the locked state in the item's flags

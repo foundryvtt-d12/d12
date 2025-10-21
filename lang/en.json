@@ -18,7 +18,9 @@
       "Item": "D12 Item Sheet",
       "Stats": "Stats",
       "Items": "Items",
-      "Spells": "Spells"
+      "Spells": "Spells",
+      "Lock": "Lock Sheet",
+      "Unlock": "Unlock Sheet"
     },
     "Item": {
       "Spell": {
