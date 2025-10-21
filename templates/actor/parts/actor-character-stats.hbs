@@ -1,10 +1,11 @@
 {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
 use both the "grid" and "grid-Ncol" class where "N" can be any number
 from 1 to 12 and will create that number of columns.  --}}
-<div class="grid grid-12col">
-  <div class="grid-span-7 justify-center flexcol">
+<section class="tab flexgrow flexcol">
+  <div class="grid grid-12col">
+    <div class="grid-span-7 justify-center flexcol">
     {{#each system.abilities as |ability key|}}
-      <div class="attribute-field flexcol rollable" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+      <div class="attribute-field flexcol" data-action="rollable" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
         <label for="system.abilities.{{key}}.value" class="label flex-group-left">
           {{localize (lookup @root.config.abilities key)}}
         </label>
@@ -48,5 +49,5 @@ from 1 to 12 and will create that number of columns.  --}}
       </div>
     {{/each}}
   </div>
-</div>
-
+  </div>
+</section>

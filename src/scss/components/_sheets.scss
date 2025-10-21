@@ -58,13 +58,16 @@
     .sheet-title {
       input {
         font-family: $font-secondary;
-        font-size: 1.5em;
-        margin: 8px 0;
+        font-size: 3em;
+        height: 1.3em;
+
       }
     }
 
     input[disabled] {
       background: transparent;
+      border: none;
+      padding-left: 0;
     }
   }
 }

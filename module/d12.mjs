@@ -4,8 +4,6 @@ import { D12Item } from "./documents/item.mjs";
 // Import sheet classes.
 import { D12ActorSheet } from "./sheets/actor-sheet.mjs";
 import { D12ItemSheet } from "./sheets/item-sheet.mjs";
-// Import helper/utility classes and constants.
-import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { D12 } from "./helpers/config.mjs";
 // Import DataModel classes
 import * as models from "./data/_module.mjs";
@@ -14,15 +12,23 @@ import * as models from "./data/_module.mjs";
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-Hooks.once("init", function () {
-  // Add utility classes to the global game object so that they're more easily
-  // accessible in global contexts.
-  game.d12 = {
+// Add key classes to the global scope so they can be more easily used
+// by downstream developers
+globalThis.d12 = {
+  documents: {
     D12Actor,
     D12Item,
+  },
+  applications: {
+    D12ActorSheet,
+    D12ItemSheet,
+  },
+  utils: {
     rollItemMacro,
-  };
+  },
+};
 
+Hooks.once("init", function () {
   // Add custom constants for configuration.
   CONFIG.D12 = D12;
 
@@ -52,19 +58,16 @@ Hooks.once("init", function () {
   };
 
   // Register sheet application classes
-  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   foundry.documents.collections.Actors.registerSheet("d12", D12ActorSheet, {
+    types: ["character", "npc"],
     makeDefault: true,
     label: "D12.SheetLabels.Actor",
   });
-  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet("d12", D12ItemSheet, {
+    types: ["item", "spell"],
     makeDefault: true,
     label: "D12.SheetLabels.Item",
   });
-
-  // Preload Handlebars templates.
-  return preloadHandlebarsTemplates();
 });
 
 /* -------------------------------------------- */

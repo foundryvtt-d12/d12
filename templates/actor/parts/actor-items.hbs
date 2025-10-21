@@ -1,23 +1,25 @@
-<div class="items-section card">
-  <div class="items-header header">
-    <div class="item-name">{{localize "Item"}}</div>
-    <div class="item-header">{{localize "Quantity"}}</div>
-    <div class="item-header">{{localize "Roll"}}</div>
-    <div class="item-header edit-mode-only">
-      <a
-        class="item-control item-create"
-        title="{{localize 'DOCUMENT.Create' type='Item'}}"
-        data-type="item"
+<section class="tab flexgrow">
+  <div class="items-section card">
+    <div class="items-header header">
+      <div class="item-name">{{localize "Item"}}</div>
+      <div class="item-header">{{localize "Quantity"}}</div>
+      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-header edit-mode-only">
+        <a
+          class="item-control item-create"
+          data-action="itemCreate"
+          title="{{localize 'DOCUMENT.Create' type='Item'}}"
+          data-type="item"
       >
         <i class="fas fa-plus"></i>
       </a>
     </div>
   </div>
   <ol class="item-list" data-item-type="item">
-    {{#each gear as |item id|}}
+    {{#each inventory as |item id|}}
       <li class="item" data-item-id="{{item._id}}" data-item-type="item" draggable="true">
         <div class="item-row">
-          <div class="item-name item-action item-edit">
+          <div class="item-name item-action" data-action="itemEdit">
             <img
               class="item-image rarity-common"
               src="{{item.img}}"
@@ -31,16 +33,16 @@
             </div>
           </div>
           <div class="item-column">
-            <a class="item-control item-quantity-decrease edit-mode-only" title="Decrease Quantity">
+            <a class="item-control" data-action="quantityDecrease" title="Decrease Quantity">
               <i class="fas fa-circle-minus"></i>
             </a>
             <span>{{item.system.quantity}}</span>
-            <a class="item-control item-quantity-increase edit-mode-only" title="Increase Quantity">
+            <a class="item-control" data-action="quantityIncrease" title="Increase Quantity">
               <i class="fas fa-circle-plus"></i>
             </a>
           </div>
           {{#if item.system.action.ability}}
-          <div class="item-column rollable"
+          <div class="item-column" data-action="rollable"
               data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
               data-label="{{item.name}}">
             <span
@@ -54,7 +56,8 @@
           {{/if}}
           <div class="item-column item-actions edit-mode-only">
             <a
-              class="item-control item-delete"
+              class="item-control"
+              data-action="itemDelete"
               title="{{localize "DOCUMENT.Delete" type='Item'}}"
             >
               <i class="fas fa-xmark"></i>
@@ -63,7 +66,7 @@
         </div>
       </li>
     {{/each}}
-    {{#if (eq (length gear) 0)}}
+    {{#if (eq (length inventory) 0)}}
       <li class="item">
         <div class="item-row">
           <div class="no-items grid-span-12 flexcol">{{localize "D12.NoItems"}}</div>
@@ -71,4 +74,5 @@
       </li>
     {{/if}}
   </ol>
-</div>
+  </div>
+</section>

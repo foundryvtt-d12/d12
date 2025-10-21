@@ -1,14 +1,16 @@
-<div class="items-section card">
-  <div class="items-header header">
-    <div class="item-name">{{localize "Spell"}}</div>
-    <div class="item-header">{{localize "Charges"}}</div>
-    <div class="item-header">{{localize "Roll"}}</div>
-    <div class="item-header edit-mode-only">
-      {{#if @root.editable}}
-      <a
-        class="item-control item-create"
-        title="{{localize 'DOCUMENT.Create' type='Spell'}}"
-        data-type="spell"
+<section class="tab flexgrow">
+  <div class="items-section card">
+    <div class="items-header header">
+      <div class="item-name">{{localize "Spell"}}</div>
+      <div class="item-header">{{localize "Charges"}}</div>
+      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-header edit-mode-only">
+        {{#if @root.editable}}
+        <a
+          class="item-control"
+          data-action="itemCreate"
+          title="{{localize 'DOCUMENT.Create' type='Spell'}}"
+          data-type="spell"
       >
         <i class="fas fa-plus"></i>
       </a>
@@ -19,7 +21,7 @@
     {{#each spells as |item id|}}
       <li class="item" data-item-id="{{item._id}}" data-item-type="spell" draggable="true">
         <div class="item-row">
-          <div class="item-name item-action item-edit">
+          <div class="item-name item-action" data-action="itemEdit">
             <img
               class="item-image rarity-common"
               src="{{item.img}}"
@@ -35,7 +37,7 @@
           <div class="item-column">
             {{#if item.system.charges}}
               {{#if @root.editable}}
-              <a class="item-control item-charges-decrease edit-mode-only" title="Decrease Charges">
+              <a class="item-control" data-action="chargesDecrease" title="Decrease Charges">
                 <i class="fas fa-circle-minus"></i>
               </a>
               {{/if}}
@@ -45,7 +47,7 @@
               <span>{{item.system.charges.max}}</span>
               {{/if}}
               {{#if @root.editable}}
-              <a class="item-control item-charges-increase edit-mode-only" title="Increase Charges">
+              <a class="item-control" data-action="chargesIncrease" title="Increase Charges">
                 <i class="fas fa-circle-plus"></i>
               </a>
               {{/if}}
@@ -54,7 +56,7 @@
             {{/if}}
           </div>
           {{#if item.system.action.ability}}
-          <div class="item-column rollable"
+          <div class="item-column" data-action="rollable"
               data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
               data-label="{{item.name}}">
             <span
@@ -68,7 +70,8 @@
           {{/if}}
           <div class="item-column item-actions edit-mode-only">
             <a
-              class="item-control item-delete"
+              class="item-control"
+              data-action="itemDelete"
               title="{{localize "DOCUMENT.Delete" type='Spell'}}"
             >
               <i class="fas fa-xmark"></i>
@@ -85,4 +88,5 @@
       </li>
     {{/if}}
   </ol>
-</div>
+  </div>
+</section>

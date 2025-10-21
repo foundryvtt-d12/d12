@@ -1,11 +1,11 @@
 .window-content {
-  & > form::before {
+  & > *:first-child::before {
     content: "";
     position: absolute;
-    left: -8px;
-    top: -8px;
-    bottom: -8px;
-    width: 166px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 182px;
     background:
       url('../assets/ui/sheet-sidebar.webp') top center / auto no-repeat,
       #16181d;
@@ -13,7 +13,7 @@
 
   .sheet-grid {
     grid-template-columns: 150px 1fr;
-    gap: 16px;
+    gap: 24px;
     z-index: 1;
   }
 }
@@ -30,7 +30,7 @@
     color: $c-text-on-dark;
     background-color: #252830;
     width: 100%;
-    border: 1px solid var(--color-border-light-tertiary);
+    border: 1px solid #606060;
 
     option {
       color: #000;
@@ -46,14 +46,19 @@
   }
 }
 
-.sheet-header {
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(#000, 0.1);
+.sheet-body {
+  color: #505050;
 
-  .sheet-title {
-    input {
-      color: #69625b;
+  .sheet-header {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(#000, 0.1);
+
+    .sheet-title {
+      input {
+        color: #69625b;
+        margin-bottom: 8px;
+      }
     }
   }
 }

@@ -15,7 +15,10 @@
     },
     "SheetLabels": {
       "Actor": "D12 Actor Sheet",
-      "Item": "D12 Item Sheet"
+      "Item": "D12 Item Sheet",
+      "Stats": "Stats",
+      "Items": "Items",
+      "Spells": "Spells"
     },
     "Item": {
       "Spell": {

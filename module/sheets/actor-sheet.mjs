@@ -1,25 +1,79 @@
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {foundry.appv1.sheets.ActorSheet}
+ * @extends {foundry.applications.sheets.ActorSheetV2}
  */
-export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["d12", "sheet", "actor"],
-      width: 490,
-      height: 510,
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "features",
-        },
-      ],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}],
-      submitOnChange: true,
-    });
+const { api, sheets } = foundry.applications;
+
+export class D12ActorSheet extends api.HandlebarsApplicationMixin(
+  sheets.ActorSheetV2
+) {
+  constructor(options = {}) {
+    super(options);
   }
+
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    classes: ["d12", "sheet", "actor", "tabs"],
+    position: {
+      width: 490,
+      height: 510
+    },
+    window: {
+      resizable: true,
+      title: "D12.SheetLabels.Actor"
+    },
+    actions: {
+      itemEdit: D12ActorSheet.#itemEdit,
+      itemCreate: D12ActorSheet.#itemCreate,
+      itemDelete: D12ActorSheet.#itemDelete,
+      quantityIncrease: D12ActorSheet.#quantityIncrease,
+      quantityDecrease: D12ActorSheet.#quantityDecrease,
+      chargesIncrease: D12ActorSheet.#chargesIncrease,
+      chargesDecrease: D12ActorSheet.#chargesDecrease,
+      changeTab: D12ActorSheet.#changeTab,
+      rollable: D12ActorSheet.#rollable
+    }
+  };
+
+  /** @override */
+  static TABS = {
+    sheet: {
+      tabs: [
+        { id: "stats", group: "sheet", label: "D12.SheetLabels.Stats" },
+        { id: "items", group: "sheet", label: "D12.SheetLabels.Items" },
+        { id: "spells", group: "sheet", label: "D12.SheetLabels.Spells" }
+      ],
+      initial: "stats"
+    }
+  };
+
+  /** @override */
+  static PARTS = {
+    stats: {
+      template: "systems/d12/templates/actor/actor-sheet.hbs"
+    },
+    npcStats: {
+      template: "systems/d12/templates/actor/actor-sheet.hbs"
+    },
+    items: {
+      template: "systems/d12/templates/actor/actor-sheet.hbs"
+    },
+    spells: {
+      template: "systems/d12/templates/actor/actor-sheet.hbs"
+    },
+    partialStats: {
+      template: "systems/d12/templates/actor/parts/actor-character-stats.hbs"
+    },
+    partialNpcStats: {
+      template: "systems/d12/templates/actor/parts/actor-npc-stats.hbs"
+    },
+    partialItems: {
+      template: "systems/d12/templates/actor/parts/actor-items.hbs"
+    },
+    partialSpells: {
+      template: "systems/d12/templates/actor/parts/actor-spells.hbs"
+    },
+  };
 
   /** @override */
   _getHeaderButtons() {
@@ -30,15 +84,10 @@ export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
       buttons.unshift({
         class: "lock-sheet",
         icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
+        label: "D12.SheetLabels.Lock",
         onclick: ev => this._onToggleLock(ev)
       });
     }
-
-    // Remove label property from all header buttons
-    buttons = buttons.map(btn => {
-      const { label, ...rest } = btn;
-      return rest;
-    });
 
     return buttons;
   }
@@ -65,30 +114,43 @@ export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
     return !locked && super.isEditable;
   }
 
-  /** @override */
-  get template() {
-    return `systems/d12/templates/actor/actor-sheet.hbs`;
-  }
-
   /* -------------------------------------------- */
 
   /** @override */
-  async getData() {
-    // Retrieve the data structure from the base sheet. You can inspect or log
-    // the context variable to see the structure, but some key properties for
-    // sheets are the actor object, the data object, whether or not it's
-    // editable, and the items array.
-    const context = super.getData();
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
+    options.parts = ["stats", "items", "spells"];
+
+    // // Add actor type-specific parts
+    // if (this.document.type === "character") {
+    //   options.parts.push("stats", "items", "spells");
+    // } else if (this.document.type === "npc") {
+    //   options.parts.push("npcStats", "items", "spells");
+    // }
+  }
+
+  /** @override */
+  async _prepareContext(options) {
+    // Retrieve the data structure from the base sheet.
+    const context = await super._prepareContext(options);
 
     // Use a safe clone of the actor data for further operations.
     const actorData = this.document.toPlainObject();
 
-    // Add the actor's data to context.data for easier access, as well as flags.
+    // Add the actor document and its data to context
+    context.actor = this.actor;
+    context.document = this.document;
+    context.editable = this.isEditable;
+
+    // Add the actor's data to context for easier access, as well as flags.
     context.system = actorData.system;
     context.flags = actorData.flags;
 
     // Adding a pointer to CONFIG.D12
     context.config = CONFIG.D12;
+
+    // Add items to context from the actor's items collection
+    context.items = this.actor.items;
 
     // Prepare character data and items.
     if (actorData.type == "character") {
@@ -118,6 +180,16 @@ export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
       }
     );
 
+    // Add tabs context
+    context.tabs = this._getTabs(options.parts);
+
+    return context;
+  }
+
+  /** @override */
+  async _preparePartContext(partId, context) {
+    // Prepare context for specific parts
+    context.tab = context.tabs[partId];
     return context;
   }
 
@@ -138,115 +210,111 @@ export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
    */
   _prepareItems(context) {
     // Initialize containers.
-    const gear = [];
+    const inventory = [];
     const spells = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
       i.img = i.img || Item.DEFAULT_ICON;
-      // Append to gear.
+
       if (i.type === "item") {
-        gear.push(i);
+        inventory.push(i);
       }
-      // Append to spells.
       else if (i.type === "spell") {
         spells.push(i);
       }
     }
 
     // Assign and return
-    context.gear = gear;
+    context.inventory = inventory;
     context.spells = spells;
+  }
+
+  /**
+   * Generates the data for tab navigation
+   * @param {string[]} parts An array of named template parts to render
+   * @returns {Record<string, Partial<ApplicationTab>>}
+   * @protected
+   */
+  _getTabs(parts) {
+    // const tabGroup = "sheet";
+    // if (!this.tabGroups[tabGroup]) {
+    //   this.tabGroups[tabGroup] = "features";
+    // }
+
+    return parts.reduce((tabs, partId) => {
+      // const tab = {
+      //   cssClass: "",
+      //   group: "sheet",
+      //   id: partId,
+      //   icon: "",
+      //   label: ""
+      // };
+
+      // switch (partId) {
+      //   case "stats":
+      //     tab.id = "stats";
+      //     tab.label = game.i18n.localize("D12.SheetLabels.Stats");
+      //     break;
+      //   case "npcStats":
+      //     tab.id = "npcStats";
+      //     tab.label = game.i18n.localize("D12.SheetLabels.Stats");
+      //     break;
+      //   case "items":
+      //     tab.id = "items";
+      //     tab.label = game.i18n.localize("D12.SheetLabels.Items");
+      //     break;
+      //   case "spells":
+      //     tab.id = "spells";
+      //     tab.label = game.i18n.localize("D12.SheetLabels.Spells");
+      //     break;
+      // }
+
+      // if (this.tabGroups[tabGroup] === tab.id) {
+      //   tab.cssClass = "active";
+      // }
+
+      tabs[partId] = {
+        // cssClass: "",
+        group: "sheet",
+        id: partId,
+        cssClass: this.tabGroups["sheet"] === partId ? "active" : "",
+        // icon: "",
+        // label: ""
+      };
+      return tabs;
+    }, {});
   }
 
   /* -------------------------------------------- */
 
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    // Render the item sheet for viewing/editing prior to the editable check.
-    html.on("click", ".item-edit", (ev) => {
-      const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.items.get(li.data("itemId"));
-      item.sheet.render(true);
-    });
-
-    if (this.isEditable) {
-      // Add Inventory Item
-      html.on("click", ".item-create", this._onItemCreate.bind(this));
-
-      // Delete Inventory Item
-      html.on("click", ".item-delete", (ev) => {
-        const li = $(ev.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("itemId"));
-        item.delete();
-        li.slideUp(200, () => this.render(false));
-      });
-
-      // Increase Item Quantity
-      html.on("click", ".item-quantity-increase", (ev) => {
-        const li = $(ev.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("itemId"));
-        item.update({ "system.quantity": item.system.quantity + 1 });
-      });
-
-      // Decrease Item Quantity
-      html.on("click", ".item-quantity-decrease", (ev) => {
-        const li = $(ev.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("itemId"));
-        const newQuantity = Math.max(0, item.system.quantity - 1);
-        item.update({ "system.quantity": newQuantity });
-      });
-
-      // Increase Spell Charges
-      html.on("click", ".item-charges-increase", (ev) => {
-        const li = $(ev.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("itemId"));
-        let newCharges = item.system.charges.value + 1;
-        if (item.system.charges.max) {
-          newCharges = Math.min(item.system.charges.max, newCharges);
-        }
-        item.update({ "system.charges.value": newCharges });
-      });
-
-      // Decrease Spell Charges
-      html.on("click", ".item-charges-decrease", (ev) => {
-        const li = $(ev.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("itemId"));
-        const newCharges = Math.max(0, item.system.charges.value - 1);
-        item.update({ "system.charges.value": newCharges });
-      });
-
-      // Drag events for macros.
-      if (this.actor.isOwner) {
-        let handler = (ev) => this._onDragStart(ev);
-        html.find("li.item").each((i, li) => {
-          if (li.classList.contains("inventory-header")) return;
-          li.setAttribute("draggable", true);
-          li.addEventListener("dragstart", handler, false);
-        });
-      }
-    } else {
-      // Only when the sheet is not editable
-
-      // Rollable abilities.
-      html.on("click", ".rollable", this._onRoll.bind(this));
-    }
+  /**
+   * Handle editing an item from the sheet
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #itemEdit(event, target) {
+    event.preventDefault();
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    item?.sheet.render(true);
   }
 
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
-  async _onItemCreate(event) {
+  static async #itemCreate(event, target) {
     event.preventDefault();
-    const header = event.currentTarget;
     // Get the type of item to create.
-    const type = header.dataset.type;
+    const type = target.dataset.type;
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    const data = foundry.utils.deepClone(target.dataset);
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
     // Prepare the item object.
@@ -263,14 +331,117 @@ export class D12ActorSheet extends foundry.appv1.sheets.ActorSheet {
   }
 
   /**
-   * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
+   * Handle deleting an item from the sheet
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
-  _onRoll(event) {
+  static async #itemDelete(event, target) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    await item?.delete();
+    li?.remove();
+  }
+
+  /**
+   * Handle increasing item quantity
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #quantityIncrease(event, target) {
+    event.preventDefault();
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    if (item) {
+      await item.update({ "system.quantity": item.system.quantity + 1 });
+    }
+  }
+
+  /**
+   * Handle decreasing item quantity
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #quantityDecrease(event, target) {
+    event.preventDefault();
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    if (item) {
+      const newQuantity = Math.max(0, item.system.quantity - 1);
+      await item.update({ "system.quantity": newQuantity });
+    }
+  }
+
+  /**
+   * Handle increasing spell charges
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #chargesIncrease(event, target) {
+    event.preventDefault();
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    if (item) {
+      let newCharges = item.system.charges.value + 1;
+      if (item.system.charges.max) {
+        newCharges = Math.min(item.system.charges.max, newCharges);
+      }
+      await item.update({ "system.charges.value": newCharges });
+    }
+  }
+
+  /**
+   * Handle decreasing spell charges
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #chargesDecrease(event, target) {
+    event.preventDefault();
+    const li = target.closest(".item");
+    const itemId = li?.dataset.itemId;
+    if (!itemId) return;
+    const item = this.actor.items.get(itemId);
+    if (item) {
+      const newCharges = Math.max(0, item.system.charges.value - 1);
+      await item.update({ "system.charges.value": newCharges });
+    }
+  }
+
+    /**
+   * Handle decreasing spell charges
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #changeTab(event, target) {
+    event.preventDefault();
+    const tab = target.dataset.tab;
+    if (!tab) return;
+    this.changeTab(tab, "sheet", { event });
+  }
+
+  /**
+   * Handle clickable rolls
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #rollable(event, target) {
+    event.preventDefault();
+    const dataset = target.dataset;
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {

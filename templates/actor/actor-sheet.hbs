@@ -1,4 +1,4 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<section class="tab {{tab.id}} {{tab.cssClass}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
   {{!-- Sheet Body --}}
   <div class="grid sheet-grid flexcol">
 
@@ -60,38 +60,34 @@
 
       {{!-- Sheet Header --}}
       <header class="sheet-header flexcol">
-        <h1 class="sheet-title"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+        <div class="sheet-title">
+          <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        </div>
       </header>
 
       {{!-- Sheet Tab Navigation --}}
-      <nav class="sheet-tabs tabs" data-group="primary">
+      <nav class="sheet-tabs flexrow ">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
-        <a class="item" data-tab="features"><i class="fas fa-star"></i> Stats</a>
-        <a class="item" data-tab="items"><i class="fas fa-flask"></i> Items</a>
-        <a class="item" data-tab="spells"><i class="fas fa-fire"></i> Spells</a>
+        <a class="item {{#if (eq tab.id "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> Stats</a>
+        <a class="item {{#if (eq tab.id "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> Items</a>
+        <a class="item {{#if (eq tab.id "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> Spells</a>
       </nav>
 
-      {{!-- Owned Features Tab --}}
-      <div class="tab flexgrow flexcol features" data-group="primary" data-tab="features">
+      {{!-- Sheet Content --}}
+      <div class="flexgrow flexcol">
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-        {{#if (eq actor.type "character")}}
-          {{> "systems/d12/templates/actor/parts/actor-character-stats.hbs"}}
-        {{else if (eq actor.type "npc")}}
-          {{> "systems/d12/templates/actor/parts/actor-npc-stats.hbs"}}
+        {{#if (eq tab.id "stats")}}
+          {{#if (eq actor.type "npc")}}
+            {{> "systems/d12/templates/actor/parts/actor-npc-stats.hbs"}}
+          {{else}}
+            {{> "systems/d12/templates/actor/parts/actor-character-stats.hbs"}}
+          {{/if}}
+        {{else if (eq tab.id "items")}}
+          {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
+        {{else if (eq tab.id "spells")}}
+          {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
         {{/if}}
       </div>
-
-      {{!-- Owned Items Tab --}}
-      <div class="tab flexgrow items" data-group="primary" data-tab="items">
-        {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
-      </div>
-
-      {{!-- Owned Spells Tab --}}
-      <div class="tab flexgrow spells" data-group="primary" data-tab="spells">
-        {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
-      </div>
-
     </section>
-
   </div>
-</form>
+</section>

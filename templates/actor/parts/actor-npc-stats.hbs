@@ -1,8 +1,9 @@
 {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
 use both the "grid" and "grid-Ncol" class where "N" can be any number
 from 1 to 12 and will create that number of columns.  --}}
-<div class="grid grid-12col">
-  <div class="grid-span-7 flexcol">
+<div class="tab flexgrow flexcol">
+  <div class="grid grid-12col">
+    <div class="grid-span-7 flexcol">
     <div class="editor-section">
       {{! Editors must receive enriched text data from getData to properly handle rolls }}
       {{editor
@@ -37,5 +38,5 @@ from 1 to 12 and will create that number of columns.  --}}
       </div>
     {{/each}}
   </div>
+  </div>
 </div>
-

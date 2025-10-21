@@ -1,24 +1,38 @@
 /**
  * Extend the basic ItemSheet with some very simple modifications
- * @extends {foundry.appv1.sheets.ItemSheet}
+ * @extends {foundry.applications.sheets.DocumentSheetV2}
  */
-export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["d12", "sheet", "item"],
-      width: 490,
-      height: 420,
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "description",
-        },
-      ],
-      submitOnChange: true,
-    });
+const { api, sheets } = foundry.applications;
+
+export class D12ItemSheet extends api.HandlebarsApplicationMixin(
+  sheets.ItemSheetV2
+) {
+  constructor(options = {}) {
+    super(options);
   }
+
+  /** @inheritDoc */
+  static DEFAULT_OPTIONS = {
+    classes: ["d12", "sheet", "item"],
+    position: {
+      width: 490,
+      height: 420
+    },
+    window: {
+      resizable: true,
+      title: "D12.SheetLabels.Item"
+    },
+    actions: {
+      rollable: D12ItemSheet.#rollable
+    }
+  };
+
+  /** @override */
+  static PARTS = {
+    header: {
+      template: "systems/d12/templates/item/item-sheet.hbs"
+    }
+  };
 
   /** @override */
   _getHeaderButtons() {
@@ -29,15 +43,10 @@ export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
       buttons.unshift({
         class: "lock-sheet",
         icon: this.isEditable ? "fas fa-unlock" : "fas fa-lock",
+        label: "D12.SheetLabels.Lock",
         onclick: ev => this._onToggleLock(ev)
       });
     }
-
-    // Remove label property from all header buttons
-    buttons = buttons.map(btn => {
-      const { label, ...rest } = btn;
-      return rest;
-    });
 
     return buttons;
   }
@@ -64,20 +73,28 @@ export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
     return !locked && super.isEditable;
   }
 
+  /* -------------------------------------------- */
+
   /** @override */
-  get template() {
-    return `systems/d12/templates/item/item-sheet.hbs`;
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
+    options.parts = ["header"];
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async getData() {
+  async _prepareContext(options) {
     // Retrieve base data structure.
-    const context = super.getData();
+    const context = await super._prepareContext(options);
 
     // Use a safe clone of the item data for further operations.
     const itemData = this.document.toPlainObject();
+
+    // Add the item document and its data to context
+    context.item = this.item;
+    context.document = this.document;
+    context.editable = this.isEditable;
 
     const textEditor = foundry.applications.ux.TextEditor.implementation;
     // Enrich description info for display
@@ -96,7 +113,7 @@ export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
       }
     );
 
-    // Add the item's data to context.data for easier access, as well as flags.
+    // Add the item's data to context for easier access, as well as flags.
     context.system = itemData.system;
     context.flags = itemData.flags;
 
@@ -108,52 +125,16 @@ export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
 
   /* -------------------------------------------- */
 
-  /** @override */
-  async _updateObject(event, formData) {
-    // Handle setting action to null when type is empty
-    if (formData["system.action.type"] === "") {
-      formData["system.action"] = null;
-      delete formData["system.action.type"];
-      delete formData["system.action.ability"];
-      delete formData["system.action.description"];
-    }
-
-    if (formData["system.charges.value"] === "") {
-      formData["system.charges"] = null;
-      delete formData["system.charges.value"];
-      delete formData["system.charges.max"];
-    }
-
-    return super._updateObject(event, formData);
-  }
-
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    // Rollable items - enable and attach listeners even when form is disabled
-    html.find(".rollable").each((i, element) => {
-      element.disabled = false;
-      element.removeAttribute("disabled");
-      element.addEventListener("click", this._onRoll.bind(this));
-    });
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.isEditable) return;
-
-    // Roll handlers, click handlers, etc. would go here.
-  }
-
   /**
-   * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
+   * Prepare form data before processing.
+   * @param {Event} event
+   * @param {HTMLFormElement} form
+   * @param {FormDataExtended} formData
    */
-  _onRoll(event) {
+  static async #rollable(event, target) {
     event.preventDefault();
-    console.log("D12ItemSheet._onRoll called");
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    console.log("D12ItemSheet.#rollable called");
+    const dataset = target.dataset;
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
@@ -166,5 +147,24 @@ export class D12ItemSheet extends foundry.appv1.sheets.ItemSheet {
       });
       return roll;
     }
+  }
+
+  /** @override */
+  async _processFormData(event, form, formData) {
+    // Handle setting action to null when type is empty
+    if (formData.object["system.action.type"] === "") {
+      formData.object["system.action"] = null;
+      delete formData.object["system.action.type"];
+      delete formData.object["system.action.ability"];
+      delete formData.object["system.action.description"];
+    }
+
+    if (formData.object["system.charges.value"] === "") {
+      formData.object["system.charges"] = null;
+      delete formData.object["system.charges.value"];
+      delete formData.object["system.charges.max"];
+    }
+
+    return super._processFormData(event, form, formData);
   }
 }

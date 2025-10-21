@@ -1,36 +1,10 @@
 
-nav.sheet-tabs {
-  border-width: 0;
-  margin: 20px 0 8px;
-
-  & > .item {
-    font-family: $font-condensed;
-    padding: 6px 12px;
-    font-size: 1.2em;
-    color: rgba(#fff, 0.5);
-    text-shadow: none;
-
-    &.active {
-      border-bottom: 4px solid #fff;
-      color: #fff;
-    }
-
-    .fas {
-      margin-right: 6px;
-    }
-  }
-}
-
-img {
-  border: none;
-}
-
 .item-edit {
   cursor: pointer;
 }
 
 a:hover {
-  text-shadow: none;
+  // text-shadow: none;
   color: #01bfff;
 }
 
