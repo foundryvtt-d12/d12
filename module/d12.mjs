@@ -7,6 +7,8 @@ import { D12ItemSheet } from "./sheets/item-sheet.mjs";
 import { D12 } from "./helpers/config.mjs";
 // Import DataModel classes
 import * as models from "./data/_module.mjs";
+// Import custom elements
+import SlideToggleElement from "./components/slide-toggle.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -31,6 +33,9 @@ globalThis.d12 = {
 Hooks.once("init", function () {
   // Add custom constants for configuration.
   CONFIG.D12 = D12;
+
+  // Register custom elements
+  customElements.define(SlideToggleElement.tagName, SlideToggleElement);
 
   /**
    * Set an initiative formula for the system

@@ -13,7 +13,7 @@
       <div class="details">
         {{#if (eq item.type "spell")}}
           <div class="sheet-subtitle">Spell</div>
-        {{else if @root.editable}}
+        {{else if editable}}
           <div class="rarity flexcol">
             <label for="system.category" class="label">Category</label>
             <select name="system.category">
@@ -43,7 +43,7 @@
         </div>
         {{/if}}
 
-        {{#if @root.editable}}
+        {{#if editable}}
           <div class="flexcol">
             <label for="system.action.type" class="label">Action Type</label>
             <select name="system.action.type">
@@ -103,10 +103,16 @@
 
       {{!-- Sheet Header --}}
       <header class="sheet-header flexcol">
-        <div class="sheet-title"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></div>
+        <div class="sheet-title">
+          {{#if editable}}
+          <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+          {{else}}
+          <div>{{item.name}}</div>
+          {{/if}}
+        </div>
 
         {{#if (eq item.type "item")}}
-          {{#if @root.editable}}
+          {{#if editable}}
           <div class="flexrow">
             <div>
               <label for="system.price" class="label">Price</label>
@@ -143,7 +149,7 @@
           {{/if}}
         {{/if}}
         {{#if (eq item.type "spell")}}
-          {{#if @root.editable}}
+          {{#if editable}}
           <div class="flexrow">
             <div>
               <label for="system.charges.value" class="label">Charges</label>

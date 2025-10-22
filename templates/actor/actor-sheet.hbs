@@ -61,7 +61,11 @@
       {{!-- Sheet Header --}}
       <header class="sheet-header flexcol">
         <div class="sheet-title">
+          {{#if editable}}
           <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+          {{else}}
+          <div>{{actor.name}}</div>
+          {{/if}}
         </div>
       </header>
 

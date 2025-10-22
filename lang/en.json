@@ -22,6 +22,8 @@
       "Lock": "Lock Sheet",
       "Unlock": "Unlock Sheet"
     },
+    "SheetModeEdit": "Edit Mode",
+    "SheetModePlay": "Play Mode",
     "Item": {
       "Spell": {
       },

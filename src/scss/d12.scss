@@ -12,6 +12,9 @@
 @import 'global/grid';
 @import 'global/flex';
 
+/* Component styles */
+@import 'components/slide-toggle';
+
 /* Styles limited to d12 sheets */
 .application.sheet.d12 {
   @import 'components/sheets';

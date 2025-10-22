@@ -1,0 +1,79 @@
+/**
+ * Slide Toggle Component Styles
+ * A custom HTML element that displays as a slide toggle switch.
+ */
+
+slide-toggle {
+  --track-width: 40px;
+  --track-height: 20px;
+  --thumb-size: 16px;
+  --track-color: #e0e0e0;
+  --track-active-color: #4caf50;
+  --track-disabled-color: #f0f0f0;
+  --thumb-color: #ffffff;
+  --thumb-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* -------------------------------------------- */
+  /* Track */
+  /* -------------------------------------------- */
+
+  .slide-toggle-track {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: var(--track-width);
+    height: var(--track-height);
+    border-radius: calc(var(--track-height) / 2);
+    background-color: var(--track-color);
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  /* Active state */
+  &[checked] .slide-toggle-track {
+    background-color: var(--track-active-color);
+  }
+
+  /* Disabled state */
+  &:disabled .slide-toggle-track {
+    background-color: var(--track-disabled-color);
+  }
+
+  /* -------------------------------------------- */
+  /* Thumb */
+  /* -------------------------------------------- */
+
+  .slide-toggle-thumb {
+    position: absolute;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    border-radius: 50%;
+    background-color: var(--thumb-color);
+    box-shadow: var(--thumb-shadow);
+    transition: transform 0.3s ease;
+    left: calc((var(--track-height) - var(--thumb-size)) / 2);
+  }
+
+  /* Active state - move thumb to the right */
+  &[checked] .slide-toggle-thumb {
+    transform: translateX(calc(var(--track-width) - var(--track-height)));
+  }
+
+  /* -------------------------------------------- */
+  /* Keyboard focus */
+  /* -------------------------------------------- */
+
+  &:focus-visible {
+    outline: 2px solid var(--track-active-color);
+    outline-offset: 2px;
+  }
+}

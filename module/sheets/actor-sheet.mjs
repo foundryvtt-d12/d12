@@ -2,10 +2,12 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
+import PrimarySheetMixin from "./primary-sheet-mixin.mjs";
+
 const { api, sheets } = foundry.applications;
 
-export class D12ActorSheet extends api.HandlebarsApplicationMixin(
-  sheets.ActorSheetV2
+export class D12ActorSheet extends PrimarySheetMixin(
+  api.HandlebarsApplicationMixin(sheets.ActorSheetV2)
 ) {
   constructor(options = {}) {
     super(options);
@@ -32,7 +34,6 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
       chargesDecrease: D12ActorSheet.#chargesDecrease,
       changeTab: D12ActorSheet.#changeTab,
       rollable: D12ActorSheet.#rollable,
-      toggleLock: D12ActorSheet.#toggleLock
     }
   };
 
@@ -60,49 +61,6 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
   };
 
   /** @override */
-  _getHeaderControls() {
-    const controls = super._getHeaderControls();
-
-    // Add lock/unlock button for owners
-    if (this.document.isOwner) {
-      const locked = this.actor.getFlag("d12", "locked") ?? false;
-      controls.unshift({
-        action: "toggleLock",
-        class: "lock-sheet",
-        icon: locked ? "fas fa-lock" : "fas fa-unlock",
-        label: locked ? "D12.SheetLabels.Lock" : "D12.SheetLabels.Unlock"
-      });
-    }
-
-    return controls;
-  }
-
-  /**
-   * Handle toggling the locked state of the sheet
-   * @this {D12ActorSheet}
-   * @param {PointerEvent} event
-   * @param {HTMLElement} target
-   */
-  static async #toggleLock(event, target) {
-    event.preventDefault();
-
-    // Toggle the locked state in the actor's flags
-    const locked = this.actor.getFlag("d12", "locked") ?? false;
-    await this.actor.setFlag("d12", "locked", !locked);
-
-    // Re-render the sheet to reflect the change
-    this.render(false);
-  }
-
-  /** @override */
-  get isEditable() {
-    const locked = this.actor.getFlag("d12", "locked") ?? false;
-    return !locked && super.isEditable;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
     options.parts = ["stats", "items", "spells"];
@@ -110,7 +68,6 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
 
   /** @override */
   async _prepareContext(options) {
-    // Retrieve the data structure from the base sheet.
     const textEditor = foundry.applications.ux.TextEditor.implementation;
     // Use a safe clone of the actor data for further operations.
     const actorData = this.document.toPlainObject();
@@ -122,7 +79,6 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
       // Add the actor document and its data to context
       actor: this.actor,
       document: this.document,
-      editable: this.isEditable,
 
       // Add the actor's data to context for easier access, as well as flags.
       system: actorData.system,
@@ -150,6 +106,7 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
         }
       ),
 
+      editable: this._prepareEditableContext(),
       tabs: this._getTabs(options.parts),
     };
 

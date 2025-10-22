@@ -5,11 +5,11 @@ from 1 to 12 and will create that number of columns.  --}}
   <div class="grid grid-12col">
     <div class="grid-span-7 flexcol">
     <div class="editor-section">
-        {{#if editable}}
+        {{#if @root.editable}}
         <prose-mirror
           name="system.biography"
           button="true"
-          editable="{{editable}}"
+          editable="{{@root.editable}}"
           toggled="false"
           value="{{system.biography}}">
           {{{enrichedBiography}}}
