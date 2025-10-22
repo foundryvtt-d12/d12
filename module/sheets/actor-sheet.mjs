@@ -50,27 +50,13 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
 
   /** @override */
   static PARTS = {
-    stats: {
-      template: "systems/d12/templates/actor/actor-sheet.hbs"
-    },
-    items: {
-      template: "systems/d12/templates/actor/actor-sheet.hbs"
-    },
-    spells: {
-      template: "systems/d12/templates/actor/actor-sheet.hbs"
-    },
-    partialCharacterStats: {
-      template: "systems/d12/templates/actor/parts/actor-character-stats.hbs"
-    },
-    partialNpcStats: {
-      template: "systems/d12/templates/actor/parts/actor-npc-stats.hbs"
-    },
-    partialItems: {
-      template: "systems/d12/templates/actor/parts/actor-items.hbs"
-    },
-    partialSpells: {
-      template: "systems/d12/templates/actor/parts/actor-spells.hbs"
-    },
+    stats: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
+    items: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
+    spells: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
+    partialCharacterStats: { template: "systems/d12/templates/actor/parts/actor-character-stats.hbs" },
+    partialNpcStats: { template: "systems/d12/templates/actor/parts/actor-npc-stats.hbs" },
+    partialItems: { template: "systems/d12/templates/actor/parts/actor-items.hbs" },
+    partialSpells: { template: "systems/d12/templates/actor/parts/actor-spells.hbs" },
   };
 
   /** @override */
@@ -232,56 +218,17 @@ export class D12ActorSheet extends api.HandlebarsApplicationMixin(
    * @protected
    */
   _getTabs(parts) {
-    // const tabGroup = "sheet";
-    // if (!this.tabGroups[tabGroup]) {
-    //   this.tabGroups[tabGroup] = "features";
-    // }
-
-    return parts.reduce((tabs, partId) => {
-      // const tab = {
-      //   cssClass: "",
-      //   group: "sheet",
-      //   id: partId,
-      //   icon: "",
-      //   label: ""
-      // };
-
-      // switch (partId) {
-      //   case "stats":
-      //     tab.id = "stats";
-      //     tab.label = game.i18n.localize("D12.SheetLabels.Stats");
-      //     break;
-      //   case "npcStats":
-      //     tab.id = "npcStats";
-      //     tab.label = game.i18n.localize("D12.SheetLabels.Stats");
-      //     break;
-      //   case "items":
-      //     tab.id = "items";
-      //     tab.label = game.i18n.localize("D12.SheetLabels.Items");
-      //     break;
-      //   case "spells":
-      //     tab.id = "spells";
-      //     tab.label = game.i18n.localize("D12.SheetLabels.Spells");
-      //     break;
-      // }
-
-      // if (this.tabGroups[tabGroup] === tab.id) {
-      //   tab.cssClass = "active";
-      // }
-
-      tabs[partId] = {
-        // cssClass: "",
+    const tabGroups = {};
+    for (const partId of parts) {
+      tabGroups[partId] = {
         group: "sheet",
         id: partId,
         cssClass: this.tabGroups["sheet"] === partId ? "active" : "",
-        // icon: "",
-        // label: ""
       };
-      return tabs;
-    }, {});
-  }
+    }
 
-  /* -------------------------------------------- */
+    return tabGroups;
+  }
 
   /**
    * Handle editing an item from the sheet

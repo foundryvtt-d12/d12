@@ -5,14 +5,18 @@ from 1 to 12 and will create that number of columns.  --}}
   <div class="grid grid-12col">
     <div class="grid-span-7 flexcol">
     <div class="editor-section">
-      {{! Editors must receive enriched text data from getData to properly handle rolls }}
-      {{editor
-        enrichedBiography
-        target='system.biography'
-        engine='prosemirror'
-        button=true
-        editable=editable
-      }}
+        {{#if editable}}
+        <prose-mirror
+          name="system.biography"
+          button="true"
+          editable="{{editable}}"
+          toggled="false"
+          value="{{system.biography}}">
+          {{{enrichedBiography}}}
+        </prose-mirror>
+        {{else}}
+        {{{enrichedBiography}}}
+        {{/if}}
     </div>
   </div>
 
