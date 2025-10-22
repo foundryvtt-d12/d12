@@ -5,16 +5,14 @@
       <div class="item-header">{{localize "Quantity"}}</div>
       <div class="item-header">{{localize "Roll"}}</div>
       <div class="item-header edit-mode-only">
-        {{#if @root.editable}}
         <a
-          class="item-control item-create"
+          class="item-control"
           data-action="itemCreate"
           title="{{localize 'DOCUMENT.Create' type='Item'}}"
           data-type="item"
         >
           <i class="fas fa-plus"></i>
         </a>
-        {{/if}}
     </div>
   </div>
   <ol class="item-list" data-item-type="item">
@@ -35,17 +33,13 @@
             </div>
           </div>
           <div class="item-column">
-            {{#if @root.editable}}
-            <a class="item-control" data-action="quantityDecrease" title="Decrease Quantity">
+            <a class="item-control edit-mode-only" data-action="quantityDecrease" title="Decrease Quantity">
               <i class="fas fa-circle-minus"></i>
             </a>
-            {{/if}}
             <span>{{item.system.quantity}}</span>
-            {{#if @root.editable}}
-            <a class="item-control" data-action="quantityIncrease" title="Increase Quantity">
+            <a class="item-control edit-mode-only" data-action="quantityIncrease" title="Increase Quantity">
               <i class="fas fa-circle-plus"></i>
             </a>
-            {{/if}}
           </div>
           {{#if item.system.action.ability}}
           <div class="item-column" data-action="rollable"

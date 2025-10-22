@@ -44,8 +44,6 @@ export default class SlideToggleElement extends HTMLElement {
     if (!this.hasAttribute("tabindex")) this.tabIndex = 0;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * Clean up event listeners when the element is removed.
    * @override
@@ -53,8 +51,6 @@ export default class SlideToggleElement extends HTMLElement {
   disconnectedCallback() {
     this._controller?.abort();
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Create the constituent components of this element.
@@ -70,8 +66,6 @@ export default class SlideToggleElement extends HTMLElement {
     return [track];
   }
 
-  /* -------------------------------------------- */
-
   /**
    * Activate event listeners for the element.
    * @protected
@@ -86,8 +80,6 @@ export default class SlideToggleElement extends HTMLElement {
     );
   }
 
-  /* -------------------------------------------- */
-
   /**
    * Refresh the element's state.
    * @protected
@@ -97,8 +89,6 @@ export default class SlideToggleElement extends HTMLElement {
     this.setAttribute("role", "switch");
     this.setAttribute("aria-checked", this.checked);
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Handle click and space key events to toggle the switch.

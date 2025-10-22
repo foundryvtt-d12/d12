@@ -5,7 +5,7 @@
 
 a:hover {
   text-shadow: none;
-  color: #01bfff;
+  color: $c-highlight;
 }
 
 .label {
@@ -23,6 +23,12 @@ input {
 .flexcol {
   select {
     flex: auto;
+  }
+}
+
+&.locked {
+  .edit-mode-only {
+    display: none !important;
   }
 }
 

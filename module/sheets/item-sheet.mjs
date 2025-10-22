@@ -79,7 +79,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
         }
       ),
 
-      editable: this._prepareEditableContext(),
+      editable: this.isEditMode,
     };
 
     return context;

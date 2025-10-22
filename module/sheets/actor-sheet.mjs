@@ -106,7 +106,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
         }
       ),
 
-      editable: this._prepareEditableContext(),
+      editable: this.isEditMode,
       tabs: this._getTabs(options.parts),
     };
 

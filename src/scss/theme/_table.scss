@@ -126,18 +126,16 @@
   }
 }
 
-.locked {
-  .edit-mode-only {
-    display: none !important;
+@at-root {
+  .locked {
+    .item-row, .items-header {
+      grid-template-columns: 1fr 50px 80px;
+    }
   }
 
-  .item-row, .items-header {
-    grid-template-columns: 1fr 50px 80px;
-  }
-}
-
-.editable {
-  .item-row, .items-header {
-    grid-template-columns: 1fr 120px 80px 16px;
+  .editable {
+    .item-row, .items-header {
+      grid-template-columns: 1fr 120px 80px 16px;
+    }
   }
 }

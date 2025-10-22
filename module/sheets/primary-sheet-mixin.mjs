@@ -21,6 +21,10 @@ export default function PrimarySheetMixin(Base) {
      */
     _mode = null;
 
+    get isEditMode() {
+      return this.isEditable && this._mode === this.constructor.MODES.EDIT;
+    }
+
     /** @inheritDoc */
     _configureRenderOptions(options) {
       super._configureRenderOptions(options);
@@ -38,10 +42,9 @@ export default function PrimarySheetMixin(Base) {
     _onRender(context, options) {
       super._onRender(context, options);
       this._renderModeToggle();
-      this.element.classList.toggle(
-        "editable",
-        this.isEditable && this._mode === this.constructor.MODES.EDIT
-      );
+
+      this.element.classList.toggle("editable", this.isEditMode);
+      this.element.classList.toggle("locked", !this.isEditMode);
     }
 
     /**
@@ -83,14 +86,6 @@ export default function PrimarySheetMixin(Base) {
       toggle.setAttribute("aria-label", label);
       this._mode = toggle.checked ? MODES.EDIT : MODES.PLAY;
       await this.render();
-    }
-
-    /**
-     * Prepare the context by adding the editable flag based on sheet mode.
-     * @protected
-     */
-    _prepareEditableContext() {
-      return this.isEditable && this._mode === this.constructor.MODES.EDIT;
     }
   };
 }

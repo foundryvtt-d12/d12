@@ -5,7 +5,6 @@
       <div class="item-header">{{localize "Charges"}}</div>
       <div class="item-header">{{localize "Roll"}}</div>
       <div class="item-header edit-mode-only">
-        {{#if @root.editable}}
         <a
           class="item-control"
           data-action="itemCreate"
@@ -14,7 +13,6 @@
         >
           <i class="fas fa-plus"></i>
         </a>
-        {{/if}}
     </div>
   </div>
   <ol class="item-list" data-item-type="spell">
@@ -36,21 +34,17 @@
           </div>
           <div class="item-column">
             {{#if item.system.charges}}
-              {{#if @root.editable}}
-              <a class="item-control" data-action="chargesDecrease" title="Decrease Charges">
+              <a class="item-control edit-mode-only" data-action="chargesDecrease" title="Decrease Charges">
                 <i class="fas fa-circle-minus"></i>
               </a>
-              {{/if}}
               <span>{{item.system.charges.value}}</span>
               {{#if item.system.charges.max}}
               <span>/</span>
               <span>{{item.system.charges.max}}</span>
               {{/if}}
-              {{#if @root.editable}}
-              <a class="item-control" data-action="chargesIncrease" title="Increase Charges">
+              <a class="item-control edit-mode-only" data-action="chargesIncrease" title="Increase Charges">
                 <i class="fas fa-circle-plus"></i>
               </a>
-              {{/if}}
             {{else}}
               —
             {{/if}}
