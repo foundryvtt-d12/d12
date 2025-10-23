@@ -1,3 +1,4 @@
+@use '../utils/variables' as *;
 
 .item-edit {
   cursor: pointer;
@@ -5,7 +6,7 @@
 
 a:hover {
   text-shadow: none;
-  color: $c-highlight;
+  color: $c-highlight !important;
 }
 
 .label {
@@ -20,15 +21,16 @@ input {
   padding: 4px 8px;
 }
 
-.flexcol {
-  select {
-    flex: auto;
+.rollable {
+  &:hover,
+  &:focus {
+    cursor: pointer;
   }
 }
 
-&.locked {
-  .edit-mode-only {
-    display: none !important;
+.flexcol {
+  select {
+    flex: auto;
   }
 }
 

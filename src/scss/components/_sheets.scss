@@ -1,6 +1,4 @@
-& {
-  min-width: 490px;
-}
+@use '../utils/variables' as *;
 
 .window-content {
   background-image: url('../assets/ui/sheet-bg.jpg');

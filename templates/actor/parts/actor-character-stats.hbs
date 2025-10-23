@@ -9,7 +9,7 @@ from 1 to 12 and will create that number of columns.  --}}
         <label for="system.abilities.{{key}}.value" class="label flex-group-left">
           {{localize (lookup @root.config.abilities key)}}
         </label>
-        <div class="attribute-box flexrow align-left" style="border-color: var(--d12-attribute-{{key}}-color)">
+        <div class="attribute-box flexrow align-left rollable" style="border-color: var(--d12-attribute-{{key}}-color)">
           <div class="attribute-icon">
             <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="16" height="16" />
           </div>

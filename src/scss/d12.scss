@@ -1,31 +1,30 @@
-// Add custom fonts by visiting and search https://fonts.google.com
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 // Import utilities.
-@import 'utils/typography';
-@import 'utils/colors';
-@import 'utils/mixins';
-@import 'utils/variables';
+@use 'utils/variables';
 
 /* Global styles */
-@import 'global/window';
-@import 'global/grid';
-@import 'global/flex';
+@use 'global/window';
+@use 'global/grid';
+@use 'global/flex';
+
+@use 'sass:meta';
 
 /* Styles limited to d12 sheets */
 .application.sheet.d12 {
-  @import 'components/sheets';
-  @import 'theme/general';
-  @import 'theme/table';
-  @import 'theme/slide-toggle';
+  @include meta.load-css('components/sheets');
+  @include meta.load-css('theme/general');
+  @include meta.load-css('theme/table');
+  @include meta.load-css('theme/slide-toggle');
 
   &.actor {
-    @import 'components/sheets-actor';
-    @import 'components/actors';
+    @include meta.load-css('components/sheets-actor');
+    @include meta.load-css('components/actors');
   }
 
   &.item {
-    @import 'components/sheets-item';
-    @import 'components/items';
+    @include meta.load-css('components/sheets-item');
+    @include meta.load-css('components/items');
   }
 }
+
+// Add custom fonts by visiting and search https://fonts.google.com
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');

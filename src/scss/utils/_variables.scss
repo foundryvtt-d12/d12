@@ -1,3 +1,7 @@
+// --------------------------------------------
+// General Variables
+// --------------------------------------------
+
 $padding-sm: 5px;
 $padding-md: 10px;
 $padding-lg: 20px;
@@ -6,3 +10,50 @@ $border-groove: 2px groove #eeede0;
 
 $box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 10px;
 $box-background: rgba(#fff, 0.4);
+
+// --------------------------------------------
+// Color Variables
+// --------------------------------------------
+
+$c-white: #fff;
+$c-black: #000;
+
+$c-dark: #191813;
+$c-faint: #c9c7b8;
+$c-beige: #b5b3a4;
+$c-tan: #444;
+
+$c-text-on-dark: #c0c0c0;
+$c-text-on-dark-light: rgba(255, 255, 255, 0.90);
+$c-text-on-light: #666;
+
+$c-highlight: #dda01b;
+
+// --------------------------------------------
+// Typography
+// --------------------------------------------
+
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: "Modesto Condensed", "Palatino Linotype", serif;
+$font-condensed: "Roboto Condensed", Roboto, Arial, sans-serif;
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/systems/d12/assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/systems/d12/assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/systems/d12/assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+}

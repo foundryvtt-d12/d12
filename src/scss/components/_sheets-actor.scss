@@ -1,3 +1,5 @@
+@use '../utils/variables' as *;
+
 .window-content {
   &::before {
     left: 0;
@@ -44,7 +46,7 @@ nav.sheet-tabs {
 
     &.active {
       border-bottom: 4px solid $c-text-on-dark-light;
-      color: $c-text-on-dark-light;
+      color: $c-text-on-dark-light !important;
     }
 
     .fas {

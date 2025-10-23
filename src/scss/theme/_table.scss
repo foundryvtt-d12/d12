@@ -1,3 +1,5 @@
+@use '../utils/variables' as *;
+
 /* Items Table Styles */
 .items-section {
   border-radius: 4px;
@@ -122,20 +124,6 @@
         .fa-circle-minus { margin-right: 4px; }
         .fa-circle-plus { margin-left: 4px; }
       }
-    }
-  }
-}
-
-@at-root {
-  .locked {
-    .item-row, .items-header {
-      grid-template-columns: 1fr 50px 80px;
-    }
-  }
-
-  .editable {
-    .item-row, .items-header {
-      grid-template-columns: 1fr 120px 80px 16px;
     }
   }
 }
