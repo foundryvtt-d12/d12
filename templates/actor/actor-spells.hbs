@@ -17,16 +17,13 @@
   </div>
   <ol class="item-list" data-item-type="spell">
     {{#each spells as |item id|}}
-      <li class="item" data-item-id="{{item._id}}" data-item-type="spell" draggable="true">
+      <li class="item draggable" data-item-id="{{item._id}}" data-item-type="spell">
         <div class="item-row">
           <div class="item-name item-action" data-action="itemEdit">
             <img
               class="item-image rarity-common"
-              src="{{item.img}}"
-              title="{{item.name}}"
-              width="32"
-              height="32"
-              draggable="false"
+              src="{{item.img}}" title="{{item.name}}"
+              width="32" height="32"
             />
             <div class="item-title">
               <span>{{item.name}}</span>

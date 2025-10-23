@@ -9,10 +9,6 @@ const { api, sheets } = foundry.applications;
 export class D12ItemSheet extends PrimarySheetMixin(
   api.HandlebarsApplicationMixin(sheets.ItemSheetV2)
 ) {
-  constructor(options = {}) {
-    super(options);
-  }
-
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     classes: ["d12", "sheet", "item", "themed", "theme-light"],
@@ -31,7 +27,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
 
   /** @override */
   static PARTS = {
-    header: {
+    sheet: {
       template: "systems/d12/templates/item-sheet.hbs"
     }
   };
@@ -39,7 +35,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
   /** @override */
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
-    options.parts = ["header"];
+    options.parts = ["sheet"];
   }
 
   /* -------------------------------------------- */

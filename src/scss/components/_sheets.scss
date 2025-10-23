@@ -54,11 +54,12 @@
     align-items: flex-start;
 
     .sheet-title {
+      width: 100%;
+
       input, div {
         font-family: $font-secondary;
         font-size: 3em;
         height: 1.3em;
-        width: 100%;
       }
     }
 

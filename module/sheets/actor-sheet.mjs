@@ -9,10 +9,6 @@ const { api, sheets } = foundry.applications;
 export class D12ActorSheet extends PrimarySheetMixin(
   api.HandlebarsApplicationMixin(sheets.ActorSheetV2)
 ) {
-  constructor(options = {}) {
-    super(options);
-  }
-
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ["d12", "sheet", "actor", "tabs", "themed", "theme-light"],
@@ -25,6 +21,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       title: "D12.SheetLabels.Actor"
     },
     actions: {
+      editImage: D12ActorSheet.editImage,
       itemEdit: D12ActorSheet.#itemEdit,
       itemCreate: D12ActorSheet.#itemCreate,
       itemDelete: D12ActorSheet.#itemDelete,
@@ -89,6 +86,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
 
       // Add items to context from the actor's items collection
       items: this.actor.items,
+      ...this._prepareItems(this.actor.items),
 
       // Enrich biography info for display
       // Enrichment turns text like `[[/r 1d20]]` into buttons
@@ -110,35 +108,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       tabs: this._getTabs(options.parts),
     };
 
-    // Prepare character data and items.
-    if (actorData.type == "character") {
-      this._prepareItems(context);
-      this._prepareCharacterData(context);
-    }
-
-    // Prepare NPC data and items.
-    if (actorData.type == "npc") {
-      this._prepareItems(context);
-    }
-
     return context;
-  }
-
-  /** @override */
-  async _preparePartContext(partId, context) {
-    // Prepare context for specific parts
-    context.tab = context.tabs[partId];
-    return context;
-  }
-
-  /**
-   * Character-specific context modifications
-   *
-   * @param {object} context The context object to mutate
-   */
-  _prepareCharacterData(context) {
-    // This is where you can enrich character-specific editor fields
-    // or setup anything else that's specific to this type
   }
 
   /**
@@ -146,13 +116,13 @@ export class D12ActorSheet extends PrimarySheetMixin(
    *
    * @param {object} context The context object to mutate
    */
-  _prepareItems(context) {
+  _prepareItems(items) {
     // Initialize containers.
     const inventory = [];
     const spells = [];
 
     // Iterate through items, allocating to containers
-    for (let i of context.items) {
+    for (let i of items) {
       i.img = i.img || Item.DEFAULT_ICON;
 
       if (i.type === "item") {
@@ -163,9 +133,17 @@ export class D12ActorSheet extends PrimarySheetMixin(
       }
     }
 
-    // Assign and return
-    context.inventory = inventory;
-    context.spells = spells;
+    return {
+      inventory: inventory,
+      spells: spells,
+    };
+  }
+
+  /** @override */
+  async _preparePartContext(partId, context) {
+    // Prepare context for specific parts
+    context.tab = context.tabs[partId];
+    return context;
   }
 
   /**
@@ -340,6 +318,11 @@ export class D12ActorSheet extends PrimarySheetMixin(
    */
   static async #rollable(event, target) {
     event.preventDefault();
+
+    if (this.isEditMode) {
+      return;
+    }
+
     const dataset = target.dataset;
 
     // Handle rolls that supply the formula directly.
