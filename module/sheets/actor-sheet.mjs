@@ -15,7 +15,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
 
   /** @override */
   static DEFAULT_OPTIONS = {
-    classes: ["d12", "sheet", "actor", "tabs"],
+    classes: ["d12", "sheet", "actor", "tabs", "themed", "theme-light"],
     position: {
       width: 490,
       height: 510

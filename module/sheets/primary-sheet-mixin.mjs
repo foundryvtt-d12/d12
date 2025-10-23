@@ -42,9 +42,6 @@ export default function PrimarySheetMixin(Base) {
     _onRender(context, options) {
       super._onRender(context, options);
       this._renderModeToggle();
-
-      this.element.classList.toggle("editable", this.isEditMode);
-      this.element.classList.toggle("locked", !this.isEditMode);
     }
 
     /**

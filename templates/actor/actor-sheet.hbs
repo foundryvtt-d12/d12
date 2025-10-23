@@ -1,4 +1,6 @@
-<section class="tab {{tab.id}} {{tab.cssClass}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+<section class="tab {{tab.id}} {{tab.cssClass}} {{#if editable}}editable{{else}}locked{{/if}}"
+  data-group="{{tab.group}}"
+  data-tab="{{tab.id}}">
   {{!-- Sheet Body --}}
   <div class="grid sheet-grid flexcol">
 

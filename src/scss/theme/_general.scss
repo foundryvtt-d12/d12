@@ -21,6 +21,12 @@ input {
   padding: 4px 8px;
 }
 
+.locked {
+  .edit-mode-only {
+    display: none !important;
+  }
+}
+
 .rollable {
   &:hover,
   &:focus {

@@ -15,7 +15,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
 
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
-    classes: ["d12", "sheet", "item"],
+    classes: ["d12", "sheet", "item", "themed", "theme-light"],
     position: {
       width: 490,
       height: 420

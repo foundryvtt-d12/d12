@@ -6,25 +6,6 @@
 
 .application.sheet.d12 {
   min-width: 490px;
-
-  &.locked {
-    .edit-mode-only {
-      display: none !important;
-    }
-  }
-
-  // Table
-  &.locked {
-    .item-row, .items-header {
-      grid-template-columns: 1fr 50px 80px;
-    }
-  }
-
-  &.editable {
-    .item-row, .items-header {
-      grid-template-columns: 1fr 120px 80px 16px;
-    }
-  }
 }
 
 :root {

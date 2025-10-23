@@ -67,11 +67,13 @@ Hooks.once("init", function () {
     types: ["character", "npc"],
     makeDefault: true,
     label: "D12.SheetLabels.Actor",
+    themes: null,
   });
   foundry.documents.collections.Items.registerSheet("d12", D12ItemSheet, {
     types: ["item", "spell"],
     makeDefault: true,
     label: "D12.SheetLabels.Item",
+    themes: null,
   });
 });
 
