@@ -51,13 +51,13 @@ export class D12ActorSheet extends PrimarySheetMixin(
 
   /** @override */
   static PARTS = {
-    stats: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
-    items: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
-    spells: { template: "systems/d12/templates/actor/actor-sheet.hbs" },
-    partialCharacterStats: { template: "systems/d12/templates/actor/parts/actor-character-stats.hbs" },
-    partialNpcStats: { template: "systems/d12/templates/actor/parts/actor-npc-stats.hbs" },
-    partialItems: { template: "systems/d12/templates/actor/parts/actor-items.hbs" },
-    partialSpells: { template: "systems/d12/templates/actor/parts/actor-spells.hbs" },
+    stats: { template: "systems/d12/templates/actor-sheet.hbs" },
+    items: { template: "systems/d12/templates/actor-sheet.hbs" },
+    spells: { template: "systems/d12/templates/actor-sheet.hbs" },
+    partialCharacterStats: { template: "systems/d12/templates/actor/actor-character-stats.hbs" },
+    partialNpcStats: { template: "systems/d12/templates/actor/actor-npc-stats.hbs" },
+    partialItems: { template: "systems/d12/templates/actor/actor-items.hbs" },
+    partialSpells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
   };
 
   /** @override */

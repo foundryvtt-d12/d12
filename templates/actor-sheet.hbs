@@ -84,14 +84,14 @@
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
         {{#if (eq tab.id "stats")}}
           {{#if (eq actor.type "npc")}}
-            {{> "systems/d12/templates/actor/parts/actor-npc-stats.hbs"}}
+            {{> "systems/d12/templates/actor/actor-npc-stats.hbs"}}
           {{else}}
-            {{> "systems/d12/templates/actor/parts/actor-character-stats.hbs"}}
+            {{> "systems/d12/templates/actor/actor-character-stats.hbs"}}
           {{/if}}
         {{else if (eq tab.id "items")}}
-          {{> "systems/d12/templates/actor/parts/actor-items.hbs"}}
+          {{> "systems/d12/templates/actor/actor-items.hbs"}}
         {{else if (eq tab.id "spells")}}
-          {{> "systems/d12/templates/actor/parts/actor-spells.hbs"}}
+          {{> "systems/d12/templates/actor/actor-spells.hbs"}}
         {{/if}}
       </div>
     </section>

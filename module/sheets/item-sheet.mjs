@@ -32,7 +32,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
   /** @override */
   static PARTS = {
     header: {
-      template: "systems/d12/templates/item/item-sheet.hbs"
+      template: "systems/d12/templates/item-sheet.hbs"
     }
   };
 
