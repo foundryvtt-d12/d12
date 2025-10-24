@@ -1,7 +1,7 @@
 {
   "id": "d12",
   "title": "D12 System",
-  "description": "The D12 System for Foundry Virtual Tabletop",
+  "description": "The D12 System for Foundry Virtual Tabletop, a simple, rules-light RPG system focused on storytelling and narrative gameplay.",
   "authors": [
     {
       "name": "Flavien Charlon",
@@ -18,8 +18,8 @@
   "media": [
     {
       "type": "setup",
-      "url": "systems/d12/assets/anvil-impact.png",
-      "thumbnail": "systems/d12/assets/anvil-impact.png"
+      "url": "systems/d12/assets/d12.png",
+      "thumbnail": "systems/d12/assets/d12.png"
     }
   ],
   "version": "1.0.0",
