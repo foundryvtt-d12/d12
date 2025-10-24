@@ -33,9 +33,13 @@ $c-highlight: #dda01b;
 // Typography
 // --------------------------------------------
 
-$font-primary: 'Roboto', sans-serif;
+$font-primary: "Signika", "Palatino Linotype", sans-serif;
 $font-secondary: "Modesto Condensed", "Palatino Linotype", serif;
 $font-condensed: "Roboto Condensed", Roboto, Arial, sans-serif;
+
+// --------------------------------------------
+// Font Faces
+// --------------------------------------------
 
 @font-face {
   font-family: 'Roboto Condensed';
@@ -56,4 +60,25 @@ $font-condensed: "Roboto Condensed", Roboto, Arial, sans-serif;
   font-style: normal;
   font-weight: 700;
   src: url('/systems/d12/assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/systems/d12/assets/fonts/Signika-VariableFont_GRAD,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/systems/d12/assets/fonts/Signika-VariableFont_GRAD,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/systems/d12/assets/fonts/Signika-VariableFont_GRAD,wght.ttf') format('truetype');
 }
