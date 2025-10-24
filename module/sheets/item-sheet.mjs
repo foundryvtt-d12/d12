@@ -20,6 +20,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
       resizable: true,
       title: "D12.SheetLabels.Item"
     },
+    form: { submitOnChange: true },
     actions: {
       rollable: D12ItemSheet.#rollable,
     }
@@ -105,24 +106,5 @@ export class D12ItemSheet extends PrimarySheetMixin(
       });
       return roll;
     }
-  }
-
-  /** @override */
-  async _processFormData(event, form, formData) {
-    // Handle setting action to null when type is empty
-    if (formData.object["system.action.type"] === "") {
-      formData.object["system.action"] = null;
-      delete formData.object["system.action.type"];
-      delete formData.object["system.action.ability"];
-      delete formData.object["system.action.description"];
-    }
-
-    if (formData.object["system.charges.value"] === "") {
-      formData.object["system.charges"] = null;
-      delete formData.object["system.charges.value"];
-      delete formData.object["system.charges.max"];
-    }
-
-    return super._processFormData(event, form, formData);
   }
 }

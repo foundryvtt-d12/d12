@@ -1,4 +1,4 @@
-<section class="tab {{tab.id}} {{tab.cssClass}} {{#if editable}}editable{{else}}locked{{/if}}"
+<section class="{{#if editable}}editable{{else}}locked{{/if}}"
   data-group="{{tab.group}}"
   data-tab="{{tab.id}}">
   {{!-- Sheet Body --}}
@@ -74,25 +74,27 @@
       {{!-- Sheet Tab Navigation --}}
       <nav class="sheet-tabs flexrow ">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
-        <a class="item {{#if (eq tab.id "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
-        <a class="item {{#if (eq tab.id "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> {{localize "D12.SheetLabels.Items"}}</a>
-        <a class="item {{#if (eq tab.id "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
+        <a class="item stats active" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
+        <a class="item items" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> {{localize "D12.SheetLabels.Items"}}</a>
+        <a class="item spells" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
       </nav>
 
       {{!-- Sheet Content --}}
       <div class="flexgrow flexcol tab-content">
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-        {{#if (eq tab.id "stats")}}
+        <div class="actor-tab stats">
           {{#if (eq actor.type "npc")}}
             {{> "systems/d12/templates/actor/actor-npc-stats.hbs"}}
           {{else}}
             {{> "systems/d12/templates/actor/actor-character-stats.hbs"}}
           {{/if}}
-        {{else if (eq tab.id "items")}}
+        </div>
+        <div class="actor-tab items hidden">
           {{> "systems/d12/templates/actor/actor-items.hbs"}}
-        {{else if (eq tab.id "spells")}}
+        </div>
+        <div class="actor-tab spells hidden">
           {{> "systems/d12/templates/actor/actor-spells.hbs"}}
-        {{/if}}
+        </div>
       </div>
     </section>
   </div>

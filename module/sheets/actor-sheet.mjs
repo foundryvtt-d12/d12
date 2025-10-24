@@ -20,6 +20,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       resizable: true,
       title: "D12.SheetLabels.Actor"
     },
+    form: { submitOnChange: true },
     actions: {
       editImage: D12ActorSheet.editImage,
       itemEdit: D12ActorSheet.#itemEdit,
@@ -35,32 +36,18 @@ export class D12ActorSheet extends PrimarySheetMixin(
   };
 
   /** @override */
-  static TABS = {
-    sheet: {
-      tabs: [
-        { id: "stats", group: "sheet", label: "D12.SheetLabels.Stats" },
-        { id: "items", group: "sheet", label: "D12.SheetLabels.Items" },
-        { id: "spells", group: "sheet", label: "D12.SheetLabels.Spells" }
-      ],
-      initial: "stats"
-    }
-  };
-
-  /** @override */
   static PARTS = {
-    stats: { template: "systems/d12/templates/actor-sheet.hbs" },
-    items: { template: "systems/d12/templates/actor-sheet.hbs" },
-    spells: { template: "systems/d12/templates/actor-sheet.hbs" },
-    partialCharacterStats: { template: "systems/d12/templates/actor/actor-character-stats.hbs" },
-    partialNpcStats: { template: "systems/d12/templates/actor/actor-npc-stats.hbs" },
-    partialItems: { template: "systems/d12/templates/actor/actor-items.hbs" },
-    partialSpells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
+    sheet: { template: "systems/d12/templates/actor-sheet.hbs" },
+    characterStats: { template: "systems/d12/templates/actor/actor-character-stats.hbs" },
+    npcStats: { template: "systems/d12/templates/actor/actor-npc-stats.hbs" },
+    items: { template: "systems/d12/templates/actor/actor-items.hbs" },
+    spells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
   };
 
   /** @override */
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
-    options.parts = ["stats", "items", "spells"];
+    options.parts = ["sheet"];
   }
 
   /** @override */
@@ -105,7 +92,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
       ),
 
       editable: this.isEditMode,
-      tabs: this._getTabs(options.parts),
     };
 
     return context;
@@ -139,30 +125,35 @@ export class D12ActorSheet extends PrimarySheetMixin(
     };
   }
 
-  /** @override */
-  async _preparePartContext(partId, context) {
-    // Prepare context for specific parts
-    context.tab = context.tabs[partId];
-    return context;
-  }
-
   /**
-   * Generates the data for tab navigation
-   * @param {string[]} parts An array of named template parts to render
-   * @returns {Record<string, Partial<ApplicationTab>>}
-   * @protected
+   * Handle changing tabs
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
-  _getTabs(parts) {
-    const tabGroups = {};
-    for (const partId of parts) {
-      tabGroups[partId] = {
-        group: "sheet",
-        id: partId,
-        cssClass: this.tabGroups["sheet"] === partId ? "active" : "",
-      };
-    }
+  static async #changeTab(event, target) {
+    event.preventDefault();
 
-    return tabGroups;
+    // Get the tab name from the data-tab attribute
+    const tabName = target.dataset.tab;
+    if (!tabName) return;
+
+    // Remove active class from all tab buttons
+    const tabButtons = target.closest(".sheet-tabs").querySelectorAll(".item");
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+
+    // Add active class to the clicked tab button
+    target.classList.add("active");
+
+    // Hide all tabs
+    const tabContents = target.closest(".sheet-body").querySelectorAll(".actor-tab");
+    tabContents.forEach(tab => tab.classList.add("hidden"));
+
+    // Show the selected tab
+    const activeTab = target.closest(".sheet-body").querySelector(`.actor-tab.${tabName}`);
+    if (activeTab) {
+      activeTab.classList.remove("hidden");
+    }
   }
 
   /**
@@ -295,19 +286,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
       const newCharges = Math.max(0, item.system.charges.value - 1);
       await item.update({ "system.charges.value": newCharges });
     }
-  }
-
-    /**
-   * Handle decreasing spell charges
-   * @this {D12ActorSheet}
-   * @param {PointerEvent} event
-   * @param {HTMLElement} target
-   */
-  static async #changeTab(event, target) {
-    event.preventDefault();
-    const tab = target.dataset.tab;
-    if (!tab) return;
-    this.changeTab(tab, "sheet", { event });
   }
 
   /**

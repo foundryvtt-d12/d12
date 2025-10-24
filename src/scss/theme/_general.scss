@@ -37,6 +37,10 @@ input {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .flexcol {
   select {
     flex: auto;
