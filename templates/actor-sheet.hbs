@@ -7,7 +7,7 @@
     {{!-- Left column: sidebar with resources and image --}}
     <aside class="sidebar">
       <div class="sheet-art">
-        <img src="{{actor.img}}" data-action="editImage" data-edit="actor.img" title="{{actor.name}}" height="100" width="100"/>
+        <img src="{{actor.img}}" data-action="editImage" data-edit="system.img" title="{{actor.name}}" height="100" width="100"/>
       </div>
       {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
       use both the "grid" and "grid-Ncol" class where "N" can be any number
@@ -74,25 +74,25 @@
       {{!-- Sheet Tab Navigation --}}
       <nav class="sheet-tabs flexrow ">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
-        <a class="item stats active" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
-        <a class="item items" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> {{localize "D12.SheetLabels.Items"}}</a>
-        <a class="item spells" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
+        <a class="item stats {{#if (eq activeTab "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
+        <a class="item items {{#if (eq activeTab "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask"></i> {{localize "D12.SheetLabels.Items"}}</a>
+        <a class="item spells {{#if (eq activeTab "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
       </nav>
 
       {{!-- Sheet Content --}}
       <div class="flexgrow flexcol tab-content">
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-        <div class="actor-tab stats">
+        <div class="actor-tab stats {{#unless (eq activeTab "stats")}}hidden{{/unless}}">
           {{#if (eq actor.type "npc")}}
             {{> "systems/d12/templates/actor/actor-npc-stats.hbs"}}
           {{else}}
             {{> "systems/d12/templates/actor/actor-character-stats.hbs"}}
           {{/if}}
         </div>
-        <div class="actor-tab items hidden">
+        <div class="actor-tab items {{#unless (eq activeTab "items")}}hidden{{/unless}}">
           {{> "systems/d12/templates/actor/actor-items.hbs"}}
         </div>
-        <div class="actor-tab spells hidden">
+        <div class="actor-tab spells {{#unless (eq activeTab "spells")}}hidden{{/unless}}">
           {{> "systems/d12/templates/actor/actor-spells.hbs"}}
         </div>
       </div>

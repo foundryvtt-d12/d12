@@ -9,6 +9,12 @@ const { api, sheets } = foundry.applications;
 export class D12ActorSheet extends PrimarySheetMixin(
   api.HandlebarsApplicationMixin(sheets.ActorSheetV2)
 ) {
+  /**
+   * Track the currently active tab
+   * @type {string}
+   */
+  activeTab = "stats";
+
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ["d12", "sheet", "actor", "tabs", "themed", "theme-light"],
@@ -70,6 +76,9 @@ export class D12ActorSheet extends PrimarySheetMixin(
 
       // Adding a pointer to CONFIG.D12
       config: CONFIG.D12,
+
+      // Track the active tab
+      activeTab: this.activeTab,
 
       // Add items to context from the actor's items collection
       items: this.actor.items,
@@ -133,27 +142,8 @@ export class D12ActorSheet extends PrimarySheetMixin(
    */
   static async #changeTab(event, target) {
     event.preventDefault();
-
-    // Get the tab name from the data-tab attribute
-    const tabName = target.dataset.tab;
-    if (!tabName) return;
-
-    // Remove active class from all tab buttons
-    const tabButtons = target.closest(".sheet-tabs").querySelectorAll(".item");
-    tabButtons.forEach(btn => btn.classList.remove("active"));
-
-    // Add active class to the clicked tab button
-    target.classList.add("active");
-
-    // Hide all tabs
-    const tabContents = target.closest(".sheet-body").querySelectorAll(".actor-tab");
-    tabContents.forEach(tab => tab.classList.add("hidden"));
-
-    // Show the selected tab
-    const activeTab = target.closest(".sheet-body").querySelector(`.actor-tab.${tabName}`);
-    if (activeTab) {
-      activeTab.classList.remove("hidden");
-    }
+    this.activeTab = target.dataset.tab;
+    this.render();
   }
 
   /**
