@@ -1,26 +1,29 @@
 @use '../utils/variables' as *;
 
 .window-content {
-  & > *:first-child::before {
+
+  .sheet-grid {
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+  }
+}
+
+.sidebar {
+  position: relative;
+
+  &::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    z-index: -1;
+    left: -16px;
+    top: -16px;
+    bottom: -16px;
     width: 182px;
     background:
       url('../assets/ui/sheet-sidebar.webp') top center / auto no-repeat,
       #16181d;
   }
 
-  .sheet-grid {
-    grid-template-columns: 150px 1fr;
-    gap: 24px;
-    z-index: 1;
-  }
-}
-
-.sidebar {
   .sheet-subtitle {
     color: $c-text-on-dark;
     font-family: $font-secondary;
