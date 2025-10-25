@@ -28,7 +28,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
     },
     form: { submitOnChange: true },
     actions: {
-      editImage: D12ActorSheet.editImage,
       itemEdit: D12ActorSheet.#itemEdit,
       itemCreate: D12ActorSheet.#itemCreate,
       itemDelete: D12ActorSheet.#itemDelete,

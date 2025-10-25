@@ -5,7 +5,9 @@
     {{!-- Left column: sidebar with resources and image --}}
     <aside class="sidebar">
       <div class="sheet-art">
-        <img class="rarity-{{system.rarity}}" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100"/>
+        <img class="rarity-{{system.rarity}}" src="{{item.img}}"
+          {{#if editable}} data-action="editImage" data-edit="img" {{/if}}
+          title="{{item.name}}" height="100" width="100" />
       </div>
       {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
       use both the "grid" and "grid-Ncol" class where "N" can be any number
