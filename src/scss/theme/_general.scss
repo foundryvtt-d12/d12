@@ -94,11 +94,11 @@ input {
 
     .editor-container {
       overflow: visible;
-
-      .editor-content {
-        overflow: visible;
-        position: static;
-      }
     }
+  }
+
+  .editor-content {
+    overflow: visible;
+    position: static;
   }
 }

@@ -19,7 +19,7 @@
 
   .sheet-grid {
     grid-template-columns: min(33.33%, 200px) 1fr;
-    gap: 8px;
+    gap: 16px;
   }
 }
 
@@ -33,7 +33,7 @@
 
 nav.sheet-tabs {
   border-width: 0;
-  margin: 13px 0 20px;
+  margin: 13px 0 16px;
   justify-content: space-between;
 
   & > .item {
