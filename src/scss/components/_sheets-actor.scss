@@ -12,9 +12,18 @@
     position: absolute;
     pointer-events: none;
     z-index: -1;
+  }
+
+  &:has(> .character)::before {
     background:
-      linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(81, 0, 0, 0.75)),
-      url('../assets/ui/sheet-header.png') no-repeat center center / cover;
+      linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(115, 26, 42, 0.75)),
+      url('../assets/ui/character-sheet-header.png') no-repeat center center / cover;
+  }
+
+  &:has(> .npc)::before {
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 81, 0.75)),
+      url('../assets/ui/npc-sheet-header.png') no-repeat center center / cover;
   }
 
   .sheet-grid {
