@@ -84,5 +84,24 @@ export default function PrimarySheetMixin(Base) {
       this._mode = toggle.checked ? MODES.EDIT : MODES.PLAY;
       await this.render();
     }
+
+    /** @override */
+    _prepareSubmitData(event, form, formData, updateData) {
+      const submitData = this._processFormData(event, form, formData);
+
+      if (submitData.system != null) {
+        this._applySubmitDataOverrides(submitData.system);
+      }
+
+      this.document.validate({changes: submitData, clean: true, fallback: false});
+      return submitData;
+    }
+
+    /**
+     * Apply any necessary overrides to the submitted system data before it is saved.
+     * @param {Object} systemData The system data to be modified.
+     * @protected
+     */
+    _applySubmitDataOverrides(systemData) { }
   };
 }

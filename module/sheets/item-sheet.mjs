@@ -82,6 +82,16 @@ export class D12ItemSheet extends PrimarySheetMixin(
     return context;
   }
 
+  /** @override */
+  _applySubmitDataOverrides(systemData) {
+    if (systemData.action?.type === "") {
+      systemData.action = null;
+    }
+    if (systemData.charges?.value == null) {
+      systemData.charges = null;
+    }
+  }
+
   /* -------------------------------------------- */
 
   /**

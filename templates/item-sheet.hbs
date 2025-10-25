@@ -33,7 +33,7 @@
         {{#if (eq item.type "item")}}
         <div class="rarity flexcol">
           <label for="system.rarity" class="label">Rarity</label>
-          <select class="rarity-{{system.rarity}}" name="system.rarity">
+          <select class="rarity-{{system.rarity}}" name="system.rarity" {{#unless editable}}disabled{{/unless}}>
             {{#each config.rarities}}
               <option class="rarity-{{@key}}" value="{{@key}}" {{#if (eq @key ../system.rarity)}}selected{{/if}}>
                 {{localize this}}
