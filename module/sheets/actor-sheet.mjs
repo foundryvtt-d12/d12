@@ -37,6 +37,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       chargesDecrease: D12ActorSheet.#chargesDecrease,
       changeTab: D12ActorSheet.#changeTab,
       rollable: D12ActorSheet.#rollable,
+      effectRemove: D12ActorSheet.#effectRemove,
     }
   };
 
@@ -82,6 +83,9 @@ export class D12ActorSheet extends PrimarySheetMixin(
       // Add items to context from the actor's items collection
       items: this.actor.items,
       ...this._prepareItems(this.actor.items),
+
+      // Add active effects to context
+      effects: this.actor.effects.contents,
 
       // Enrich biography info for display
       // Enrichment turns text like `[[/r 1d20]]` into buttons
@@ -275,6 +279,20 @@ export class D12ActorSheet extends PrimarySheetMixin(
       const newCharges = Math.max(0, item.system.charges.value - 1);
       await item.update({ "system.charges.value": newCharges });
     }
+  }
+
+  /**
+   * Handle removing an active effect
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #effectRemove(event, target) {
+    event.preventDefault();
+    const effectId = target.closest(".effect-remove")?.dataset.effectId;
+    if (!effectId) return;
+    const effect = this.actor.effects.get(effectId);
+    await effect?.delete();
   }
 
   /**

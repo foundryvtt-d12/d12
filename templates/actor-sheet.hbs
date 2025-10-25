@@ -56,6 +56,26 @@
         </div>
         {{/if}}
 
+        {{!-- Effects Display --}}
+        {{#if effects}}
+        <div class="effects-section">
+          <label class="label">Effects</label>
+          <div class="effects-list">
+            {{#each effects}}
+            <div class="effect-item flexrow flex-between flex-center">
+              <img src="{{this.img}}" width="20" height="20" />
+              <div class="effect-name">{{this.name}}</div>
+              {{#if @root.editable}}
+              <a class="effect-remove" data-action="effectRemove" data-effect-id="{{this.id}}" title="Remove effect">
+                <i class="fas fa-times"></i>
+              </a>
+              {{/if}}
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+
       </div>
     </aside>
 

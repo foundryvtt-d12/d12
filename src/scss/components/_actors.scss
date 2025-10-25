@@ -81,6 +81,35 @@
   }
 }
 
+.effects-list {
+  .effect-item {
+    @include character-field;
+    color: $c-text-on-light;
+    width: 100%;
+    margin: 6px 0;
+    border: none !important;
+    border-radius: 4px;
+    min-height: 32px;
+
+    img {
+      flex: auto 0;
+      margin: 8px;
+      filter: invert(50%);
+    }
+
+    .effect-name {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .effect-remove {
+      flex: auto 0;
+      margin: 6px;
+    }
+  }
+}
+
 // Defense fields (Armor, Endurance, Willpower)
 .defense-field {
   margin-bottom: 24px;
