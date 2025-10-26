@@ -1,7 +1,6 @@
 @use '../utils/variables' as *;
 
 .window-content {
-
   .sheet-grid {
     grid-template-columns: 150px 1fr;
     gap: 24px;

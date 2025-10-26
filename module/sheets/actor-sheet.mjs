@@ -50,6 +50,8 @@ export class D12ActorSheet extends PrimarySheetMixin(
     spells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
   };
 
+  /* -------------------------------------------- */
+
   /** @override */
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
@@ -129,10 +131,59 @@ export class D12ActorSheet extends PrimarySheetMixin(
     }
 
     return {
-      inventory: inventory,
-      spells: spells,
+      inventory: inventory.sort((a, b) => (a.sort || 0) - (b.sort || 0)),
+      spells: spells.sort((a, b) => (a.sort || 0) - (b.sort || 0)),
     };
   }
+
+  /** @override */
+  async _onDropItem(event, data) {
+    // Call the parent implementation to handle the item drop
+    const result = await super._onDropItem(event, data);
+
+    // If the item was transferred from another actor, remove it from the source
+    if (data.uuid) {
+      const sourceItem = await fromUuid(data.uuid);
+      if (sourceItem && sourceItem.actor && sourceItem.actor !== this.actor) {
+        // The item came from a different actor, so delete it from the source
+        await sourceItem.delete();
+      }
+    }
+
+    return result;
+  }
+
+  /** @override */
+  async _onSortItem(event, itemData) {
+    // Get the dragged item and the target item
+    const items = this.actor.items;
+    const draggedItem = items.get(itemData._id);
+
+    // Find the item we're sorting relative to
+    const li = event.target.closest(".item");
+    const targetId = li?.dataset.itemId;
+    const targetItem = targetId ? items.get(targetId) : null;
+
+    if (!draggedItem || !targetItem || draggedItem === targetItem) return;
+
+    // Get the sort order of items
+    const sortedItems = items.contents.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    const draggedIndex = sortedItems.findIndex(i => i._id === draggedItem._id);
+    const targetIndex = sortedItems.findIndex(i => i._id === targetItem._id);
+
+    if (draggedIndex === -1 || targetIndex === -1) return;
+
+    // Calculate the new sort order
+    const isMovingDown = draggedIndex < targetIndex;
+    const baseSort = isMovingDown ? targetItem.sort : targetItem.sort - 1;
+
+    // Update the dragged item's sort order
+    await draggedItem.update({ sort: baseSort });
+  }
+
+  /* -------------------------------------------- */
+  /*  Event handlers                              */
+  /* -------------------------------------------- */
 
   /**
    * Handle changing tabs

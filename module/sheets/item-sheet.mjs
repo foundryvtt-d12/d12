@@ -85,6 +85,8 @@ export class D12ItemSheet extends PrimarySheetMixin(
   }
 
   /* -------------------------------------------- */
+  /*  Event handlers                              */
+  /* -------------------------------------------- */
 
   /**
    * Prepare form data before processing.
