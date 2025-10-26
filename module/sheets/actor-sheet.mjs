@@ -62,8 +62,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
     // Use a safe clone of the actor data for further operations.
     const actorData = this.document.toPlainObject();
 
-    // Use a safe clone of the actor data for further operations.
-    const context = {
+    return {
       ...await super._prepareContext(options),
 
       // Add the actor document and its data to context
@@ -105,8 +104,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
 
       editable: this.isEditMode,
     };
-
-    return context;
   }
 
   /**

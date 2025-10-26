@@ -33,12 +33,6 @@ export class D12ItemSheet extends PrimarySheetMixin(
     }
   };
 
-  /** @override */
-  _configureRenderOptions(options) {
-    super._configureRenderOptions(options);
-    options.parts = ["sheet"];
-  }
-
   /* -------------------------------------------- */
 
   /** @override */
@@ -47,7 +41,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
     // Use a safe clone of the item data for further operations.
     const itemData = this.document.toPlainObject();
 
-    const context = {
+    return {
       ...await super._prepareContext(options),
       // Add the item document and its data to context
       item: this.item,
@@ -78,8 +72,6 @@ export class D12ItemSheet extends PrimarySheetMixin(
 
       editable: this.isEditMode,
     };
-
-    return context;
   }
 
   /** @override */

@@ -23,9 +23,9 @@
           <label for="system.health.value" class="label">Health</label>
           {{#if editable}}
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
+            <input type="number" min="0" max="{{system.health.max}}" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
             <span> / </span>
-            <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
+            <input type="number" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
           </div>
           {{else}}
           <div class="resource-squares health-squares">
@@ -40,9 +40,9 @@
         <div class="resource">
           <label for="system.mana.value" class="label">Mana</label>
           <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
+            <input type="number" min="0" max="{{system.mana.max}}" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
             <span> / </span>
-            <input type="text" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number"/>
+            <input type="number" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number"/>
           </div>
         </div>
         {{else if (gt system.mana.max 0)}}

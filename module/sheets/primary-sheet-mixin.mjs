@@ -25,7 +25,7 @@ export default function PrimarySheetMixin(Base) {
       return this.isEditable && this._mode === this.constructor.MODES.EDIT;
     }
 
-    /** @inheritDoc */
+    /** @override */
     _configureRenderOptions(options) {
       super._configureRenderOptions(options);
 
@@ -51,19 +51,21 @@ export default function PrimarySheetMixin(Base) {
     _renderModeToggle() {
       const header = this.element.querySelector(".window-header");
       const toggle = header.querySelector(".mode-slider");
-      if (this.isEditable && !toggle) {
-        const toggle = document.createElement("slide-toggle");
-        toggle.checked = this._mode === this.constructor.MODES.EDIT;
-        toggle.classList.add("mode-slider");
-        toggle.dataset.tooltip = "D12.SheetModeEdit";
-        toggle.setAttribute("aria-label", game.i18n.localize("D12.SheetModeEdit"));
-        toggle.addEventListener("change", this._onChangeSheetMode.bind(this));
-        toggle.addEventListener("dblclick", (event) => event.stopPropagation());
-        toggle.addEventListener("pointerdown", (event) => event.stopPropagation());
-        header.prepend(toggle);
-      } else if (this.isEditable) {
-        toggle.checked = this._mode === this.constructor.MODES.EDIT;
-      } else if (!this.isEditable && toggle) {
+      if (this.isEditable) {
+        if (!toggle) {
+          const toggle = document.createElement("slide-toggle");
+          toggle.checked = this._mode === this.constructor.MODES.EDIT;
+          toggle.classList.add("mode-slider");
+          toggle.dataset.tooltip = "D12.SheetModeEdit";
+          toggle.setAttribute("aria-label", game.i18n.localize("D12.SheetModeEdit"));
+          toggle.addEventListener("change", this._onChangeSheetMode.bind(this));
+          toggle.addEventListener("dblclick", (event) => event.stopPropagation());
+          toggle.addEventListener("pointerdown", (event) => event.stopPropagation());
+          header.prepend(toggle);
+        } else {
+          toggle.checked = this._mode === this.constructor.MODES.EDIT;
+        }
+      } else if (toggle) {
         toggle.remove();
       }
     }
