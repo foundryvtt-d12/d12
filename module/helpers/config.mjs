@@ -5,19 +5,19 @@ export const D12 = {};
  * @type {Object}
  */
 D12.abilities = {
-  str: "D12.Ability.Strength.long",
-  agi: "D12.Ability.Agility.long",
-  int: "D12.Ability.Intelligence.long",
-  per: "D12.Ability.Perception.long",
-  cha: "D12.Ability.Charisma.long",
+  str: "D12.Ability.str.long",
+  agi: "D12.Ability.agi.long",
+  int: "D12.Ability.int.long",
+  per: "D12.Ability.per.long",
+  cha: "D12.Ability.cha.long",
 };
 
 D12.abilityAbbreviations = {
-  str: "D12.Ability.Strength.abbr",
-  agi: "D12.Ability.Agility.abbr",
-  int: "D12.Ability.Intelligence.abbr",
-  per: "D12.Ability.Perception.abbr",
-  cha: "D12.Ability.Charisma.abbr",
+  str: "D12.Ability.str.abbr",
+  agi: "D12.Ability.agi.abbr",
+  int: "D12.Ability.int.abbr",
+  per: "D12.Ability.per.abbr",
+  cha: "D12.Ability.cha.abbr",
 };
 
 D12.defenses = {

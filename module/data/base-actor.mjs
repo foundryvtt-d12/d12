@@ -26,5 +26,4 @@ export default class D12ActorBase extends D12DataModel {
 
     return schema;
   }
-
 }

@@ -358,18 +358,9 @@ export class D12ActorSheet extends PrimarySheetMixin(
       return;
     }
 
-    const dataset = target.dataset;
-
-    // Handle rolls that supply the formula directly.
-    if (dataset.roll) {
-      let label = dataset.label ? `${dataset.label}` : "";
-      let roll = new Roll(dataset.roll, this.actor.getRollData());
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label,
-        rollMode: game.settings.get("core", "rollMode"),
-      });
-      return roll;
-    }
+    const ability = target.dataset.ability;
+    const itemId = target.dataset.item;
+    const item = itemId ? this.actor.items.get(itemId) : null;
+    this.actor.system.createRoll(ability, item);
   }
 }

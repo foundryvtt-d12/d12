@@ -2,11 +2,11 @@
   "D12": {
     "Ability": {
       "None": "None",
-      "Strength": { "long": "Strength", "abbr": "STR" },
-      "Agility": { "long": "Agility", "abbr": "AGI" },
-      "Intelligence": { "long": "Intelligence", "abbr": "INT" },
-      "Perception": { "long": "Perception", "abbr": "PER" },
-      "Charisma": { "long": "Charisma", "abbr": "CHA" }
+      "str": { "long": "Strength", "abbr": "STR" },
+      "agi": { "long": "Agility", "abbr": "AGI" },
+      "int": { "long": "Intelligence", "abbr": "INT" },
+      "per": { "long": "Perception", "abbr": "PER" },
+      "cha": { "long": "Charisma", "abbr": "CHA" }
     },
     "Defense": {
       "Armor": { "long": "Armor", "abbr": "ARM" },

@@ -43,15 +43,18 @@
 nav.sheet-tabs {
   border-width: 0;
   margin: 13px 0 16px;
-  justify-content: space-between;
+  justify-content: space-around;
 
   & > .item {
+    display: flex;
+    flex: 0 auto;
     font-family: $font-condensed;
     text-align: center;
     padding: 6px 12px;
     font-size: 1.2em;
     color: rgba(#fff, 0.5);
     text-shadow: none;
+    border-bottom: 4px solid transparent;
 
     &.active {
       border-bottom: 4px solid $c-text-on-dark-light;

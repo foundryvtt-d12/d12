@@ -55,8 +55,8 @@
         </a>
       {{else if item.system.action.ability}}
         <a class="action-icon" data-action="rollable"
-          data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
-          data-label="{{item.name}}" title="{{localize "DOCUMENT.Delete" type='Item'}}"
+          data-ability="{{item.system.action.ability}}" data-item="{{item._id}}"
+          title="{{localize "DOCUMENT.Roll" type='Item'}}"
         >
           <i class="fas fa-dice-six fa-lg"></i>
         </a>

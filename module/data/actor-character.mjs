@@ -32,19 +32,34 @@ export default class D12Character extends D12ActorBase {
     }
   }
 
-  getRollData() {
-    const data = {};
+  createRoll(ability, item) {
+    const abilityName = game.i18n.localize(`D12.Ability.${ability}.long`);
+    const itemName = item ? item.name : null;
 
-    // Copy the ability scores to the top level, so that rolls can use
-    // formulas like `@str.value + 4`.
-    if (this.abilities) {
-      for (let [k,v] of Object.entries(this.abilities)) {
-        data[k] = foundry.utils.deepClone(v);
-      }
+    const terms = [
+      new foundry.dice.terms.Die({faces: 12, number: 1}),
+      new foundry.dice.terms.OperatorTerm({operator: "+"}),
+      new foundry.dice.terms.NumericTerm({
+        number: this.abilities[ability].value,
+        flavor: abilityName
+      }),
+    ];
+
+    if (item != null && item.system.action.bonus != 0) {
+      terms.push(new foundry.dice.terms.OperatorTerm({operator: "+"}));
+      terms.push(new foundry.dice.terms.NumericTerm({
+        number: item.system.action.bonus,
+        flavor: itemName
+      }));
     }
 
-    data.lvl = this.attributes.level.value;
+    const roll = Roll.fromTerms(terms);
 
-    return data
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: itemName ?? abilityName,
+      rollMode: game.settings.get("core", "rollMode"),
+    });
+    return roll;
   }
 }

@@ -5,11 +5,13 @@ from 1 to 12 and will create that number of columns.  --}}
   <div class="grid grid-12col">
     <div class="grid-span-7 justify-center flexcol">
     {{#each system.abilities as |ability key|}}
-      <div class="attribute-field flexcol" data-action="rollable" data-roll="d12+@abilities.{{key}}.value" data-label="{{localize (lookup @root.config.abilities key)}}">
+      <div class="attribute-field flexcol">
         <label for="system.abilities.{{key}}.value" class="label flex-group-left">
           {{localize (lookup @root.config.abilities key)}}
         </label>
-        <div class="attribute-box flexrow align-left rollable" style="border-color: var(--d12-attribute-{{key}}-color)">
+        <div class="attribute-box flexrow align-left rollable" style="border-color: var(--d12-attribute-{{key}}-color)"
+          data-action="rollable" data-ability="{{key}}"
+        >
           <div class="attribute-icon">
             <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="16" height="16" />
           </div>
