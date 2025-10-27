@@ -17,51 +17,7 @@
   </div>
   <ol class="item-list" data-item-type="item">
     {{#each inventory as |item id|}}
-      <li class="item draggable" data-item-id="{{item._id}}" data-item-type="item">
-        <div class="item-row">
-          <div class="item-name item-action" data-action="itemEdit">
-            <img
-              class="item-image rarity-common"
-              src="{{item.img}}" title="{{item.name}}"
-              width="32" height="32"
-            />
-            <div class="item-title">
-              <span>{{item.name}}</span>
-            </div>
-          </div>
-          <div class="item-column">
-            <a class="item-control edit-mode-only" data-action="quantityDecrease" title="Decrease Quantity">
-              <i class="fas fa-circle-minus"></i>
-            </a>
-            <span>{{item.system.quantity}}</span>
-            <a class="item-control edit-mode-only" data-action="quantityIncrease" title="Increase Quantity">
-              <i class="fas fa-circle-plus"></i>
-            </a>
-          </div>
-          {{#if item.system.action.ability}}
-          <div class="item-column rollable" data-action="rollable"
-              data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
-              data-label="{{item.name}}">
-            <span
-              style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
-              {{localize (lookup @root.config.abilityAbbreviations item.system.action.ability)}}
-            </span>
-            {{bonus item.system.action.bonus}}
-          </div>
-          {{else}}
-          <div class="item-column">—</div>
-          {{/if}}
-          <div class="item-column item-actions edit-mode-only">
-            <a
-              class="item-control"
-              data-action="itemDelete"
-              title="{{localize "DOCUMENT.Delete" type='Item'}}"
-            >
-              <i class="fas fa-xmark"></i>
-            </a>
-          </div>
-        </div>
-      </li>
+      {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
     {{/each}}
     {{#if (eq (length inventory) 0)}}
       <li class="item">

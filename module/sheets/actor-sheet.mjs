@@ -48,6 +48,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
     npcStats: { template: "systems/d12/templates/actor/actor-npc-stats.hbs" },
     items: { template: "systems/d12/templates/actor/actor-items.hbs" },
     spells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
+    itemTableRow: { template: "systems/d12/templates/actor/item-table-row.hbs" },
   };
 
   /* -------------------------------------------- */
