@@ -53,6 +53,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
 
       // Adding a pointer to CONFIG.D12
       config: CONFIG.D12,
+      categories: this.item.type === "spell" ? CONFIG.D12.spell.categories : CONFIG.D12.item.categories,
 
       // Enrich description info for display
       // Enrichment turns text like `[[/r 1d20]]` into buttons

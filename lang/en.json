@@ -25,14 +25,14 @@
     "SheetModeEdit": "Edit Mode",
     "SheetModePlay": "Play Mode",
     "Item": {
-      "Spell": {
-      },
       "Category": {
         "Item": "Item",
         "Weapon": "Weapon",
         "Armor": "Armor",
         "Accessory": "Accessory",
-        "Consumable": "Consumable"
+        "Consumable": "Consumable",
+        "Spell": "Spell",
+        "Trait": "Trait"
       }
     },
     "Action": {

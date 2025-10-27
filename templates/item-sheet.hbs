@@ -9,17 +9,13 @@
           {{#if editable}} data-action="editImage" data-edit="img" {{/if}}
           title="{{item.name}}" height="100" width="100" />
       </div>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-      use both the "grid" and "grid-Ncol" class where "N" can be any number
-      from 1 to 12 and will create that number of columns.  --}}
+
       <div class="details">
-        {{#if (eq item.type "spell")}}
-          <div class="sheet-subtitle">Spell</div>
-        {{else if editable}}
+        {{#if editable}}
           <div class="rarity flexcol">
             <label for="system.category" class="label">Category</label>
             <select name="system.category">
-              {{#each config.categories}}
+              {{#each categories}}
                 <option value="{{@key}}" {{#if (eq @key ../system.category)}}selected{{/if}}>
                   {{localize this}}
                 </option>
@@ -28,7 +24,7 @@
           </div>
         {{else}}
           <div class="sheet-subtitle">
-            {{localize (lookup @root.config.categories system.category)}}
+            {{localize system.category}}
           </div>
         {{/if}}
 

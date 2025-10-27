@@ -13,19 +13,19 @@
         >
           <i class="fas fa-plus"></i>
         </a>
+      </div>
     </div>
-  </div>
-  <ol class="item-list" data-item-type="item">
-    {{#each inventory as |item id|}}
-      {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
-    {{/each}}
-    {{#if (eq (length inventory) 0)}}
-      <li class="item">
-        <div class="item-row">
-          <div class="no-items grid-span-12 flexcol">{{localize "D12.NoItems"}}</div>
-        </div>
-      </li>
-    {{/if}}
-  </ol>
+    <ol class="item-list" data-item-type="item">
+      {{#each inventory as |item id|}}
+        {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
+      {{/each}}
+      {{#if (eq (length inventory) 0)}}
+        <li class="item">
+          <div class="item-row">
+            <div class="no-items grid-span-12 flexcol">{{localize "D12.NoItems"}}</div>
+          </div>
+        </li>
+      {{/if}}
+    </ol>
   </div>
 </section>

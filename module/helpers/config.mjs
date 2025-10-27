@@ -42,10 +42,19 @@ D12.actionTypes = {
   consume: "D12.Action.Type.Consume"
 };
 
-D12.categories = {
-  item: "D12.Item.Category.Item",
-  weapon: "D12.Item.Category.Weapon",
-  armor: "D12.Item.Category.Armor",
-  accessory: "D12.Item.Category.Accessory",
-  consumable: "D12.Item.Category.Consumable"
+D12.item = {
+  categories: {
+    item: "D12.Item.Category.Item",
+    weapon: "D12.Item.Category.Weapon",
+    armor: "D12.Item.Category.Armor",
+    accessory: "D12.Item.Category.Accessory",
+    consumable: "D12.Item.Category.Consumable"
+  }
+};
+
+D12.spell = {
+  categories: {
+    spell: "D12.Item.Category.Spell",
+    trait: "D12.Item.Category.Trait"
+  }
 };

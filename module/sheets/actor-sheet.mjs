@@ -118,23 +118,24 @@ export class D12ActorSheet extends PrimarySheetMixin(
     // Initialize containers.
     const inventory = [];
     const spells = [];
+    const traits = [];
 
     // Iterate through items, allocating to containers
-    for (let i of items) {
+    for (let i of items.toObject().sort((a, b) => (a.sort || 0) - (b.sort || 0))) {
       i.img = i.img || Item.DEFAULT_ICON;
 
       if (i.type === "item") {
         inventory.push(i);
-      }
-      else if (i.type === "spell") {
-        spells.push(i);
+      } else if (i.type === "spell") {
+        if (i.system.category === "trait") {
+          traits.push(i);
+        } else {
+          spells.push(i);
+        }
       }
     }
 
-    return {
-      inventory: inventory.sort((a, b) => (a.sort || 0) - (b.sort || 0)),
-      spells: spells.sort((a, b) => (a.sort || 0) - (b.sort || 0)),
-    };
+    return { inventory, spells, traits };
   }
 
   /** @override */

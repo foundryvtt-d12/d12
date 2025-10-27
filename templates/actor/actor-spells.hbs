@@ -1,4 +1,29 @@
 <section class="tab flexgrow">
+  {{#if (gt (length traits) 0)}}
+  <div class="items-section card">
+    <div class="items-header header">
+      <div class="item-name">{{localize "Trait"}}</div>
+      <div class="item-header">{{localize "Charges"}}</div>
+      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-header edit-mode-only">
+        <a
+          class="item-control"
+          data-action="itemCreate"
+          title="{{localize 'DOCUMENT.Create' type='Spell'}}"
+          data-type="spell"
+        >
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
+    <ol class="item-list" data-item-type="spell">
+      {{#each traits as |item id|}}
+        {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
+      {{/each}}
+    </ol>
+  </div>
+  {{/if}}
+
   <div class="items-section card">
     <div class="items-header header">
       <div class="item-name">{{localize "Spell"}}</div>
@@ -13,19 +38,19 @@
         >
           <i class="fas fa-plus"></i>
         </a>
+      </div>
     </div>
-  </div>
-  <ol class="item-list" data-item-type="spell">
-    {{#each spells as |item id|}}
-      {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
-    {{/each}}
-    {{#if (eq (length spells) 0)}}
-      <li class="item">
-        <div class="item-row">
-          <div class="no-items grid-span-12 flexcol">{{localize "D12.NoSpells"}}</div>
-        </div>
-      </li>
-    {{/if}}
-  </ol>
+    <ol class="item-list" data-item-type="spell">
+      {{#each spells as |item id|}}
+        {{> "systems/d12/templates/actor/item-table-row.hbs" item=item }}
+      {{/each}}
+      {{#if (eq (length spells) 0)}}
+        <li class="item">
+          <div class="item-row">
+            <div class="no-items grid-span-12 flexcol">{{localize "D12.NoSpells"}}</div>
+          </div>
+        </li>
+      {{/if}}
+    </ol>
   </div>
 </section>
