@@ -12,15 +12,15 @@
     </div>
     <div class="item-column">
       {{#if item.system.quantity}}
-        <a class="item-control edit-mode-only" data-action="quantityDecrease" title="Decrease Quantity">
+        <a class="action-icon edit-mode-only" data-action="quantityDecrease" title="Decrease Quantity">
           <i class="fas fa-circle-minus"></i>
         </a>
         <span>{{item.system.quantity}}</span>
-        <a class="item-control edit-mode-only" data-action="quantityIncrease" title="Increase Quantity">
+        <a class="action-icon edit-mode-only" data-action="quantityIncrease" title="Increase Quantity">
           <i class="fas fa-circle-plus"></i>
         </a>
       {{else if item.system.charges}}
-        <a class="item-control edit-mode-only" data-action="chargesDecrease" title="Decrease Charges">
+        <a class="action-icon edit-mode-only" data-action="chargesDecrease" title="Decrease Charges">
           <i class="fas fa-circle-minus"></i>
         </a>
         <span class="{{#if (eq item.system.charges.value 0)}}no-charges{{/if}}">{{item.system.charges.value}}</span>
@@ -28,7 +28,7 @@
         <span>/</span>
         <span>{{item.system.charges.max}}</span>
         {{/if}}
-        <a class="item-control edit-mode-only" data-action="chargesIncrease" title="Increase Charges">
+        <a class="action-icon edit-mode-only" data-action="chargesIncrease" title="Increase Charges">
           <i class="fas fa-circle-plus"></i>
         </a>
       {{else}}
@@ -36,9 +36,7 @@
       {{/if}}
     </div>
     {{#if item.system.action.ability}}
-    <div class="item-column rollable" data-action="rollable"
-        data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
-        data-label="{{item.name}}">
+    <div class="item-column">
       <span
         style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
         {{localize (lookup @root.config.abilityAbbreviations item.system.action.ability)}}
@@ -48,14 +46,21 @@
     {{else}}
     <div class="item-column">—</div>
     {{/if}}
-    <div class="item-column item-actions edit-mode-only">
-      <a
-        class="item-control"
-        data-action="itemDelete"
-        title="{{localize "DOCUMENT.Delete" type='Item'}}"
-      >
-        <i class="fas fa-xmark"></i>
-      </a>
+    <div class="item-column item-actions">
+      {{#if @root.editable}}
+        <a class="action-icon" data-action="itemDelete"
+          title="{{localize "DOCUMENT.Delete" type='Item'}}"
+        >
+          <i class="fas fa-xmark"></i>
+        </a>
+      {{else if item.system.action.ability}}
+        <a class="action-icon" data-action="rollable"
+          data-roll="d12+@abilities.{{item.system.action.ability}}.value {{bonus item.system.action.bonus}}"
+          data-label="{{item.name}}" title="{{localize "DOCUMENT.Delete" type='Item'}}"
+        >
+          <i class="fas fa-dice-six fa-lg"></i>
+        </a>
+      {{/if}}
     </div>
   </div>
 </li>

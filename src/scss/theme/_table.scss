@@ -15,7 +15,6 @@
     gap: 8px;
     align-items: center;
     padding: 6px 8px;
-
     font-size: 0.9em;
     background: linear-gradient(90deg, rgba(66, 32, 39, 1) 0%, rgba(115, 26, 42, 1) 100%);
     color: white;
@@ -37,7 +36,7 @@
     padding: 0;
 
     .item {
-      border-bottom: 1px dashed #d9d9d9;
+      border-bottom: 1px dotted #c7c7c7;
       padding: 0;
       margin: 0;
 
@@ -105,16 +104,8 @@
         }
 
         .item-actions {
-          .item-control {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-
-            cursor: pointer;
-            padding: 0;
-            transition: color 0.2s ease;
+          .action-icon {
+            padding: 8px 7px 7px;
 
             i {
               margin: 0;
@@ -136,12 +127,12 @@
 
 .locked {
   .item-row, .items-header {
-    grid-template-columns: 1fr 50px 80px;
+    grid-template-columns: 1fr 50px 60px 20px;
   }
 }
 
 .editable {
   .item-row, .items-header {
-    grid-template-columns: 1fr 120px 80px 16px;
+    grid-template-columns: 1fr 120px 60px 20px;
   }
 }

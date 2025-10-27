@@ -40,7 +40,7 @@
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "background": "systems/d12/assets/anvil-impact.png",
+  "background": "systems/d12/assets/d12.png",
   "grid": {
     "distance": 1,
     "units": "m"
