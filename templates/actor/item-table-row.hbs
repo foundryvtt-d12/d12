@@ -10,7 +10,7 @@
         <span>{{item.name}}</span>
       </div>
     </div>
-    <div class="item-column">
+    <div class="item-column quantity-column">
       {{#if item.system.quantity}}
         <a class="action-icon edit-mode-only" data-action="quantityDecrease" title="Decrease Quantity">
           <i class="fas fa-circle-minus"></i>
@@ -23,11 +23,13 @@
         <a class="action-icon edit-mode-only" data-action="chargesDecrease" title="Decrease Charges">
           <i class="fas fa-circle-minus"></i>
         </a>
-        <span class="{{#if (eq item.system.charges.value 0)}}no-charges{{/if}}">{{item.system.charges.value}}</span>
-        {{#if item.system.charges.max}}
-        <span>/</span>
-        <span>{{item.system.charges.max}}</span>
-        {{/if}}
+        <span>
+          <span class="{{#if (eq item.system.charges.value 0)}}no-charges{{/if}}">{{item.system.charges.value}}</span>
+          {{#if item.system.charges.max}}
+          <span>/</span>
+          <span>{{item.system.charges.max}}</span>
+          {{/if}}
+        </span>
         <a class="action-icon edit-mode-only" data-action="chargesIncrease" title="Increase Charges">
           <i class="fas fa-circle-plus"></i>
         </a>
@@ -58,7 +60,7 @@
           data-ability="{{item.system.action.ability}}" data-item="{{item._id}}"
           title="{{localize "DOCUMENT.Roll" type='Item'}}"
         >
-          <i class="fas fa-dice-six fa-lg"></i>
+          <i class="fas fa-dice-d12 fa-lg"></i>
         </a>
       {{/if}}
     </div>

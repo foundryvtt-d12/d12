@@ -134,3 +134,19 @@
     }
   }
 }
+
+.quantity-column {
+  display: flex;
+  flex-direction: row;
+
+  & > span {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & > a {
+    flex: auto 0;
+  }
+}

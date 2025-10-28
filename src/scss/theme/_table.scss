@@ -118,8 +118,7 @@
           padding: 4px;
         }
 
-        .fa-circle-minus { margin-right: 4px; }
-        .fa-circle-plus { margin-left: 4px; }
+        .fas { margin: 0 6px; }
       }
     }
   }
@@ -133,6 +132,6 @@
 
 .editable {
   .item-row, .items-header {
-    grid-template-columns: 1fr 120px 60px 20px;
+    grid-template-columns: 1fr 90px 60px 20px;
   }
 }
