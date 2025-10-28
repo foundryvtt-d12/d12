@@ -1,0 +1,82 @@
+@use '../utils/mixins' as *;
+
+.message-content:has(.d12-roll-message) {
+  overflow: visible
+}
+
+.d12-roll-message {
+
+  .item-container {
+    @include box;
+    padding: 8px;
+    margin: 8px 0;
+
+    .item-image {
+      @include item-image;
+    }
+
+    .item-name {
+      @include flex-grow;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+  }
+
+  .roll-breakdown {
+    .die, .bonus {
+      @include flex-grow;
+      @include character-field;
+      padding: 4px 0;
+
+      span {
+        @include flex-grow;
+        font-size: 2em;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      i, img {
+        @include flex-auto;
+        margin: 0 8px;
+        font-size: 1.5em;
+        color: #878787;
+      }
+    }
+
+    .plus {
+      @include flex-auto;
+      padding: 0 16px;
+      font-size: 2.5em;
+      font-weight: 600;
+    }
+  }
+
+  .separator {
+    font-size: 0.9em;
+    text-align: center;
+    margin: 8px 4px;
+
+    &::before, &::after {
+      content: "";
+      @include flex-grow;
+      border-top: 1px dotted #909090;
+      align-self: center;
+    }
+
+    &::before {
+      margin-right: 8px;
+    }
+    &::after {
+      margin-left: 8px;
+    }
+  }
+
+  .roll-result {
+    @include box;
+    border: 878787 2px solid;
+    padding: 4px;
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: center;
+  }
+}

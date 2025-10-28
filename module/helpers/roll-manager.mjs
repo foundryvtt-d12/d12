@@ -46,16 +46,13 @@ export default class RollManager {
 
     // Prepare data for the template
     const templateData = {
-      item: item.name,
       roll: roll,
-      flags: {
-        // d12: {
-        //   ability,
-        //   abilityName,
-        //   item.name,
-        //   actorId: actor?.id,
-        //   itemId: item?.id
-        // }
+      config: CONFIG.D12,
+      data: {
+        ability: ability,
+        abilityBonus: actor.system.abilities[ability].value,
+        itemBonus: item.system.action.bonus ?? 0,
+        item: item.toPlainObject(),
       }
     };
 
@@ -63,12 +60,11 @@ export default class RollManager {
     const html = await foundry.applications.handlebars.renderTemplate(RollManager._template, templateData);
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: actor }),
-      flavor: item.name,
       rollMode: game.settings.get("core", "rollMode"),
       content: html,
-      // flags: {
-      //   d12: templateData.flags.d12
-      // }
+      flags: {
+        d12: templateData.data
+      }
     });
 
     return roll;

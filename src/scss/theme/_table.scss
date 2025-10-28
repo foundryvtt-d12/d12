@@ -1,4 +1,5 @@
 @use '../utils/variables' as *;
+@use '../utils/mixins' as *;
 
 /* Items Table Styles */
 .items-section {
@@ -63,18 +64,11 @@
           text-align: left;
 
           .item-image {
-            flex: 0 0 auto;
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            overflow: hidden;
-            object-fit: cover;
-            box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px 1px;
-            color: white;
+            @include item-image;
           }
 
           .item-title {
-            flex: 1;
+            @include flex-grow;
             min-width: 0;
             overflow: hidden;
 

@@ -31,7 +31,7 @@ from 1 to 12 and will create that number of columns.  --}}
 
   <div class="grid-span-5 flexcol flex-group-center">
     {{#each system.defenses as |defense key|}}
-      <div class="defense-field flexcol flexshrink">
+      <div class="defense-field flexcol flexauto">
         <label for="system.defenses.{{key}}.value" class="label align-left" data-label="{{localize (lookup @root.config.defenses key)}}">
           {{localize (lookup @root.config.defenses key)}}
         </label>

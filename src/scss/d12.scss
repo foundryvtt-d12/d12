@@ -25,3 +25,7 @@
     @include meta.load-css('components/items');
   }
 }
+
+.chat-message {
+  @include meta.load-css('components/chat-message');
+}

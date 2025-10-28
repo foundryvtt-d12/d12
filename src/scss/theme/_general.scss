@@ -1,4 +1,5 @@
 @use '../utils/variables' as *;
+@use '../utils/mixins' as *;
 
 .item-edit {
   cursor: pointer;
@@ -12,7 +13,7 @@ a:hover {
 
 .label {
   font-family: $font-condensed;
-  flex: 0 auto;
+  @include flex-auto;
   margin: 3px 0;
   font-size: 0.75em;
   color: $c-text-on-light;
@@ -93,13 +94,13 @@ button {
 
 .editor-section {
   display: flex;
-  flex: 1;
+  @include flex-grow;
   flex-direction: column;
 
   .editor {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    @include flex-grow;
 
     .editor-container {
       overflow: visible;
