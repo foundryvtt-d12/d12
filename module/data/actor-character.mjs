@@ -32,18 +32,21 @@ export default class D12Character extends D12ActorBase {
     }
   }
 
-  createRoll(ability, item) {
-    const abilityName = game.i18n.localize(`D12.Ability.${ability}.long`);
+  static createRoll(actor, ability, item) {
     const itemName = item ? item.name : null;
 
     const terms = [
       new foundry.dice.terms.Die({faces: 12, number: 1}),
-      new foundry.dice.terms.OperatorTerm({operator: "+"}),
-      new foundry.dice.terms.NumericTerm({
-        number: this.abilities[ability].value,
-        flavor: abilityName
-      }),
     ];
+
+    if (actor != null) {
+      const abilityName = game.i18n.localize(`D12.Ability.${ability}.long`);
+      terms.push(new foundry.dice.terms.OperatorTerm({operator: "+"}));
+      terms.push(new foundry.dice.terms.NumericTerm({
+        number: actor.system.abilities[ability].value,
+        flavor: abilityName
+      }));
+    }
 
     if (item != null && item.system.action.bonus != 0) {
       terms.push(new foundry.dice.terms.OperatorTerm({operator: "+"}));
@@ -56,7 +59,7 @@ export default class D12Character extends D12ActorBase {
     const roll = Roll.fromTerms(terms);
 
     roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
       flavor: itemName ?? abilityName,
       rollMode: game.settings.get("core", "rollMode"),
     });

@@ -3,6 +3,7 @@
  * @extends {foundry.applications.sheets.DocumentSheetV2}
  */
 import PrimarySheetMixin from "./primary-sheet-mixin.mjs";
+import D12Character from "../data/actor-character.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -90,26 +91,19 @@ export class D12ItemSheet extends PrimarySheetMixin(
   /* -------------------------------------------- */
 
   /**
-   * Prepare form data before processing.
-   * @param {Event} event
-   * @param {HTMLFormElement} form
-   * @param {FormDataExtended} formData
+   * Handle clickable rolls
+   * @this {D12ActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
    */
   static async #rollable(event, target) {
     event.preventDefault();
-    console.log("D12ItemSheet.#rollable called");
-    const dataset = target.dataset;
 
-    // Handle rolls that supply the formula directly.
-    if (dataset.roll) {
-      let label = dataset.label ? `${dataset.label}` : "";
-      let roll = new Roll(dataset.roll, this.item.getRollData());
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.item.actor }),
-        flavor: label,
-        rollMode: game.settings.get("core", "rollMode"),
-      });
-      return roll;
+    if (this.isEditMode) {
+      return;
     }
+
+    const ability = target.dataset.ability;
+    D12Character.createRoll(null, ability, this.item);
   }
 }

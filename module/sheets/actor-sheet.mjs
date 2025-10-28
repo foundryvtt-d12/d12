@@ -3,6 +3,7 @@
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
 import PrimarySheetMixin from "./primary-sheet-mixin.mjs";
+import D12Character from "../data/actor-character.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -361,6 +362,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
     const ability = target.dataset.ability;
     const itemId = target.dataset.item;
     const item = itemId ? this.actor.items.get(itemId) : null;
-    this.actor.system.createRoll(ability, item);
+    D12Character.createRoll(this.actor, ability, item);
   }
 }
