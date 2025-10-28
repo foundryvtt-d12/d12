@@ -3,7 +3,7 @@
  * @extends {foundry.applications.sheets.ActorSheetV2}
  */
 import PrimarySheetMixin from "./primary-sheet-mixin.mjs";
-import D12Character from "../data/actor-character.mjs";
+import RollManager from "../helpers/roll-manager.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -14,7 +14,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
    * Track the currently active tab
    * @type {string}
    */
-  activeTab = "stats";
+  _activeTab = "stats";
 
   /** @override */
   static DEFAULT_OPTIONS = {
@@ -81,7 +81,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       config: CONFIG.D12,
 
       // Track the active tab
-      activeTab: this.activeTab,
+      activeTab: this._activeTab,
 
       // Add items to context from the actor's items collection
       items: this.actor.items,
@@ -196,7 +196,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
    */
   static async #changeTab(event, target) {
     event.preventDefault();
-    this.activeTab = target.dataset.tab;
+    this._activeTab = target.dataset.tab;
     this.render();
   }
 
@@ -359,9 +359,13 @@ export class D12ActorSheet extends PrimarySheetMixin(
       return;
     }
 
-    const ability = target.dataset.ability;
     const itemId = target.dataset.item;
-    const item = itemId ? this.actor.items.get(itemId) : null;
-    D12Character.createRoll(this.actor, ability, item);
+    const ability = target.dataset.ability;
+    if (itemId == null) {
+      await RollManager.createAbilityRoll(this.actor, ability);
+    } else {
+      const item = this.actor.items.get(itemId);
+      await RollManager.createItemRoll(this.actor, ability, item);
+    }
   }
 }

@@ -34,7 +34,7 @@
           <i class="fas fa-circle-plus"></i>
         </a>
       {{else}}
-        —
+        <span>—</span>
       {{/if}}
     </div>
     {{#if item.system.action.ability}}
@@ -60,7 +60,7 @@
           data-ability="{{item.system.action.ability}}" data-item="{{item._id}}"
           title="{{localize "DOCUMENT.Roll" type='Item'}}"
         >
-          <i class="fas fa-dice-d12 fa-lg"></i>
+          <i class="fas fa-dice"></i>
         </a>
       {{/if}}
     </div>

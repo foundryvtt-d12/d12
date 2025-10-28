@@ -109,6 +109,10 @@
 
             i {
               margin: 0;
+
+              &.fa-dice {
+                font-size: 1.4em;
+              }
             }
           }
         }
@@ -126,12 +130,12 @@
 
 .locked {
   .item-row, .items-header {
-    grid-template-columns: 1fr 50px 60px 20px;
+    grid-template-columns: 1fr 50px 60px 24px;
   }
 }
 
 .editable {
   .item-row, .items-header {
-    grid-template-columns: 1fr 90px 60px 20px;
+    grid-template-columns: 1fr 90px 60px 24px;
   }
 }

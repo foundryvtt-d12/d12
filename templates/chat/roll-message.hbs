@@ -1,0 +1,18 @@
+<div class="d12-roll-message">
+  <h3>{{item}}</h3>
+  <p>
+    {{#if (lookup flags.d12 "abilityName")}}
+      <strong>Ability:</strong> {{flags.d12.abilityName}}<br>
+    {{/if}}
+    {{#if (lookup flags.d12 "itemName")}}
+      <strong>Item:</strong> {{flags.d12.itemName}}<br>
+    {{/if}}
+    <strong>Actor ID:</strong> {{flags.d12.actorId}}<br>
+    {{#if (lookup flags.d12 "itemId")}}
+      <strong>Item ID:</strong> {{flags.d12.itemId}}<br>
+    {{/if}}
+  </p>
+  <div class="d12-roll-result">
+    {{roll.rendered}}
+  </div>
+</div>
