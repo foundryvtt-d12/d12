@@ -4,12 +4,13 @@
       <img src="{{data.item.img}}" width="32" height="32" />
     </div>
     <div class="item-name">{{data.item.name}}</div>
+    <div class="item-bonus">{{formatModifier data.itemBonus}}</div>
   </div>
 
   <div class="roll-breakdown flexrow">
     <div class="die flexrow">
       <i class="fas fa-dice"></i>
-      <span>12</span>
+      <span>{{data.die}}</span>
     </div>
     <div class="plus">+</div>
     <div class="bonus flexrow" style="border-color: var(--d12-attribute-{{data.ability}}-color)">
@@ -21,6 +22,12 @@
   <div class="separator flexrow">Result</div>
 
   <div class="roll-result">
-    {{roll.total}}
+    {{data.total}}
   </div>
+  <div class="roll-critical flexrow">
+    <div><i class="fas fa-star"></i></div>
+    <span>Critical</span>
+    <div><i class="fas fa-star"></i></div>
+  </div>
+
 </div>

@@ -1,10 +1,14 @@
 @use '../utils/mixins' as *;
+@use '../utils/variables' as *;
 
 .message-content:has(.d12-roll-message) {
   overflow: visible
 }
 
 .d12-roll-message {
+  --main-color: #111;
+  --modifier-color: #666;
+  color: var(--main-color);
 
   .item-container {
     @include box;
@@ -20,6 +24,13 @@
       margin-left: 8px;
       font-weight: 500;
     }
+
+    .item-bonus {
+      @include flex-auto;
+      color: var(--modifier-color);
+      font-size: 2em;
+      font-weight: 600;
+    }
   }
 
   .roll-breakdown {
@@ -33,6 +44,7 @@
         font-size: 2em;
         font-weight: 600;
         text-align: center;
+        color: var(--modifier-color);
       }
 
       i, img {
@@ -73,10 +85,35 @@
 
   .roll-result {
     @include box;
-    border: 878787 2px solid;
+    color: var(--main-color);
     padding: 4px;
     font-size: 2.5em;
     font-weight: 600;
     text-align: center;
+  }
+
+  .roll-critical {
+    @include box;
+    background-color: $c-green;
+    justify-content: space-around;
+    margin: 8px 0 0;
+
+    & > * {
+      @include flex-auto;
+    }
+
+    span {
+      padding: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: white;
+      font-size: 1.5em;
+      font-family: $font-condensed;
+    }
+
+    i {
+      font-size: 1.5em;
+      color: white;
+    }
   }
 }

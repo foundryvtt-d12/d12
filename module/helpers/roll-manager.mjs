@@ -43,12 +43,15 @@ export default class RollManager {
     }
 
     const roll = Roll.fromTerms(terms);
+    await roll.roll();
 
     // Prepare data for the template
     const templateData = {
       roll: roll,
       config: CONFIG.D12,
       data: {
+        total: roll.total,
+        die: roll.terms[0].results[0].result,
         ability: ability,
         abilityBonus: actor.system.abilities[ability].value,
         itemBonus: item.system.action.bonus ?? 0,

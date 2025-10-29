@@ -115,6 +115,16 @@ Handlebars.registerHelper("bonus", function (a) {
   }
 });
 
+Handlebars.registerHelper("formatModifier", function (a) {
+  if (a > 0) {
+    return `+${a}`;
+  } else if (a < 0) {
+    return `${-a}`;
+  } else {
+    return "";
+  }
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
