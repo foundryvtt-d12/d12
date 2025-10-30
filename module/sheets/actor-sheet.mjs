@@ -360,12 +360,14 @@ export class D12ActorSheet extends PrimarySheetMixin(
     }
 
     const itemId = target.dataset.item;
-    const ability = target.dataset.ability;
     if (itemId == null) {
+      const ability = target.dataset.ability;
       await RollManager.createAbilityRoll(this.actor, ability);
     } else {
       const item = this.actor.items.get(itemId);
-      await RollManager.createItemRoll(this.actor, ability, item);
+      if (item.system.action.roll != null) {
+        await RollManager.createItemRoll(this.actor, item.system.action.roll.ability, item);
+      }
     }
   }
 }

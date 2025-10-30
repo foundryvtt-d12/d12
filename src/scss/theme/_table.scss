@@ -8,7 +8,7 @@
   overflow: hidden;
   background-color: $box-background;
   margin-bottom: 16px;
-  color: #666;
+  color: $c-text-on-light;
 
   .items-header {
     display: grid;
@@ -90,6 +90,15 @@
             display: flex;
             justify-content: center;
             gap: 4px;
+          }
+        }
+
+        .use-item {
+          color: rgba($c-text-on-light, 0.75);
+
+          i {
+            font-size: 20px;
+            margin: 3px 0 0;
           }
         }
 

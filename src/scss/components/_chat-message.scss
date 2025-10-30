@@ -7,8 +7,7 @@
 
 .d12-roll-message {
   --main-color: #111;
-  --modifier-color: #666;
-  color: var(--main-color);
+  color: $c-text-on-light;
 
   .item-container {
     @include box;
@@ -27,7 +26,7 @@
 
     .item-bonus {
       @include flex-auto;
-      color: var(--modifier-color);
+      color: $c-text-on-light;
       font-size: 2em;
       font-weight: 600;
     }

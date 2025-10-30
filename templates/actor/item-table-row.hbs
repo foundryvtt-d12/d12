@@ -37,13 +37,13 @@
         <span>—</span>
       {{/if}}
     </div>
-    {{#if item.system.action.ability}}
+    {{#if item.system.action.roll}}
     <div class="item-column">
       <span
-        style="color: var(--d12-attribute-{{item.system.action.ability}}-color)">
-        {{localize (lookup @root.config.abilityAbbreviations item.system.action.ability)}}
+        style="color: var(--d12-attribute-{{item.system.action.roll.ability}}-color)">
+        {{localize (lookup @root.config.abilityAbbreviations item.system.action.roll.ability)}}
       </span>
-      {{bonus item.system.action.bonus}}
+      {{bonus item.system.action.roll.bonus}}
     </div>
     {{else}}
     <div class="item-column">—</div>
@@ -55,12 +55,11 @@
         >
           <i class="fas fa-xmark"></i>
         </a>
-      {{else if item.system.action.ability}}
-        <a class="action-icon" data-action="rollable"
-          data-ability="{{item.system.action.ability}}" data-item="{{item._id}}"
-          title="{{localize "DOCUMENT.Roll" type='Item'}}"
+      {{else if item.system.action}}
+        <a class="action-icon use-item" data-action="rollable" data-item="{{item._id}}"
+          title="{{#if (eq item.type 'spell')}}{{localize 'D12.Item.Use.Spell'}}{{else}}{{localize 'D12.Item.Use.Item'}}{{/if}}"
         >
-          <i class="fas fa-star-christmas fa-xl"></i>
+          <i class="fas fa-regular fa-star-christmas"></i>
         </a>
       {{/if}}
     </div>

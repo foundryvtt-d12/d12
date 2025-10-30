@@ -33,17 +33,10 @@
         "Consumable": "Consumable",
         "Spell": "Spell",
         "Trait": "Trait"
-      }
-    },
-    "Action": {
-      "Type": {
-        "None": "None",
-        "Attack": "Attack",
-        "Use": "Use",
-        "Cast": "Cast",
-        "Activate": "Activate",
-        "Apply": "Apply",
-        "Consume": "Consume"
+      },
+      "Use": {
+        "Item": "Use Item",
+        "Spell": "Cast Spell"
       }
     },
     "Rarity": {
