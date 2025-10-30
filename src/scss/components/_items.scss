@@ -1,3 +1,6 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
 .sidebar {
   .sheet-art {
     overflow: visible;
@@ -17,6 +20,58 @@
 
     & > img {
       flex: auto 0;
+    }
+  }
+}
+
+.action-section {
+  .title {
+    margin-bottom: 8px;
+    font-size: 1.5em;
+    font-family: $font-condensed;
+    font-weight: 500;
+  }
+
+  .roll-details {
+    &.play-mode {
+      max-width: 280px;
+    }
+  }
+
+  .target-defense-box, .ability-bonus-box {
+    @include character-field;
+    @include flex-grow;
+    padding: 8px;
+  }
+
+  .against {
+    @include flex-auto;
+    margin: 0 8px;
+    font-family: $font-condensed;
+  }
+
+  .separator-text {
+    @include flex-auto;
+    margin: 0 8px;
+    font-family: $font-condensed;
+  }
+
+  select {
+    flex: 2;
+  }
+  input {
+    flex: 1;
+  }
+
+  .ability-bonus-box, .target-defense-box {
+    .box-description {
+      @include flex-grow;
+      text-align: center;
+    }
+
+    img {
+      @include flex-auto;
+      margin-right: 8px;
     }
   }
 }

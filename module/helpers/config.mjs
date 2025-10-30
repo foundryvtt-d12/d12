@@ -26,6 +26,12 @@ D12.defenses = {
   wil: "D12.Defense.Willpower.long"
 };
 
+D12.defensesAbbreviations = {
+  arm: "D12.Defense.Armor.abbr",
+  end: "D12.Defense.Endurance.abbr",
+  wil: "D12.Defense.Willpower.abbr"
+};
+
 D12.rarities = {
   common: "D12.Rarity.Common",
   rare: "D12.Rarity.Rare",

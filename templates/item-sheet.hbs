@@ -41,7 +41,7 @@
         </div>
         {{/if}}
 
-        {{#if editable}}
+        {{!-- {{#if editable}}
           <div class="flexcol">
             <label for="system.action.type" class="label">Action Type</label>
             <select name="system.action.type">
@@ -89,7 +89,7 @@
               {{/if}}
             </div>
           {{/if}}
-        {{/if}}
+        {{/if}} --}}
 
       </div>
     </aside>
@@ -177,6 +177,58 @@
           {{/if}}
         {{/if}}
       </header>
+
+      <div class="action-section">
+        <div class="title">
+          Action Roll
+        </div>
+        {{#if editable}}
+        <div class="flexrow roll-details edit-mode">
+          <div class="flexrow ability-bonus-box">
+            <select name="system.action.roll.ability">
+              {{#each config.abilities}}
+                <option value="{{@key}}" {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
+                  {{localize this}}
+                </option>
+              {{/each}}
+            </select>
+            <span class="separator-text">+</span>
+            <input type="text" name="system.action.roll.bonus" value="{{system.action.roll.bonus}}" data-dtype="Number" />
+          </div>
+          <div class="against">vs.</div>
+          <div class="flexrow target-defense-box">
+            <select name="system.action.roll.target.type">
+              {{#each config.defenses}}
+                <option value="{{@key}}" {{#if (eq @key ../system.action.roll.target.type)}}selected{{/if}}>
+                  {{localize this}}
+                </option>
+              {{/each}}
+            </select>
+            <span class="separator-text">DC</span>
+            <input type="text" name="system.action.target.difficulty" value="{{system.action.target.difficulty}}" data-dtype="Number" />
+          </div>
+        </div>
+        {{else if system.action.roll}}
+        <div class="flexrow roll-details play-mode">
+          <div class="flexrow ability-bonus-box" style="border-color: var(--d12-attribute-{{system.action.roll.ability}}-color)">
+            <img src="/systems/d12/assets/ui/icons/basic_{{system.action.roll.ability}}.svg" width="24" height="24" />
+            <div class="box-description">
+              <span style="color: var(--d12-attribute-{{system.action.roll.ability}}-color)">
+                {{localize (lookup @root.config.abilityAbbreviations system.action.roll.ability)}}
+              </span>
+              <span>{{bonus system.action.roll.bonus}}</span>
+            </div>
+          </div>
+          <div class="against">vs.</div>
+          <div class="flexrow target-defense-box">
+            <img src="/systems/d12/assets/ui/icons/basic_{{system.action.roll.target.type}}.svg" width="24" height="24" />
+            <span class="box-description">
+              {{localize (lookup @root.config.defensesAbbreviations system.action.roll.target.type)}}
+            </span>
+          </div>
+        </div>
+        {{/if}}
+      </div>
 
       <div class="editor-section">
         {{#if editable}}
