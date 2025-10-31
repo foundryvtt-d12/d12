@@ -92,7 +92,7 @@ export default function PrimarySheetMixin(Base) {
       const submitData = this._processFormData(event, form, formData);
 
       if (submitData.system != null) {
-        this._applySubmitDataOverrides(submitData.system);
+        this._applySubmitDataOverrides(submitData.system, formData);
       }
 
       this.document.validate({changes: submitData, clean: true, fallback: false});

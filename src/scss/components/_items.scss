@@ -32,16 +32,18 @@
     font-weight: 500;
   }
 
-  .roll-details {
-    &.play-mode {
-      max-width: 280px;
-    }
+  .mode {
+    margin-bottom: 8px;
+    width: auto;
   }
 
-  .target-defense-box, .ability-bonus-box {
-    @include character-field;
-    @include flex-grow;
-    padding: 8px;
+  .roll-details {
+    &.play-mode {
+      max-width: 320px;
+    }
+    &.edit-mode {
+      min-width: 320px;
+    }
   }
 
   .against {
@@ -64,9 +66,18 @@
   }
 
   .ability-bonus-box, .target-defense-box {
+    @include character-field;
+    @include flex-grow;
+    flex-wrap: nowrap;
+    padding: 8px;
+
     .box-description {
       @include flex-grow;
+      font-family: $font-condensed;
       text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     img {

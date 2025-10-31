@@ -33,11 +33,12 @@ export default class RollManager {
     if (actor == null) return;
 
     const terms = this._baseTerms(actor, ability);
+    const rollParams = item.system.action.roll;
 
-    if (item != null && item.system.action.bonus != 0) {
+    if (item != null && rollParams.bonus != 0) {
       terms.push(new foundry.dice.terms.OperatorTerm({operator: "+"}));
       terms.push(new foundry.dice.terms.NumericTerm({
-        number: item.system.action.bonus,
+        number: rollParams.bonus,
         flavor: item.name,
       }));
     }
@@ -54,7 +55,7 @@ export default class RollManager {
         die: roll.terms[0].results[0].result,
         ability: ability,
         abilityBonus: actor.system.abilities[ability].value,
-        itemBonus: item.system.action.bonus ?? 0,
+        itemBonus: rollParams.bonus ?? 0,
         item: item.toPlainObject(),
       }
     };

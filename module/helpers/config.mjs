@@ -26,7 +26,7 @@ D12.defenses = {
   wil: "D12.Defense.Willpower.long"
 };
 
-D12.defensesAbbreviations = {
+D12.defenseAbbreviations = {
   arm: "D12.Defense.Armor.abbr",
   end: "D12.Defense.Endurance.abbr",
   wil: "D12.Defense.Willpower.abbr"

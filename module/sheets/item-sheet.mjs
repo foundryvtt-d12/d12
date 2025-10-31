@@ -56,6 +56,8 @@ export class D12ItemSheet extends PrimarySheetMixin(
       config: CONFIG.D12,
       categories: this.item.type === "spell" ? CONFIG.D12.spell.categories : CONFIG.D12.item.categories,
 
+      mode: this._getMode(),
+
       // Enrich description info for display
       // Enrichment turns text like `[[/r 1d20]]` into buttons
       enrichedDescription: await textEditor.enrichHTML(
@@ -76,13 +78,30 @@ export class D12ItemSheet extends PrimarySheetMixin(
     };
   }
 
-  /** @override */
-  _applySubmitDataOverrides(systemData) {
-    if (systemData.action?.type === "") {
-      systemData.action = null;
+  _getMode() {
+    if (this.item.system.action == null) {
+      return "no_action";
+    } else if (this.item.system.action.roll == null) {
+      return "action_no_roll";
+    } else {
+      return "action_roll";
     }
-    if (systemData.charges?.value == null) {
-      systemData.charges = null;
+  }
+
+  /** @override */
+  _applySubmitDataOverrides(systemData, formData) {
+    const mode = formData.object.mode;
+
+    if (mode == null) return;
+
+    if (mode === "no_action") {
+      systemData.action = null;
+    } else if (mode === "action_no_roll") {
+      systemData.action.roll = null;
+    } else {
+      if (systemData.action.roll.target.type !== "fixed") {
+        systemData.action.roll.target.difficulty = null;
+      }
     }
   }
 
