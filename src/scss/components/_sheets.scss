@@ -43,6 +43,8 @@
 }
 
 .sheet-body {
+  color: $c-text-on-light;
+
   & > * {
     flex: auto 0;
 

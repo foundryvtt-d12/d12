@@ -29,68 +29,106 @@
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  .title {
-    margin-bottom: 8px;
-    font-size: 1.5em;
-    font-family: $font-condensed;
-    font-weight: 500;
-  }
-
-  .mode {
-    width: auto;
-  }
-
+  // Both edit and play mode
   .roll-details {
     margin-top: 8px;
-    &.play-mode {
-      max-width: 320px;
-    }
-    &.edit-mode {
-      min-width: 320px;
-    }
-  }
 
-  .against {
-    @include flex-auto;
-    margin: 0 8px;
-    font-family: $font-condensed;
-  }
-
-  .separator-text {
-    @include flex-auto;
-    margin: 0 8px;
-    font-family: $font-condensed;
-  }
-
-  select {
-    flex: 2;
-  }
-  input {
-    flex: 1;
-  }
-
-  .ability-bonus-box, .target-defense-box {
-    @include character-field;
-    @include flex-grow;
-    flex-wrap: nowrap;
-    padding: 8px;
-
-    .box-description {
-      @include flex-grow;
+    .against {
+      @include flex-auto;
+      margin: 0 8px;
       font-family: $font-condensed;
-      text-align: center;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+    }
 
-      .difficulty {
-        font-weight: 600;
+    .ability-bonus-box, .target-defense-box {
+      @include character-field;
+      @include flex-grow;
+      flex-wrap: nowrap;
+      padding: 8px;
+    }
+  }
+
+  &.edit-mode {
+    min-width: 320px;
+
+    .roll-details {
+      select { flex: 2; }
+      input { flex: 1; }
+
+      .separator-text {
+        @include flex-auto;
+        margin: 0 8px;
+        font-family: $font-condensed;
       }
     }
 
-    img {
-      @include flex-auto;
-      margin-right: 8px;
+    .critical-edit {
+      margin-top: 8px;
+
+      input {
+        width: 80px;
+      }
     }
   }
+
+  &.play-mode {
+    & > * {
+      max-width: 320px;
+    }
+
+    .title {
+      margin-bottom: 8px;
+      font-size: 1.5em;
+      font-family: $font-condensed;
+      font-weight: 500;
+    }
+
+    .roll-details {
+      .ability-bonus-box, .target-defense-box {
+        .box-description {
+          @include flex-grow;
+          font-family: $font-condensed;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          .difficulty {
+            font-weight: 600;
+          }
+        }
+
+        img {
+          @include flex-auto;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .critical-details {
+      @include flex-auto;
+      margin-top: -2px;
+      color: rgba($c-text-on-light, 0.75);
+
+      .critical-number {
+        color: $c-text-on-dark-light;
+        font-weight: 600;
+        margin: 0 6px;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          right: -4px;
+          bottom: -4px;
+          border-radius: 4px;
+          background-color: #926654;
+          box-shadow: 0px 0px 8px 4px rgba(255, 255, 255, 0.4);
+          z-index: -1;
+        }
+      }
+    }
+  }
+
 }

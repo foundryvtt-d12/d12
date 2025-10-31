@@ -128,8 +128,10 @@
       </header>
 
       {{#if editable}}
-      <div class="action-section">
-        <select class="mode" name="mode">
+      <div class="action-section edit-mode flexcol">
+        <div class="flexcol">
+          <label for="mode" class="label">Use mode</label>
+          <select class="mode" name="mode">
             <option value="no_action" {{#if (eq mode "no_action")}}selected{{/if}}>
               No Action
             </option>
@@ -139,45 +141,63 @@
             <option value="action_roll" {{#if (eq mode "action_roll")}}selected{{/if}}>
               Action (With Roll)
             </option>
-        </select>
+          </select>
+        </div>
 
         {{#if system.action.roll}}
-        <div class="flexrow roll-details edit-mode">
-          <div class="flexrow ability-bonus-box">
-            <select name="system.action.roll.ability">
-              {{#each config.abilityAbbreviations}}
-                <option value="{{@key}}" {{#if (eq @key ../system.action.roll.ability)}}selected{{/if}}>
-                  {{localize this}}
-                </option>
-              {{/each}}
-            </select>
-            <span class="separator-text">+</span>
-            <input type="text" name="system.action.roll.bonus" value="{{system.action.roll.bonus}}" data-dtype="Number" />
+        <div class="flexcol roll-details">
+          <label class="label">Roll</label>
+          <div class="flexrow">
+            <div class="flexrow ability-bonus-box">
+              <select name="system.action.roll.ability">
+                {{#each config.abilityAbbreviations}}
+                  <option value="{{@key}}" {{#if (eq @key ../system.action.roll.ability)}}selected{{/if}}>
+                    {{localize this}}
+                  </option>
+                {{/each}}
+              </select>
+              <span class="separator-text">+</span>
+              <input type="text" name="system.action.roll.bonus" value="{{system.action.roll.bonus}}" data-dtype="Number" />
+            </div>
+            <div class="against">vs.</div>
+            <div class="flexrow target-defense-box">
+              <select name="system.action.roll.target.type">
+                {{#each config.defenseAbbreviations}}
+                  <option value="{{@key}}" {{#if (eq @key ../system.action.roll.target.type)}}selected{{/if}}>
+                    {{localize this}}
+                  </option>
+                {{/each}}
+                <option value="fixed" {{#if (eq "fixed" system.action.roll.target.type)}}selected{{/if}}>
+                  {{localize "D12.Defense.Fixed.abbr"}}
+              </select>
+              <span class="separator-text">DC</span>
+              <input type="text" name="system.action.roll.target.difficulty" value="{{system.action.roll.target.difficulty}}" data-dtype="Number" />
+            </div>
           </div>
-          <div class="against">vs.</div>
-          <div class="flexrow target-defense-box">
-            <select name="system.action.roll.target.type">
-              {{#each config.defenseAbbreviations}}
-                <option value="{{@key}}" {{#if (eq @key ../system.action.roll.target.type)}}selected{{/if}}>
-                  {{localize this}}
-                </option>
-              {{/each}}
-              <option value="fixed" {{#if (eq "fixed" system.action.roll.target.type)}}selected{{/if}}>
-                {{localize "D12.Defense.Fixed.abbr"}}
-            </select>
-            <span class="separator-text">DC</span>
-            <input type="text" name="system.action.roll.target.difficulty" value="{{system.action.roll.target.difficulty}}" data-dtype="Number" />
-          </div>
+        </div>
+        <div class="critical-edit flexcol">
+          <label for="system.action.roll.critical" class="label">Critical</label>
+          <input type="text" name="system.action.roll.critical" value="{{system.action.roll.critical}}" data-dtype="Number" />
         </div>
         {{/if}}
       </div>
 
       {{else if system.action.roll}}
-      <div class="action-section">
-        <div class="title">
-          Action Roll
+      <div class="action-section play-mode">
+        <div class="flexrow">
+          <div class="title flexgrow">
+            Action Roll
+          </div>
+          {{#if system.action.roll.critical}}
+          <div class="critical-details">
+            Critical on
+            {{#for system.action.roll.critical 12}}
+              <span class="critical-number">{{this}}</span>
+            {{/for}}
+          </div>
+          {{/if}}
         </div>
-        <div class="flexrow roll-details play-mode">
+        <div class="flexrow roll-details">
           <div class="flexrow ability-bonus-box" style="border-color: var(--d12-attribute-{{system.action.roll.ability}}-color)">
             <img src="/systems/d12/assets/ui/icons/basic_{{system.action.roll.ability}}.svg" width="24" height="24" />
             <div class="box-description">

@@ -95,6 +95,15 @@ Handlebars.registerHelper("times", function (n, block) {
   return result;
 });
 
+// Helper to repeat a block n times (for rendering stars)
+Handlebars.registerHelper("for", function (from, to, block) {
+  let result = "";
+  for (let i = from; i <= to; i++) {
+    result += block.fn(i);
+  }
+  return result;
+});
+
 // Helper for less than comparison
 Handlebars.registerHelper("lt", function (a, b) {
   return a < b;
