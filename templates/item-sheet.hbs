@@ -141,11 +141,12 @@
             </option>
         </select>
 
+        {{#if system.action.roll}}
         <div class="flexrow roll-details edit-mode">
           <div class="flexrow ability-bonus-box">
             <select name="system.action.roll.ability">
               {{#each config.abilityAbbreviations}}
-                <option value="{{@key}}" {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
+                <option value="{{@key}}" {{#if (eq @key ../system.action.roll.ability)}}selected{{/if}}>
                   {{localize this}}
                 </option>
               {{/each}}
@@ -168,6 +169,7 @@
             <input type="text" name="system.action.roll.target.difficulty" value="{{system.action.roll.target.difficulty}}" data-dtype="Number" />
           </div>
         </div>
+        {{/if}}
       </div>
 
       {{else if system.action.roll}}

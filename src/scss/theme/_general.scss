@@ -28,6 +28,12 @@ select[disabled] {
   appearance: none;
 }
 
+input, select {
+  &:focus {
+    outline: 2px solid $c-highlight;
+  }
+}
+
 button {
   min-height: 32px;
 }

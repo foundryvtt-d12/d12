@@ -97,9 +97,14 @@ export class D12ItemSheet extends PrimarySheetMixin(
     if (mode === "no_action") {
       systemData.action = null;
     } else if (mode === "action_no_roll") {
+      systemData.action ??= {};
       systemData.action.roll = null;
     } else {
-      if (systemData.action.roll.target.type !== "fixed") {
+      systemData.action ??= {};
+      systemData.action.roll ??= {};
+      systemData.action.roll.target ??= {};
+      const targetType = systemData.action.roll.target.type;
+      if (targetType !== "fixed") {
         systemData.action.roll.target.difficulty = null;
       }
     }

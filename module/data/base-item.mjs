@@ -13,6 +13,7 @@ export default class D12ItemBase extends D12DataModel {
         ability: new fields.StringField({
           required: true,
           blank: false,
+          initial: "str",
           choices: {
             "str": "D12.Ability.Strength.long",
             "agi": "D12.Ability.Agility.long",

@@ -50,7 +50,7 @@
     "NoSpells": "No spells",
     "Target": {
       "DC": " or more",
-      "Unknown": "Unknown Target"
+      "Unknown": "Variable"
     }
   },
 
