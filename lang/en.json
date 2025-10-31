@@ -49,8 +49,8 @@
     "NoItems": "No items",
     "NoSpells": "No spells",
     "Target": {
-      "DC": "{target} or more",
-      "Unknown": "?"
+      "DC": " or more",
+      "Unknown": "Unknown Target"
     }
   },
 

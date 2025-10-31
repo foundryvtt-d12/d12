@@ -20,7 +20,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
   static DEFAULT_OPTIONS = {
     classes: ["d12", "sheet", "actor", "tabs", "themed", "theme-light"],
     position: {
-      width: 490,
+      width: 550,
       height: 510
     },
     window: {

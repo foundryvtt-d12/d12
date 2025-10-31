@@ -14,7 +14,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
   static DEFAULT_OPTIONS = {
     classes: ["d12", "sheet", "item", "themed", "theme-light"],
     position: {
-      width: 490,
+      width: 550,
       height: 420
     },
     window: {

@@ -40,57 +40,6 @@
           </select>
         </div>
         {{/if}}
-
-        {{!-- {{#if editable}}
-          <div class="flexcol">
-            <label for="system.action.type" class="label">Action Type</label>
-            <select name="system.action.type">
-              <option value="">None</option>
-              {{#each config.actionTypes}}
-                <option value="{{@key}}" {{#if (eq @key ../system.action.type)}}selected{{/if}}>
-                  {{localize this}}
-                </option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="flexcol">
-            <label for="system.action.ability" class="label">Ability</label>
-            <select name="system.action.ability">
-              <option value="">None</option>
-              {{#each config.abilities}}
-                <option value="{{@key}}" {{#if (eq @key ../system.action.ability)}}selected{{/if}}>
-                  {{localize this}}
-                </option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="flexcol">
-            <label for="system.action.bonus" class="label">Bonus</label>
-            <input type="text" name="system.action.bonus" value="{{system.action.bonus}}" data-dtype="Number" />
-          </div>
-        {{else}}
-          {{#if system.action}}
-            <div class="item-action flexcol">
-              <label for="action" class="label">
-                {{localize (lookup @root.config.actionTypes system.action.type)}}
-              </label>
-              {{#if system.action.ability}}
-                <button class="ability-roll-button" data-action="rollable" data-ability="{{system.action.ability}}">
-                  <div class="flexrow">
-                    <img src="/systems/d12/assets/ui/icons/color_{{system.action.ability}}.svg" width="24" height="24" />
-                    <div>
-                      {{localize (lookup @root.config.abilities system.action.ability)}}
-                      {{bonus system.action.bonus}}
-                    </div>
-                  </div>
-                </button>
-              {{else}}
-                <button> No check required</button>
-              {{/if}}
-            </div>
-          {{/if}}
-        {{/if}} --}}
-
       </div>
     </aside>
 
@@ -178,8 +127,8 @@
         {{/if}}
       </header>
 
+      {{#if editable}}
       <div class="action-section">
-        {{#if editable}}
         <select class="mode" name="mode">
             <option value="no_action" {{#if (eq mode "no_action")}}selected{{/if}}>
               No Action
@@ -219,7 +168,10 @@
             <input type="text" name="system.action.roll.target.difficulty" value="{{system.action.roll.target.difficulty}}" data-dtype="Number" />
           </div>
         </div>
-        {{else if system.action.roll}}
+      </div>
+
+      {{else if system.action.roll}}
+      <div class="action-section">
         <div class="title">
           Action Roll
         </div>
@@ -239,7 +191,7 @@
             <span class="box-description">
               {{#if (eq system.action.roll.target.type "fixed")}}
                 {{#if system.action.roll.target.difficulty}}
-                  {{localize 'D12.Target.DC' target=system.action.roll.target.difficulty}}
+                  <span class="difficulty">{{system.action.roll.target.difficulty}}</span> {{localize 'D12.Target.DC'}}
                 {{else}}
                   {{localize 'D12.Target.Unknown'}}
                 {{/if}}
@@ -249,8 +201,8 @@
             </span>
           </div>
         </div>
-        {{/if}}
       </div>
+      {{/if}}
 
       <div class="editor-section">
         {{#if editable}}
