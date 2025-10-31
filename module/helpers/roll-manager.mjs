@@ -29,11 +29,32 @@ export default class RollManager {
     ];
   }
 
+  static async createSimpleItemAction(actor, item) {
+    const templateData = {
+      roll: null,
+      config: CONFIG.D12,
+      data: {
+        item: item.toPlainObject(),
+      }
+    };
+
+    const html = await foundry.applications.handlebars.renderTemplate(RollManager._template, templateData);
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+      rollMode: game.settings.get("core", "rollMode"),
+      content: html,
+      flags: {
+        d12: templateData.data
+      }
+    });
+  }
+
   static async createItemRoll(actor, ability, item) {
     if (actor == null) return;
 
-    const terms = this._baseTerms(actor, ability);
     const rollParams = item.system.action.roll;
+
+    const terms = this._baseTerms(actor, ability);
 
     if (item != null && rollParams.bonus != 0) {
       terms.push(new foundry.dice.terms.OperatorTerm({operator: "+"}));
@@ -46,6 +67,9 @@ export default class RollManager {
     const roll = Roll.fromTerms(terms);
     await roll.roll();
 
+    const dieRoll = roll.terms[0].results[0].result;
+    const isCritical = (rollParams.critical != null) && (dieRoll >= rollParams.critical);
+
     // Prepare data for the template
     const templateData = {
       roll: roll,
@@ -55,6 +79,7 @@ export default class RollManager {
         die: roll.terms[0].results[0].result,
         ability: ability,
         abilityBonus: actor.system.abilities[ability].value,
+        isCritical: isCritical,
         itemBonus: rollParams.bonus ?? 0,
         item: item.toPlainObject(),
       }

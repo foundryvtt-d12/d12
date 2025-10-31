@@ -7,27 +7,30 @@
     <div class="item-bonus">{{formatModifier data.itemBonus}}</div>
   </div>
 
-  <div class="roll-breakdown flexrow">
-    <div class="die flexrow">
-      <i class="fas fa-dice"></i>
-      <span>{{data.die}}</span>
+  {{#if roll}}
+    <div class="roll-breakdown flexrow">
+      <div class="die flexrow">
+        <i class="fas fa-dice"></i>
+        <span>{{data.die}}</span>
+      </div>
+      <div class="plus">+</div>
+      <div class="bonus flexrow" style="border-color: var(--d12-attribute-{{data.ability}}-color)">
+        <img src="/systems/d12/assets/ui/icons/basic_{{data.ability}}.svg" width="24" height="24" />
+        <span>{{data.abilityBonus}}</span>
+      </div>
     </div>
-    <div class="plus">+</div>
-    <div class="bonus flexrow" style="border-color: var(--d12-attribute-{{data.ability}}-color)">
-      <img src="/systems/d12/assets/ui/icons/basic_{{data.ability}}.svg" width="24" height="24" />
-      <span>{{data.abilityBonus}}</span>
+
+    <div class="separator flexrow">Result</div>
+
+    <div class="roll-result">
+      {{data.total}}
     </div>
-  </div>
-
-  <div class="separator flexrow">Result</div>
-
-  <div class="roll-result">
-    {{data.total}}
-  </div>
-  <div class="roll-critical flexrow">
-    <div><i class="fas fa-star"></i></div>
-    <span>Critical</span>
-    <div><i class="fas fa-star"></i></div>
-  </div>
-
+    {{#if data.isCritical}}
+    <div class="roll-critical flexrow">
+      <div><i class="fas fa-star"></i></div>
+      <span>Critical</span>
+      <div><i class="fas fa-star"></i></div>
+    </div>
+    {{/if}}
+  {{/if}}
 </div>

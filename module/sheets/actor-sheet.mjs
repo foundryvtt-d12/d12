@@ -367,6 +367,8 @@ export class D12ActorSheet extends PrimarySheetMixin(
       const item = this.actor.items.get(itemId);
       if (item.system.action.roll != null) {
         await RollManager.createItemRoll(this.actor, item.system.action.roll.ability, item);
+      } else {
+        await RollManager.createSimpleItemAction(this.actor, item);
       }
     }
   }
