@@ -104,6 +104,12 @@ export default function PrimarySheetMixin(Base) {
      * @param {Object} systemData The system data to be modified.
      * @protected
      */
-    _applySubmitDataOverrides(systemData) { }
+    _applySubmitDataOverrides(systemData, formData) { }
+
+    _hasFullPermissions(actor) {
+      const owner = actor.testUserPermission(game.user, "OWNER");
+      const observer = actor.testUserPermission(game.user, "OBSERVER");
+      return owner || observer;
+    }
   };
 }

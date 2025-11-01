@@ -72,6 +72,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       // Add the actor document and its data to context
       actor: this.actor,
       document: this.document,
+      fullPermissions: this._hasFullPermissions(this.actor),
 
       // Add the actor's data to context for easier access, as well as flags.
       system: actorData.system,

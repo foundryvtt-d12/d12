@@ -35,13 +35,14 @@ input, select, button, a.button {
 }
 
 button, a.button {
+  transition: color 0.2s ease;
   min-height: 32px;
   color: $c-text-on-light;
   border-color: $c-text-on-light;
 
   &:hover {
     background: $c-highlight;
-    color: $c-dark;
+    color: $c-dark !important;
     border-color: $c-text-on-light;
   }
 }

@@ -47,6 +47,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
       // Add the item document and its data to context
       item: this.item,
       document: this.document,
+      fullPermissions: this._hasFullPermissions(this.item.actor),
 
       // Add the item's data to context for easier access, as well as flags.
       system: itemData.system,

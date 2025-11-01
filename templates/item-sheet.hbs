@@ -55,18 +55,20 @@
           <div class="flexrow">
             <div class="flexgrow">{{item.name}}</div>
             {{#if item.system.action}}
-            <div class="flexauto flexrow flex-group-center">
-              <button class="use-item rollable" data-action="rollable">
-                <i class="fas fa-regular fa-star-christmas"></i>
-                <span>
-                  {{#if (eq item.type 'spell')}}
-                    {{localize 'D12.Item.Use.Spell'}}
-                  {{else}}
-                    {{localize 'D12.Item.Use.Item'}}
-                  {{/if}}
-                </span>
-              </button>
-            </div>
+              {{#if fullPermissions}}
+                <div class="flexauto flexrow flex-group-center">
+                  <a class="button use-item rollable" data-action="rollable">
+                    <i class="fas fa-regular fa-star-christmas"></i>
+                    <span>
+                      {{#if (eq item.type 'spell')}}
+                        {{localize 'D12.Item.Use.Spell'}}
+                      {{else}}
+                        {{localize 'D12.Item.Use.Item'}}
+                      {{/if}}
+                    </span>
+                  </a>
+                </div>
+              {{/if}}
             {{/if}}
           </div>
           {{/if}}
