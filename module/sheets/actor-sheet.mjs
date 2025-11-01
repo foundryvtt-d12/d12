@@ -157,34 +157,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
     return result;
   }
 
-  /** @override */
-  async _onSortItem(event, itemData) {
-    // Get the dragged item and the target item
-    const items = this.actor.items;
-    const draggedItem = items.get(itemData._id);
-
-    // Find the item we're sorting relative to
-    const li = event.target.closest(".item");
-    const targetId = li?.dataset.itemId;
-    const targetItem = targetId ? items.get(targetId) : null;
-
-    if (!draggedItem || !targetItem || draggedItem === targetItem) return;
-
-    // Get the sort order of items
-    const sortedItems = items.contents.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    const draggedIndex = sortedItems.findIndex(i => i._id === draggedItem._id);
-    const targetIndex = sortedItems.findIndex(i => i._id === targetItem._id);
-
-    if (draggedIndex === -1 || targetIndex === -1) return;
-
-    // Calculate the new sort order
-    const isMovingDown = draggedIndex < targetIndex;
-    const baseSort = isMovingDown ? targetItem.sort : targetItem.sort - 1;
-
-    // Update the dragged item's sort order
-    await draggedItem.update({ sort: baseSort });
-  }
-
   /* -------------------------------------------- */
   /*  Event handlers                              */
   /* -------------------------------------------- */
