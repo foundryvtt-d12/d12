@@ -141,6 +141,16 @@ export class D12ActorSheet extends PrimarySheetMixin(
   }
 
   /** @override */
+  _canDragStart(selector) {
+    return this.document.isOwner;
+  }
+
+  /** @override */
+  _canDragDrop(selector) {
+    return this.document.isOwner;
+  }
+
+  /** @override */
   async _onDropItem(event, data) {
     // Call the parent implementation to handle the item drop
     const result = await super._onDropItem(event, data);
