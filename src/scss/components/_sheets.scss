@@ -61,8 +61,14 @@
 
       input, div {
         font-family: $font-secondary;
-        font-size: 3em;
+        font-size: 42px;
         height: 1.3em;
+      }
+
+      div {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
 

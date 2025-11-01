@@ -52,7 +52,23 @@
           {{#if editable}}
           <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
           {{else}}
-          <div>{{item.name}}</div>
+          <div class="flexrow">
+            <div class="flexgrow">{{item.name}}</div>
+            {{#if item.system.action}}
+            <div class="flexauto flexrow flex-group-center">
+              <button class="use-item rollable" data-action="rollable">
+                <i class="fas fa-regular fa-star-christmas"></i>
+                <span>
+                  {{#if (eq item.type 'spell')}}
+                    {{localize 'D12.Item.Use.Spell'}}
+                  {{else}}
+                    {{localize 'D12.Item.Use.Item'}}
+                  {{/if}}
+                </span>
+              </button>
+            </div>
+            {{/if}}
+          </div>
           {{/if}}
         </div>
 

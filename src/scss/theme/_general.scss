@@ -28,14 +28,22 @@ select[disabled] {
   appearance: none;
 }
 
-input, select {
+input, select, button, a.button {
   &:focus {
     outline: 2px solid $c-highlight;
   }
 }
 
-button {
+button, a.button {
   min-height: 32px;
+  color: $c-text-on-light;
+  border-color: $c-text-on-light;
+
+  &:hover {
+    background: $c-highlight;
+    color: $c-dark;
+    border-color: $c-text-on-light;
+  }
 }
 
 .locked {

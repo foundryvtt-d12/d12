@@ -127,7 +127,11 @@ export class D12ItemSheet extends PrimarySheetMixin(
       return;
     }
 
-    const ability = target.dataset.ability;
-    await RollManager.createItemRoll(this.item.actor, ability, this.item);
+    const roll = this.item.system.action.roll;
+    if (roll != null) {
+      await RollManager.createItemRoll(this.actor, roll.ability, this.item);
+    } else {
+      await RollManager.createSimpleItemAction(this.actor, this.item);
+    }
   }
 }
