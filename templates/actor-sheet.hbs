@@ -21,37 +21,44 @@
         center all of its child elements content and text. --}}
         <div class="resource">
           <label for="system.health.value" class="label">Health</label>
-          {{#if editable}}
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" min="0" max="{{system.health.max}}" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
-            <span> / </span>
-            <input type="number" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
-          </div>
-          {{else}}
           <div class="resource-squares health-squares">
+            {{#if editable}}
+            <a class="resource-action" data-action="setMaxHealth" data-value="-1" title="Decrease Health">
+              <i class="fas fa-minus-circle"></i>
+            </a>
+            {{/if}}
             {{#times system.health.max}}
-            <div class="resource-square {{#if (lt this @root.system.health.value)}}filled health{{else}}empty{{/if}}"></div>
+            <a class="resource-square {{#if (lt this @root.system.health.value)}}filled health{{else}}empty{{/if}}"
+              {{#if @root.editable}} data-action="setHealth" data-value="{{this}}" {{/if}}
+            ></a>
             {{/times}}
+            {{#if editable}}
+            <a class="resource-action" data-action="setMaxHealth" data-value="1" title="Increase Health">
+              <i class="fas fa-plus-circle"></i>
+            </a>
+            {{/if}}
           </div>
-          {{/if}}
         </div>
 
-        {{#if editable}}
-        <div class="resource">
-          <label for="system.mana.value" class="label">Mana</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="number" min="0" max="{{system.mana.max}}" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
-            <span> / </span>
-            <input type="number" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number"/>
-          </div>
-        </div>
-        {{else if (gt system.mana.max 0)}}
+        {{#if (or editable system.mana.max)}}
         <div class="resource">
           <label for="system.mana.value" class="label">Mana</label>
           <div class="resource-squares mana-squares">
+            {{#if editable}}
+            <a class="resource-action" data-action="setMaxMana" data-value="-1" title="Decrease Mana">
+              <i class="fas fa-minus-circle"></i>
+            </a>
+            {{/if}}
             {{#times system.mana.max}}
-            <div class="resource-square {{#if (lt this @root.system.mana.value)}}filled mana{{else}}empty{{/if}}"></div>
+            <div class="resource-square {{#if (lt this @root.system.mana.value)}}filled mana{{else}}empty{{/if}}"
+              {{#if @root.editable}} data-action="setMana" data-value="{{this}}" {{/if}}
+            ></div>
             {{/times}}
+            {{#if editable}}
+            <a class="resource-action" data-action="setMaxMana" data-value="1" title="Increase Mana">
+              <i class="fas fa-plus-circle"></i>
+            </a>
+            {{/if}}
           </div>
         </div>
         {{/if}}

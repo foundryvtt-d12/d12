@@ -29,6 +29,11 @@ export class D12ActorSheet extends PrimarySheetMixin(
     },
     form: { submitOnChange: true },
     actions: {
+      changeTab: D12ActorSheet.#changeTab,
+      setMaxHealth: D12ActorSheet.#setMaxHealth,
+      setMaxMana: D12ActorSheet.#setMaxMana,
+      setHealth: D12ActorSheet.#setHealth,
+      setMana: D12ActorSheet.#setMana,
       itemEdit: D12ActorSheet.#itemEdit,
       itemCreate: D12ActorSheet.#itemCreate,
       itemDelete: D12ActorSheet.#itemDelete,
@@ -36,7 +41,6 @@ export class D12ActorSheet extends PrimarySheetMixin(
       quantityDecrease: D12ActorSheet.#quantityDecrease,
       chargesIncrease: D12ActorSheet.#chargesIncrease,
       chargesDecrease: D12ActorSheet.#chargesDecrease,
-      changeTab: D12ActorSheet.#changeTab,
       rollable: D12ActorSheet.#rollable,
       effectRemove: D12ActorSheet.#effectRemove,
     }
@@ -182,6 +186,38 @@ export class D12ActorSheet extends PrimarySheetMixin(
     event.preventDefault();
     this._activeTab = target.dataset.tab;
     this.render();
+  }
+
+  static async #setMaxHealth(event, target) {
+    event.preventDefault();
+    const value = parseInt(target.dataset.value);
+    await this.actor.update({ "system.health.max": this.actor.system.health.max + value });
+  }
+
+  static async #setMaxMana(event, target) {
+    event.preventDefault();
+    const value = parseInt(target.dataset.value);
+    await this.actor.update({ "system.mana.max": this.actor.system.mana.max + value });
+  }
+
+  static async #setHealth(event, target) {
+    event.preventDefault();
+    const value = parseInt(target.dataset.value);
+    if (value == 0 && this.actor.system.health.value === 1) {
+      await this.actor.update({ "system.health.value": 0 });
+    } else {
+      await this.actor.update({ "system.health.value": value + 1 });
+    }
+  }
+
+  static async #setMana(event, target) {
+    event.preventDefault();
+    const value = parseInt(target.dataset.value);
+    if (value == 0 && this.actor.system.mana.value === 1) {
+      await this.actor.update({ "system.mana.value": 0 });
+    } else {
+      await this.actor.update({ "system.mana.value": value + 1 });
+    }
   }
 
   /**

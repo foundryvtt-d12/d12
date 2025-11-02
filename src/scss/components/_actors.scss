@@ -21,6 +21,7 @@
       height: 16px;
       border: 1px solid transparent;
       border-radius: 4px;
+      cursor: default;
 
       &.filled.health {
         background-color: #dc3545;
@@ -37,6 +38,18 @@
         border-color: #ccc;
       }
     }
+
+    .resource-action {
+      height: 16px;
+    }
+  }
+}
+
+.editable .resource-square {
+  cursor: pointer !important;
+
+  &:hover {
+    filter: brightness(85%);
   }
 }
 
