@@ -17,6 +17,14 @@ export default class D12ActorBase extends D12DataModel {
     });
     schema.biography = new fields.StringField({ required: true, blank: true }); // equivalent to passing ({initial: ""}) for StringFields
 
+    // Iterate over ability names and create a new SchemaField for each.
+    schema.abilities = new fields.SchemaField(Object.keys(CONFIG.D12.abilities).reduce((obj, ability) => {
+      obj[ability] = new fields.SchemaField({
+        value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      });
+      return obj;
+    }, {}));
+
     schema.defenses = new fields.SchemaField(Object.keys(CONFIG.D12.defenses).reduce((obj, defense) => {
       obj[defense] = new fields.SchemaField({
         value: new fields.NumberField({ ...requiredInteger, initial: 6, min: 0 }),
