@@ -56,7 +56,7 @@
           <i class="fas fa-xmark"></i>
         </a>
       {{else if item.system.action}}
-        {{#if @root.fullPermissions}}
+        {{#if @root.isOwner}}
           <a class="action-icon use-item" data-action="rollable" data-item="{{item._id}}"
             title="{{#if (eq item.type 'spell')}}{{localize 'D12.Item.Use.Spell'}}{{else}}{{localize 'D12.Item.Use.Item'}}{{/if}}"
           >

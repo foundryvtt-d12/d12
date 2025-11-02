@@ -55,7 +55,7 @@
           <div class="flexrow">
             <div class="flexgrow">{{item.name}}</div>
             {{#if item.system.action}}
-              {{#if fullPermissions}}
+              {{#if isOwner}}
                 <div class="flexauto flexrow flex-group-center">
                   <a class="button use-item rollable" data-action="rollable">
                     <i class="fas fa-regular fa-star-christmas"></i>

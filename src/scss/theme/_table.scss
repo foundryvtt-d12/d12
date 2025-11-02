@@ -95,10 +95,7 @@
         .use-item {
           color: rgba($c-text-on-light, 0.7);
 
-          i {
-            font-size: 16px;
-            margin: 4px 4px 3px;
-          }
+          i { font-size: 16px; }
         }
 
         .no-charges {

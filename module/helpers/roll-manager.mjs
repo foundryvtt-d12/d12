@@ -6,7 +6,7 @@ export default class RollManager {
   }
 
   static async createAbilityRoll(actor, ability) {
-    if (actor == null) return;
+    if (actor?.isOwner != true) return;
 
     const terms = this._baseTerms(actor, ability);
 
@@ -30,6 +30,8 @@ export default class RollManager {
   }
 
   static async createSimpleItemAction(actor, item) {
+    if (actor?.isOwner != true) return;
+
     const templateData = {
       roll: null,
       config: CONFIG.D12,
@@ -43,6 +45,7 @@ export default class RollManager {
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       rollMode: game.settings.get("core", "rollMode"),
       content: html,
+      flavor: game.i18n.localize(`D12.Item.Use.${item.type === "spell" ? "Spell" : "Item"}`),
       flags: {
         d12: templateData.data
       }
@@ -50,7 +53,7 @@ export default class RollManager {
   }
 
   static async createItemRoll(actor, ability, item) {
-    if (actor == null) return;
+    if (actor?.isOwner != true) return;
 
     const rollParams = item.system.action.roll;
 
@@ -91,6 +94,7 @@ export default class RollManager {
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       rollMode: game.settings.get("core", "rollMode"),
       content: html,
+      flavor: game.i18n.localize(`D12.Item.Use.${item.type === "spell" ? "Spell" : "Item"}`),
       flags: {
         d12: templateData.data
       }

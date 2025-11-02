@@ -73,6 +73,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       actor: this.actor,
       document: this.document,
       fullPermissions: this._hasFullPermissions(this.actor),
+      isOwner: this.document.isOwner,
 
       // Add the actor's data to context for easier access, as well as flags.
       system: actorData.system,
