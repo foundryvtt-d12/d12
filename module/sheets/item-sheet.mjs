@@ -95,6 +95,10 @@ export class D12ItemSheet extends PrimarySheetMixin(
 
     if (mode == null) return;
 
+    if (systemData.charges != null && systemData.charges.value == null) {
+      systemData.charges = null;
+    }
+
     if (mode === "no_action") {
       systemData.action = null;
     } else if (mode === "action_no_roll") {
