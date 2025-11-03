@@ -2,9 +2,9 @@
   {{#if (gt (length traits) 0)}}
   <div class="items-section card">
     <div class="items-header header">
-      <div class="item-name">{{localize "Trait"}}</div>
-      <div class="item-header">{{localize "Charges"}}</div>
-      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-name">{{localize "D12.Inventory.Trait"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Charges"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Roll"}}</div>
       <div class="item-header">
         <a
           class="action-icon edit-mode-only"
@@ -26,9 +26,9 @@
 
   <div class="items-section card">
     <div class="items-header header">
-      <div class="item-name">{{localize "Spell"}}</div>
-      <div class="item-header">{{localize "Charges"}}</div>
-      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-name">{{localize "D12.Inventory.Spell"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Charges"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Roll"}}</div>
       <div class="item-header">
         <a
           class="action-icon edit-mode-only"
@@ -47,7 +47,7 @@
       {{#if (eq (length spells) 0)}}
         <li class="item">
           <div class="item-row">
-            <div class="no-items grid-span-12 flexcol">{{localize "D12.NoSpells"}}</div>
+            <div class="no-items grid-span-12 flexcol">{{localize "D12.Inventory.NoSpells"}}</div>
           </div>
         </li>
       {{/if}}

@@ -113,16 +113,16 @@
         {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
         <div class="actor-tab stats {{#unless (eq activeTab "stats")}}hidden{{/unless}}">
           {{#if (eq actor.type "npc")}}
-            {{> "systems/d12/templates/actor/actor-npc-stats.hbs"}}
+            {{> "systems/d12/templates/actor/npc-stats.hbs"}}
           {{else}}
-            {{> "systems/d12/templates/actor/actor-character-stats.hbs"}}
+            {{> "systems/d12/templates/actor/character-stats.hbs"}}
           {{/if}}
         </div>
         <div class="actor-tab items {{#unless (eq activeTab "items")}}hidden{{/unless}}">
-          {{> "systems/d12/templates/actor/actor-items.hbs"}}
+          {{> "systems/d12/templates/actor/inventory.hbs"}}
         </div>
         <div class="actor-tab spells {{#unless (eq activeTab "spells")}}hidden{{/unless}}">
-          {{> "systems/d12/templates/actor/actor-spells.hbs"}}
+          {{> "systems/d12/templates/actor/spells.hbs"}}
         </div>
       </div>
     </section>

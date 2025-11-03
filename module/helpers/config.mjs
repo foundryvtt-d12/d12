@@ -33,10 +33,10 @@ D12.defenseAbbreviations = {
 };
 
 D12.rarities = {
-  common: "D12.Rarity.Common",
-  rare: "D12.Rarity.Rare",
-  epic: "D12.Rarity.Epic",
-  legendary: "D12.Rarity.Legendary"
+  common: "D12.Item.Rarity.Common",
+  rare: "D12.Item.Rarity.Rare",
+  epic: "D12.Item.Rarity.Epic",
+  legendary: "D12.Item.Rarity.Legendary"
 };
 
 D12.actionTypes = {

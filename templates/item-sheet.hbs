@@ -231,9 +231,9 @@
             <span class="box-description">
               {{#if (eq system.action.roll.target.type "fixed")}}
                 {{#if system.action.roll.target.difficulty}}
-                  <span class="difficulty">{{system.action.roll.target.difficulty}}</span> {{localize 'D12.Target.DC'}}
+                  <span class="difficulty">{{system.action.roll.target.difficulty}}</span> {{localize 'D12.Item.Target.DC'}}
                 {{else}}
-                  {{localize 'D12.Target.Unknown'}}
+                  {{localize 'D12.Item.Target.Unknown'}}
                 {{/if}}
               {{else}}
                 {{localize (lookup @root.config.defenses system.action.roll.target.type)}}

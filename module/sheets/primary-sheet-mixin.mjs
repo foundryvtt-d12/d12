@@ -56,8 +56,8 @@ export default function PrimarySheetMixin(Base) {
           const toggle = document.createElement("slide-toggle");
           toggle.checked = this._mode === this.constructor.MODES.EDIT;
           toggle.classList.add("mode-slider");
-          toggle.dataset.tooltip = "D12.SheetModeEdit";
-          toggle.setAttribute("aria-label", game.i18n.localize("D12.SheetModeEdit"));
+          toggle.dataset.tooltip = this._label;
+          toggle.setAttribute("aria-label", game.i18n.localize(this._label));
           toggle.addEventListener("change", this._onChangeSheetMode.bind(this));
           toggle.addEventListener("dblclick", (event) => event.stopPropagation());
           toggle.addEventListener("pointerdown", (event) => event.stopPropagation());
@@ -70,6 +70,10 @@ export default function PrimarySheetMixin(Base) {
       }
     }
 
+    get _label() {
+      return `D12.SheetLabels.${this._mode === this.constructor.MODES.EDIT ? "Edit" : "Play"}Mode`
+    }
+
     /**
      * Handle changing the sheet mode.
      * @protected
@@ -77,13 +81,9 @@ export default function PrimarySheetMixin(Base) {
     async _onChangeSheetMode(event) {
       const toggle = event.target;
       const MODES = this.constructor.MODES;
-      const label =
-        this._mode === MODES.EDIT
-          ? game.i18n.localize("D12.SheetModePlay")
-          : game.i18n.localize("D12.SheetModeEdit");
-      toggle.dataset.tooltip = label;
-      toggle.setAttribute("aria-label", label);
       this._mode = toggle.checked ? MODES.EDIT : MODES.PLAY;
+      toggle.dataset.tooltip = this._label;
+      toggle.setAttribute("aria-label", this._label);
       await this.render();
     }
 

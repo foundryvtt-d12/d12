@@ -49,10 +49,10 @@ export class D12ActorSheet extends PrimarySheetMixin(
   /** @override */
   static PARTS = {
     sheet: { template: "systems/d12/templates/actor-sheet.hbs" },
-    characterStats: { template: "systems/d12/templates/actor/actor-character-stats.hbs" },
-    npcStats: { template: "systems/d12/templates/actor/actor-npc-stats.hbs" },
-    items: { template: "systems/d12/templates/actor/actor-items.hbs" },
-    spells: { template: "systems/d12/templates/actor/actor-spells.hbs" },
+    characterStats: { template: "systems/d12/templates/actor/character-stats.hbs" },
+    npcStats: { template: "systems/d12/templates/actor/npc-stats.hbs" },
+    items: { template: "systems/d12/templates/actor/inventory.hbs" },
+    spells: { template: "systems/d12/templates/actor/spells.hbs" },
     itemTableRow: { template: "systems/d12/templates/actor/item-table-row.hbs" },
   };
 
@@ -259,7 +259,8 @@ export class D12ActorSheet extends PrimarySheetMixin(
     delete itemData.system["type"];
 
     // Finally, create the item!
-    return await Item.create(itemData, { parent: this.actor });
+    const item = await Item.create(itemData, { parent: this.actor });
+    item.sheet.render(true);
   }
 
   /**

@@ -1,9 +1,9 @@
 <section class="tab flexgrow">
   <div class="items-section card">
     <div class="items-header header">
-      <div class="item-name">{{localize "Item"}}</div>
-      <div class="item-header">{{localize "Quantity"}}</div>
-      <div class="item-header">{{localize "Roll"}}</div>
+      <div class="item-name">{{localize "D12.Inventory.Item"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Quantity"}}</div>
+      <div class="item-header">{{localize "D12.Inventory.Roll"}}</div>
       <div class="item-header">
         <a
           class="action-icon edit-mode-only"
@@ -22,7 +22,7 @@
       {{#if (eq (length inventory) 0)}}
         <li class="item">
           <div class="item-row">
-            <div class="no-items grid-span-12 flexcol">{{localize "D12.NoItems"}}</div>
+            <div class="no-items grid-span-12 flexcol">{{localize "D12.Inventory.NoItems"}}</div>
           </div>
         </li>
       {{/if}}

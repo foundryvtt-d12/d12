@@ -20,11 +20,10 @@
       "Stats": "Stats",
       "Items": "Items",
       "Spells": "Spells",
-      "Lock": "Lock Sheet",
-      "Unlock": "Unlock Sheet"
+      "EditMode": "Edit Mode",
+      "PlayMode": "Play Mode"
     },
-    "SheetModeEdit": "Edit Mode",
-    "SheetModePlay": "Play Mode",
+
     "Item": {
       "Category": {
         "Item": "Item",
@@ -38,19 +37,27 @@
       "Use": {
         "Item": "Use Item",
         "Spell": "Cast Spell"
+      },
+      "Rarity": {
+        "Common": "Common",
+        "Rare": "Rare",
+        "Epic": "Epic",
+        "Legendary": "Legendary"
+      },
+      "Target": {
+        "DC": " or more",
+        "Unknown": "Variable"
       }
     },
-    "Rarity": {
-      "Common": "Common",
-      "Rare": "Rare",
-      "Epic": "Epic",
-      "Legendary": "Legendary"
-    },
-    "NoItems": "No items",
-    "NoSpells": "No spells",
-    "Target": {
-      "DC": " or more",
-      "Unknown": "Variable"
+    "Inventory": {
+      "NoItems": "No items",
+      "NoSpells": "No spells",
+      "Item": "Item",
+      "Quantity": "Quantity",
+      "Trait": "Trait",
+      "Charges": "Charges",
+      "Spell": "Spell",
+      "Roll": "Roll"
     }
   },
 
