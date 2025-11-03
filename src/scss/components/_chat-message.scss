@@ -115,4 +115,37 @@
       color: white;
     }
   }
+
+  .targets {
+    .separator {
+      margin-bottom: 0;
+    }
+
+    .target {
+      min-height: 32px;
+
+      .target-image {
+        @include flex-auto;
+
+        img {
+          @include item-image;
+          box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 4px 1px;
+          width: 24px;
+          height: 24px;
+          margin-right: 8px;
+        }
+      }
+
+      .target-name {
+        @include flex-grow;
+      }
+
+      .target-result {
+        @include flex-auto;
+
+        .success { color: $c-green; }
+        .fail { color: $c-red; }
+      }
+    }
+  }
 }

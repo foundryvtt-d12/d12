@@ -1,5 +1,10 @@
 
 export default class RollManager {
+  static ROLL_RESULT = {
+    SUCCESS: "success",
+    FAIL: "fail",
+    UNKNOWN: "unknown"
+  };
 
   static get _template() {
     return "systems/d12/templates/chat/roll-message.hbs";
@@ -73,6 +78,26 @@ export default class RollManager {
     const dieRoll = roll.terms[0].results[0].result;
     const isCritical = (rollParams.critical != null) && (dieRoll >= rollParams.critical);
 
+    let targetedTokens = [];
+    if (canvas?.tokens) {
+      targetedTokens = canvas.tokens.placeables.filter(t => t.isTargeted).map(t => t.id);
+    }
+
+    const targets = [];
+    for (const token of canvas.tokens.placeables) {
+      if (token.isTargeted) {
+        const tokenId = token.id;
+        const targetedActor = token.actor;
+
+        const rollResult = RollManager._getRollResult(targetedActor, roll.total, rollParams.target);
+        targets.push({
+          tokenId: tokenId,
+          actor: targetedActor.toPlainObject(),
+          result: rollResult,
+        });
+      }
+    }
+
     // Prepare data for the template
     const templateData = {
       roll: roll,
@@ -85,6 +110,7 @@ export default class RollManager {
         isCritical: isCritical,
         itemBonus: rollParams.bonus ?? 0,
         item: item.toPlainObject(),
+        targets: targets,
       }
     };
 
@@ -101,5 +127,22 @@ export default class RollManager {
     });
 
     return roll;
+  }
+
+  static _getRollResult(targetActor, rollTotal, targetParams) {
+    switch (targetParams.type) {
+      case "arm":
+      case "end":
+      case "wil":
+        return (rollTotal >= targetActor.system.defenses[targetParams.type].value)
+          ? RollManager.ROLL_RESULT.SUCCESS
+          : RollManager.ROLL_RESULT.FAIL;
+      case "fixed":
+      default:
+        if (targetParams.difficulty == null) return RollManager.ROLL_RESULT.UNKNOWN;
+        return rollTotal >= targetParams.difficulty
+          ? RollManager.ROLL_RESULT.SUCCESS
+          : RollManager.ROLL_RESULT.FAIL;
+    }
   }
 }

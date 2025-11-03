@@ -32,5 +32,27 @@
       <div><i class="fas fa-star"></i></div>
     </div>
     {{/if}}
+
+    {{#if (gt (length data.targets) 0)}}
+      <div class="targets flexcol">
+        <div class="separator flexrow">Targets</div>
+
+        {{#each data.targets}}
+          <div class="target flexrow flex-between">
+            <div class="target-image">
+              <img src="{{this.actor.img}}" width="24" height="24" />
+            </div>
+            <div class="target-name">{{this.actor.name}}</div>
+            <div class="target-result">
+              {{#if (eq this.result "success")}}
+                <i class="fas fa-check-circle fa-lg success"></i>
+              {{else if (eq this.result "fail")}}
+                <i class="fas fa-times-circle fa-lg fail"></i>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
   {{/if}}
 </div>
