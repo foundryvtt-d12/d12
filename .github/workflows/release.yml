@@ -47,7 +47,7 @@ jobs:
         with:
           files: "system.json"
         env:
-          esmodules.0: "dist/d12.mjs"
+          esmodules.0: "dist/d12.js"
           version: ${{github.event.release.tag_name}}
           manifest: ${{env.latest_manifest_url}}
           download: ${{env.release_download_url}}
@@ -58,6 +58,7 @@ jobs:
           zip --recurse-paths ./system.zip  \
             LICENSE                         \
             system.json                     \
+            template.json                   \
             assets/                         \
             dist/                           \
             lang/                           \
@@ -73,6 +74,6 @@ jobs:
           draft: ${{ github.event.release.unpublished }}
           prerelease: ${{ github.event.release.prerelease }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './system.json, ./system.zip'
+          artifacts: "./system.json, ./system.zip"
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
