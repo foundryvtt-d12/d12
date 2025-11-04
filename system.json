@@ -22,7 +22,7 @@
       "thumbnail": "systems/d12/assets/d12.png"
     }
   ],
-  "version": "1.0.0",
+  "version": "{VERSION}",
   "compatibility": {
     "minimum": "13",
     "maximum": "13",
