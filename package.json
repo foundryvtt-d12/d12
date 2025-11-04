@@ -10,7 +10,7 @@
     "last 3 versions"
   ],
   "author": "Flavien Charlon",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": true,
   "devDependencies": {
     "sass": "^1.53.0"
