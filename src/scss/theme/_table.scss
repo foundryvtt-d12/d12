@@ -92,6 +92,22 @@
           }
         }
 
+        .quantity-column {
+          display: flex;
+          flex-direction: row;
+
+          & > span {
+            @include flex-grow;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          & > a {
+            flex: auto 0;
+          }
+        }
+
         .use-item {
           color: rgba($c-text-on-light, 0.7);
 

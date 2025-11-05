@@ -2,9 +2,8 @@
 use both the "grid" and "grid-Ncol" class where "N" can be any number
 from 1 to 12 and will create that number of columns.  --}}
 <div class="tab flexgrow flexcol">
-  <div class="grid grid-12col flexgrow">
-    <div class="grid-span-7 flexcol">
-    <div class="editor-section">
+  {{#if (or system.biography @root.editable)}}
+    <div class="editor-section npc-stats-section">
         {{#if @root.editable}}
         <prose-mirror
           name="system.biography"
@@ -18,29 +17,10 @@ from 1 to 12 and will create that number of columns.  --}}
         {{{enrichedBiography}}}
         {{/if}}
     </div>
+  {{/if}}
+
+  <div>
+    {{> "systems/d12/templates/actor/character-stats.hbs"}}
   </div>
 
-  <div class="grid-span-5 flexcol flex-group-center">
-    {{#each system.defenses as |defense key|}}
-      <div class="defense-field flexcol flexauto">
-        <label for="system.defenses.{{key}}.value" class="label align-left" data-label="{{localize (lookup @root.config.defenses key)}}">
-          {{localize (lookup @root.config.defenses key)}}
-        </label>
-
-        <div class="defense-box flexrow align-left">
-          <div class="defense-icon">
-            <img src="/systems/d12/assets/ui/icons/basic_{{key}}.svg" width="32" height="32" />
-          </div>
-          {{#if @root.editable}}
-          <input type="text" name="system.defenses.{{key}}.value" value="{{defense.value}}" data-dtype="Number"/>
-          {{else}}
-          <div class="defense-value">
-            {{defense.value}}
-          </div>
-          {{/if}}
-        </div>
-      </div>
-    {{/each}}
-  </div>
-  </div>
 </div>

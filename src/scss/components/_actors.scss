@@ -130,18 +130,8 @@
   }
 }
 
-.quantity-column {
-  display: flex;
-  flex-direction: row;
-
-  & > span {
-    @include flex-grow;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  & > a {
-    flex: auto 0;
-  }
+.npc-stats-section {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
