@@ -1,7 +1,7 @@
 # D12 System for Foundry Virtual Tabletop
 
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![GitHub Release](https://img.shields.io/github/v/release/foundryvtt-d12/d12)
 
 A simple, rules-light RPG system for Foundry Virtual Tabletop focused on storytelling and narrative gameplay using a d12 die mechanic.
 
@@ -31,7 +31,7 @@ The D12 System is a streamlined tabletop RPG system designed to get out of the w
 Copy the following manifest URL into Foundry VTT's system installer:
 
 ```
-https://raw.githubusercontent.com/foundryvtt-d12/d12/refs/heads/main/system.json
+https://github.com/foundryvtt-d12/d12/releases/latest/download/system.json
 ```
 
 ## System Basics
@@ -89,6 +89,10 @@ Create and manage:
 
 For issues, questions, or feature requests, please visit the [GitHub Issues page](https://github.com/foundryvtt-d12/d12/issues).
 
+## Authors
+
+- **Flavien Charlon** - Creator and maintainer
+
 ## License
 
 Copyright 2025 Flavien Charlon
@@ -99,12 +103,3 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
-
-## Authors
-
-- **Flavien Charlon** - Creator and maintainer
-
-## Acknowledgments
-
-- The Foundry Virtual Tabletop community for their support and feedback
-- Inspired by rules-light RPG design philosophy
