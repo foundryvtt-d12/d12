@@ -146,6 +146,19 @@
         .success { color: $c-green; }
         .fail { color: $c-red; }
       }
+
+      .target-arrow {
+        @include flex-auto;
+        margin: 0 8px;
+      }
+
+      .target-value {
+        @include flex-auto;
+
+        img {
+          margin-right: 4px;
+        }
+      }
     }
   }
 }

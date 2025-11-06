@@ -43,6 +43,15 @@
               <img src="{{this.actor.img}}" width="24" height="24" />
             </div>
             <div class="target-name">{{this.actor.name}}</div>
+
+            {{#if this.targetValue}}
+            <div class="target-value flexrow">
+              {{#if this.targetValue}}
+                <img src="/systems/d12/assets/ui/icons/basic_{{this.targetType}}.svg" width="16" height="16" />
+                <span>{{this.targetValue}}</span>
+              {{/if}}
+            </div>
+            <div class="target-arrow">→</div>
             <div class="target-result">
               {{#if (eq this.result "success")}}
                 <i class="fas fa-check-circle fa-lg success"></i>
@@ -50,6 +59,8 @@
                 <i class="fas fa-times-circle fa-lg fail"></i>
               {{/if}}
             </div>
+            {{/if}}
+
           </div>
         {{/each}}
       </div>

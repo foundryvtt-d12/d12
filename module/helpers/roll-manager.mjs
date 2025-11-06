@@ -89,10 +89,20 @@ export default class RollManager {
         const tokenId = token.id;
         const targetedActor = token.actor;
 
-        const rollResult = RollManager._getRollResult(targetedActor, roll.total, rollParams.target);
+        const targetValue = RollManager._getTargetValue(targetedActor, rollParams.target);
+        let rollResult;
+        if (targetValue != null) {
+          rollResult = roll.total >= targetValue ? RollManager.ROLL_RESULT.SUCCESS : RollManager.ROLL_RESULT.FAIL;
+        } else {
+          rollResult = RollManager.ROLL_RESULT.FAIL;
+        }
+
         targets.push({
           tokenId: tokenId,
           actor: targetedActor.toPlainObject(),
+          result: rollResult,
+          targetValue: targetValue,
+          targetType: rollParams.target.type,
           result: rollResult,
         });
       }
@@ -129,20 +139,19 @@ export default class RollManager {
     return roll;
   }
 
-  static _getRollResult(targetActor, rollTotal, targetParams) {
+  static _getTargetValue(targetActor, targetParams) {
     switch (targetParams.type) {
       case "arm":
       case "end":
       case "wil":
-        return (rollTotal >= targetActor.system.defenses[targetParams.type].value)
-          ? RollManager.ROLL_RESULT.SUCCESS
-          : RollManager.ROLL_RESULT.FAIL;
+        return targetActor.system.defenses[targetParams.type].value;
       case "fixed":
       default:
-        if (targetParams.difficulty == null) return RollManager.ROLL_RESULT.UNKNOWN;
-        return rollTotal >= targetParams.difficulty
-          ? RollManager.ROLL_RESULT.SUCCESS
-          : RollManager.ROLL_RESULT.FAIL;
+        if (targetParams.difficulty == null) {
+          return null;
+        } else {
+          return targetParams.difficulty;
+        }
     }
   }
 }

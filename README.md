@@ -1,7 +1,7 @@
 # D12 System for Foundry Virtual Tabletop
 
-![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
-![GitHub Release](https://img.shields.io/github/v/release/foundryvtt-d12/d12)
+[![Foundry v13](https://img.shields.io/badge/foundry-v13-green)](https://foundryvtt.com/packages/d12)
+[![GitHub Release](https://img.shields.io/github/v/release/foundryvtt-d12/d12)](https://github.com/foundryvtt-d12/d12/releases/latest)
 
 A simple, rules-light RPG system for Foundry Virtual Tabletop focused on storytelling and narrative gameplay using a d12 die mechanic.
 
