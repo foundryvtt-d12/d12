@@ -105,11 +105,5 @@ export default function PrimarySheetMixin(Base) {
      * @protected
      */
     _applySubmitDataOverrides(systemData, formData) { }
-
-    _hasFullPermissions(actor) {
-      const owner = actor.testUserPermission(game.user, "OWNER");
-      const observer = actor.testUserPermission(game.user, "OBSERVER");
-      return owner || observer;
-    }
   };
 }
