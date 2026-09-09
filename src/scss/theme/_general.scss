@@ -117,6 +117,10 @@ button, a.button {
     flex-direction: column;
     @include flex-grow;
 
+    button.icon {
+      width: 32px;
+    }
+
     .editor-container {
       overflow: visible;
     }
