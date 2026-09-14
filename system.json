@@ -37,6 +37,16 @@
       "path": "lang/en.json"
     }
   ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {}
+    },
+    "Item": {
+      "item": {},
+      "spell": {}
+    }
+  },
   "packs": [],
   "packFolders": [],
   "socket": false,
