@@ -27,6 +27,12 @@
       url('../assets/ui/npc-sheet-header.png') no-repeat center center / cover;
   }
 
+  &:has(> .loot)::before {
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 81, 0.75)),
+      url('../assets/ui/npc-sheet-header.png') no-repeat center center / cover;
+  }
+
   .sheet-grid {
     grid-template-columns: min(33.33%, 200px) 1fr;
     gap: 16px;

@@ -2,6 +2,11 @@ import D12DataModel from "./base-model.mjs";
 
 export default class D12ActorBase extends D12DataModel {
 
+  /** Whether this actor can use items (roll/cast them). */
+  get canUseItems() {
+    return true;
+  }
+
   static defineSchema() {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };

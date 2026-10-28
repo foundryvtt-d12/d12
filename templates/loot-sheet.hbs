@@ -1,0 +1,56 @@
+<section class="{{#if editable}}editable{{else}}locked{{/if}} {{actor.type}}">
+  <div class="grid sheet-grid flexcol">
+
+    {{!-- Left column: image --}}
+    <aside class="sidebar">
+      <div class="sheet-art">
+        <img src="{{actor.img}}"
+          {{#if editable}} data-action="editImage" data-edit="img" {{/if}}
+          title="{{actor.name}}" height="100" width="100"/>
+      </div>
+    </aside>
+
+    {{!-- Right column: main content with tabs --}}
+    <section class="sheet-body flexcol">
+
+      {{!-- Sheet Header --}}
+      <header class="sheet-header flexcol">
+        <div class="sheet-title">
+          {{#if editable}}
+          <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+          {{else}}
+          <div>{{actor.name}}</div>
+          {{/if}}
+        </div>
+      </header>
+
+      {{!-- Sheet Tab Navigation --}}
+      <nav class="sheet-tabs flexrow">
+        <a class="item items active"><i class="fas fa-flask-round-potion"></i> {{localize "D12.SheetLabels.Items"}}</a>
+      </nav>
+
+      {{!-- Sheet Content --}}
+      <div class="flexgrow flexcol tab-content">
+        {{#if (or system.biography editable)}}
+          <div class="editor-section npc-stats-section">
+            {{#if editable}}
+            <prose-mirror
+              name="system.biography"
+              button="true"
+              editable="{{editable}}"
+              toggled="false"
+              value="{{system.biography}}">
+              {{{enrichedBiography}}}
+            </prose-mirror>
+            {{else}}
+            {{{enrichedBiography}}}
+            {{/if}}
+          </div>
+        {{/if}}
+        {{#if fullViewPermissions}}
+          {{> "systems/d12/templates/actor/inventory.hbs"}}
+        {{/if}}
+      </div>
+    </section>
+  </div>
+</section>

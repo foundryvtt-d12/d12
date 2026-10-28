@@ -2,6 +2,7 @@
 export {default as D12ActorBase} from "./base-actor.mjs";
 export {default as D12Character} from "./actor-character.mjs";
 export {default as D12NPC} from "./actor-npc.mjs";
+export {default as D12Loot} from "./actor-loot.mjs";
 
 // Export Items
 export {default as D12ItemBase} from "./base-item.mjs";

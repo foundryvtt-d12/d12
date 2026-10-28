@@ -3,6 +3,7 @@ import { D12Actor } from "./documents/actor.mjs";
 import { D12Item } from "./documents/item.mjs";
 // Import sheet classes.
 import { D12ActorSheet } from "./sheets/actor-sheet.mjs";
+import { D12LootSheet } from "./sheets/loot-sheet.mjs";
 import { D12ItemSheet } from "./sheets/item-sheet.mjs";
 import { D12 } from "./helpers/config.mjs";
 // Import DataModel classes
@@ -23,6 +24,7 @@ globalThis.d12 = {
   },
   applications: {
     D12ActorSheet,
+    D12LootSheet,
     D12ItemSheet,
   },
   utils: {
@@ -54,7 +56,8 @@ Hooks.once("init", function () {
   // with the Character/NPC as part of super.defineSchema()
   CONFIG.Actor.dataModels = {
     character: models.D12Character,
-    npc: models.D12NPC
+    npc: models.D12NPC,
+    loot: models.D12Loot
   };
   CONFIG.Item.documentClass = D12Item;
   CONFIG.Item.dataModels = {
@@ -67,6 +70,12 @@ Hooks.once("init", function () {
     types: ["character", "npc"],
     makeDefault: true,
     label: "D12.SheetLabels.Actor",
+    themes: null,
+  });
+  foundry.documents.collections.Actors.registerSheet("d12", D12LootSheet, {
+    types: ["loot"],
+    makeDefault: true,
+    label: "D12.SheetLabels.Loot",
     themes: null,
   });
   foundry.documents.collections.Items.registerSheet("d12", D12ItemSheet, {

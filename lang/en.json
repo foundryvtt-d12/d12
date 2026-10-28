@@ -16,6 +16,7 @@
     },
     "SheetLabels": {
       "Actor": "D12 Actor Sheet",
+      "Loot": "D12 Loot Sheet",
       "Item": "D12 Item Sheet",
       "Stats": "Stats",
       "Items": "Items",
@@ -64,7 +65,8 @@
   "TYPES": {
     "Actor": {
       "character": "Character",
-      "npc": "NPC"
+      "npc": "NPC",
+      "loot": "Loot"
     },
     "Item": {
       "item": "Item",

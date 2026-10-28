@@ -40,7 +40,8 @@
   "documentTypes": {
     "Actor": {
       "character": {},
-      "npc": {}
+      "npc": {},
+      "loot": {}
     },
     "Item": {
       "item": {},
