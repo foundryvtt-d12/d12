@@ -1,4 +1,4 @@
-<section class="{{#if editable}}editable{{else}}locked{{/if}} {{actor.type}}"
+<section class="{{#if editable}}editable{{else}}locked{{/if}} {{actor.type}} {{#unless fullViewPermissions}}no-tabs{{/unless}}"
   data-group="{{tab.group}}"
   data-tab="{{tab.id}}">
   {{!-- Sheet Body --}}
@@ -100,13 +100,14 @@
       </header>
 
       {{!-- Sheet Tab Navigation --}}
+      {{!-- Only the stats tab is available without full view permissions, so hide the tabs --}}
+      {{#if fullViewPermissions}}
       <nav class="sheet-tabs flexrow ">
         <a class="item stats {{#if (eq activeTab "stats")}}active{{/if}}" data-action="changeTab" data-tab="stats"><i class="fas fa-star"></i> {{localize "D12.SheetLabels.Stats"}}</a>
-        {{#if fullViewPermissions}}
         <a class="item items {{#if (eq activeTab "items")}}active{{/if}}" data-action="changeTab" data-tab="items"><i class="fas fa-flask-round-potion"></i> {{localize "D12.SheetLabels.Items"}}</a>
         <a class="item spells {{#if (eq activeTab "spells")}}active{{/if}}" data-action="changeTab" data-tab="spells"><i class="fas fa-fire"></i> {{localize "D12.SheetLabels.Spells"}}</a>
-        {{/if}}
       </nav>
+      {{/if}}
 
       {{!-- Sheet Content --}}
       <div class="flexgrow flexcol tab-content">

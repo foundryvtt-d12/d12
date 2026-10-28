@@ -1,4 +1,4 @@
-<section class="{{#if editable}}editable{{else}}locked{{/if}} {{actor.type}}">
+<section class="{{#if editable}}editable{{else}}locked{{/if}} {{actor.type}} no-tabs">
   <div class="grid sheet-grid flexcol">
 
     {{!-- Left column: image --}}
@@ -23,11 +23,6 @@
           {{/if}}
         </div>
       </header>
-
-      {{!-- Sheet Tab Navigation --}}
-      <nav class="sheet-tabs flexrow">
-        <a class="item items active"><i class="fas fa-flask-round-potion"></i> {{localize "D12.SheetLabels.Items"}}</a>
-      </nav>
 
       {{!-- Sheet Content --}}
       <div class="flexgrow flexcol tab-content">

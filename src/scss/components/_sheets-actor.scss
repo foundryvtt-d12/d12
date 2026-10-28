@@ -33,6 +33,11 @@
       url('../assets/ui/npc-sheet-header.png') no-repeat center center / cover;
   }
 
+  // Shorter banner when there is no tab navigation below the title
+  &:has(> .no-tabs)::before {
+    height: 80px;
+  }
+
   .sheet-grid {
     grid-template-columns: min(33.33%, 200px) 1fr;
     gap: 16px;
@@ -45,6 +50,10 @@
       color: $c-text-on-dark-light;
     }
   }
+}
+
+.no-tabs .sheet-header {
+  margin-bottom: 25px;
 }
 
 nav.sheet-tabs {
