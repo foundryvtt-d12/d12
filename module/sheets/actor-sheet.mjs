@@ -78,7 +78,7 @@ export class D12ActorSheet extends PrimarySheetMixin(
       document: this.document,
       fullViewPermissions: this.document.isOwner || this.actor.testUserPermission(game.user, "OBSERVER"),
       isOwner: this.document.isOwner,
-      canUseItems: this.actor.system.canUseItems,
+      hasStatBlock: this.actor.system.hasStatBlock,
 
       // Add the actor's data to context for easier access, as well as flags.
       system: actorData.system,

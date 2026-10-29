@@ -33,7 +33,6 @@
       url('../assets/ui/npc-sheet-header.png') no-repeat center center / cover;
   }
 
-  // Shorter banner when there is no tab navigation below the title
   &:has(> .no-tabs)::before {
     height: 80px;
   }

@@ -88,6 +88,7 @@ export default class RollManager {
       if (token.isTargeted) {
         const tokenId = token.id;
         const targetedActor = token.actor;
+        if (!targetedActor?.system.hasStatBlock) continue;
 
         const targetValue = RollManager._getTargetValue(targetedActor, rollParams.target);
         let rollResult;

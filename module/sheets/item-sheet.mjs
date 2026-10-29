@@ -48,7 +48,7 @@ export class D12ItemSheet extends PrimarySheetMixin(
       item: this.item,
       document: this.document,
       isOwner: this.item.actor != null && this.item.actor.isOwner,
-      canUseItems: this.item.actor?.system.canUseItems ?? false,
+      hasStatBlock: this.item.actor?.system.hasStatBlock ?? false,
 
       // Add the item's data to context for easier access, as well as flags.
       system: itemData.system,

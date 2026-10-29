@@ -2,8 +2,8 @@ import D12DataModel from "./base-model.mjs";
 
 export default class D12ActorBase extends D12DataModel {
 
-  /** Whether this actor can use items (roll/cast them). */
-  get canUseItems() {
+  /** Whether this actor has a stat block, and can use items and be targeted. */
+  get hasStatBlock() {
     return true;
   }
 
