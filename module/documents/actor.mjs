@@ -14,6 +14,8 @@ export class D12Actor extends Actor {
 
   /** @override */
   prepareBaseData() {
+    // Foundry v14 resets active effect state (tokenActiveEffectChanges, overrides, ...) here.
+    super.prepareBaseData();
     // Data modifications in this step occur before processing embedded
     // documents or derived data.
   }
