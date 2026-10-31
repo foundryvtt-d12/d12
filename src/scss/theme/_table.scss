@@ -61,6 +61,7 @@
           align-items: center;
           gap: 8px;
           text-align: left;
+          min-width: 0;
 
           .item-image {
             @include item-image;
@@ -131,12 +132,12 @@
 
 .locked {
   .item-row, .items-header {
-    grid-template-columns: 1fr 50px 60px 24px;
+    grid-template-columns: minmax(0, 1fr) 50px 60px 24px;
   }
 }
 
 .editable {
   .item-row, .items-header {
-    grid-template-columns: 1fr 90px 60px 24px;
+    grid-template-columns: minmax(0, 1fr) 90px 60px 24px;
   }
 }
