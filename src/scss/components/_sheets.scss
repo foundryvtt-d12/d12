@@ -72,6 +72,10 @@
       }
     }
 
+    .sheet-title input {
+      text-overflow: ellipsis;
+    }
+
     input[disabled] {
       background: transparent;
       border: none;

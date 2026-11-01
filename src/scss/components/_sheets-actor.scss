@@ -38,7 +38,7 @@
   }
 
   .sheet-grid {
-    grid-template-columns: min(33.33%, 200px) 1fr;
+    grid-template-columns: min(33.33%, 200px) minmax(0, 1fr);
     gap: 16px;
   }
 }
